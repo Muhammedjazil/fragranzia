@@ -1,0 +1,155 @@
+.category {
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.category-nav {
+    width: 250px;
+    height: 750px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    /* LEFTMOST */
+    margin-left: 0;
+    margin-top: 0;
+
+    padding: 1cm;
+}
+.category-nav a{
+    color: black;
+    text-decoration: none;
+    font-size: 19px;
+   
+}
+.category-nav a svg{
+    color: black;
+    margin-left: 1cm;
+}
+.category-logout{
+    margin-top: 4.5cm;
+}
+.category-logout button{
+ background-color: green;
+ color: white;
+ border: none;
+ width: 150px;
+ padding: .3cm;
+ margin-left: 1cm;
+ font-weight: bolder;
+ border-radius: 6px;
+}
+.category-nav {
+    width: 250px;
+    height: 750px;
+    background-color: #ffffff;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    margin-left: 0;
+    margin-top: 0;
+    padding: 1cm;
+}
+
+.category-nav h2 {
+    color: green;
+    margin-bottom: 1.5cm;
+   
+}
+
+.category-nav a {
+    color: black;
+    text-decoration: none;
+    font-size: 19px;
+}
+
+.category-nav a svg {
+    color: black;
+    margin-left: 1cm;
+}
+.category{
+    display: flex;
+   
+}
+.cutomer-nav{
+    width: 1119px;
+    height: 40px;
+    background-color: rgb(230, 225, 225);
+    border-radius: 12px;
+
+     gap: 5cm;
+    display: flex;
+    padding: .3cm;
+}
+.cus-details{
+    margin-top: .2cm;
+    display: flex;
+    gap: 3cm;
+   border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    padding: .2cm;
+}
+.cust-phone{
+    margin-left: 2.3cm;
+}
+.cust-email{
+    margin-left: 1cm;
+}
+.cust-show{
+    position: relative;
+    margin-left: .2cm;
+    
+}
+.cust-block{
+    margin-left: 2cm;
+}
+.cetegory-customers {
+    margin-left: .2cm;
+    margin-right: .2cm;
+    background-color: #ffffff;
+    padding: 20px;
+    width: 1160px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Soft, modern card shadow */
+}
+.category-content {
+    margin-top: 1cm;
+    margin-left: 0.4cm;
+    background-color: #ffffff;
+    padding: 30px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Adds the soft card shadow and border effect */
+}
+.category-content h1{
+    font-weight: bolder;
+    margin-bottom: .5cm;
+}
+.category-content p{
+    margin-left: .2cm;
+}
+.cust-show svg{
+    position: absolute;
+    top: 20%;
+    left: .1cm;
+}
+.cust-show button{
+    width: 70px;
+      padding: .1cm;
+         border-radius: 5px;
+      border: none;
+      color: green;
+
+
+}
+.cust-block button{
+      width: 70px;
+      color: green;
+      padding: .1cm;
+      border-radius: 5px;
+      border: none;
+}

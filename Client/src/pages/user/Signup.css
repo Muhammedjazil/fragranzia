@@ -1,0 +1,221 @@
+/* MAIN LAYOUT */
+.main {  
+    display: grid;  
+    grid-template-columns: 1fr 1fr;  
+    width: 100%;  
+    min-height: 100vh;
+    box-sizing: border-box;
+}  
+  
+/* LEFT IMAGE SECTION */
+.up-image {  
+    margin-top: 1.5cm;  
+    width: 80%;  
+    height: 500px;  
+    background-size: cover;  
+    background-position: center;  
+    background-repeat: no-repeat;  
+    border-radius: 0 200px 0 200px;  
+    position: relative;     
+    display: flex;  
+    justify-content: center;  
+    align-items: center;  
+    margin-left: 3cm;
+}  
+ 
+.up-image::before {  
+    content: "";  
+    position: absolute;  
+    inset: 0;  
+    border-radius: 0 200px 0 200px;  
+    background: rgba(0, 0, 0, 0.4);  
+}  
+ 
+.overlay {  
+    padding: 30px;  
+    border-radius: 15px;  
+    color: white;  
+    text-align: center;  
+    position: relative;  
+    z-index: 1;  
+}  
+  
+.overlay h1,  
+.overlay p {  
+    color: white;  
+}  
+ 
+/* FORM CONTAINER */ 
+.up-form {  
+    position: relative;  
+    margin: 2cm auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    padding-bottom: 2cm; /* Prevents button from touching bottom edge */
+}  
+ 
+/* SOCIAL BUTTONS CONTAINER */ 
+.up-buttonmain {  
+    display: flex;  
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+}  
+
+.up-button1 button,
+.up-button2 button {  
+    padding: 12px;  
+    width: 170px;  
+    border-radius: 10px;  
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+}  
+
+/* DIVIDER */ 
+.up-divider {  
+    display: flex;  
+    align-items: center;  
+    justify-content: center;  
+    gap: 15px;
+    width: 100%;
+    margin: 20px 0;
+}  
+  
+.up-divider::before,  
+.up-divider::after {  
+    content: "";  
+    width: 70px;  
+    height: 1px;  
+    background-color: #555;  
+}  
+ 
+.up-divider span {  
+    font-size: 17px;  
+    font-weight: bold;  
+}  
+
+/* INPUTS GROUP */ 
+.up-inputs {  
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}  
+
+.up-icon {  
+    position: relative;  
+    width: 350px;  
+    margin-top: 10px;
+}  
+  
+.up-icon i:not(.bi-eye-slash) {  
+    position: absolute;  
+    left: 15px;  
+    top: 50%;  
+    transform: translateY(-50%);  
+    z-index: 1;  
+}  
+
+/* INPUT FIELDS */ 
+.up-icon input {  
+    width: 100% !important;  
+    height: 40px;  
+    margin: 0 !important;  
+    padding-left: 45px;  
+    padding-right: 40px;
+    background-color: #d9d9d9;  
+    border: none;  
+    border-radius: 10px;  
+    outline: none;  
+    box-sizing: border-box;
+}  
+
+.up-icon input:hover {  
+    opacity: 0.8;  
+    transform: translateY(-2px);  
+}  
+
+/* EYE ICON */ 
+.up-icon .bi-eye-slash {  
+    position: absolute;
+    right: 15px;
+    left: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+}  
+
+/* ERROR MESSAGES */ 
+.up-error {  
+    color: #ff3333;  
+    font-size: 12px;  
+    height: 18px;  
+    margin: 2px 0 8px 0;  
+    width: 350px;  
+    text-align: left;
+}  
+
+/* CHECKBOX SECTION */ 
+.up-agree {
+    width: 350px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+.up-agree input[type="checkbox"] {  
+    width: 16px;  
+    height: 16px;  
+    margin: 0;  
+}  
+
+.up-agree .error {
+    color: #ff3333;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+/* SUBMIT BUTTON */ 
+.up-submit {
+    width: 350px;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.up-submit button {  
+    width: 100%;  
+    height: 45px;
+    background-color: rgb(113, 135, 135);  
+    color: white;  
+    font-size: large;  
+    border: none;  
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}  
+
+.up-submit button:hover {  
+    transform: scale(0.98);  
+}  
+
+/* SIGN IN LINK TEXT */
+.up-signin {
+    margin-top: 15px;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* HOVER EFFECTS FOR SOCIAL BUTTONS */ 
+.up-button1 button:hover, 
+.up-button2 button:hover {  
+    transform: translateY(-2px);  
+    opacity: 0.8;  
+}

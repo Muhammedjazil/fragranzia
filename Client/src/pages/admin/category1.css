@@ -1,0 +1,66 @@
+/* .Categories-1{
+    position: relative;
+   
+}
+.add-categories-1{
+   
+    display: flex;
+}
+.add-cross{
+    margin-left: 4cm;
+}
+.add-categories-1 h1{
+    font-size: 21px;
+}
+.all-add-category{
+width: 400px;
+border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+padding: 1cm;
+}
+.all-add-category input,textarea{
+    margin-top: 3px;
+    width: 300px;
+    border-radius: 9px;
+    outline: none;
+    border: 1px solid gray;
+    
+}
+.cancel-add-buttons{
+    display: flex;
+    margin-left: 3cm;
+    margin-top: .3cm;
+    gap: .3cm;
+}
+.cancel12 button{
+    padding: .2cm;
+    border: none;
+    border-radius: 7px;
+    width: 70px;
+    color: white;
+    background-color: red;
+}
+.add12 button{
+     padding: .2cm;
+    border: none;
+    border-radius: 7px;
+    width: 100px;  
+    color: white;
+    background-color: green;
+}
+.all-add-category label{
+    margin-left: .1cm;
+    color: gray;
+}
+.all-add-category input{
+    padding: .2cm;
+}
+.all-add-category{
+    position: absolute;
+    left: 30cm;
+    top: -26%;
+    transform: translateY(30%);
+    background-color: white;
+    height: 700px;
+} */

@@ -1,0 +1,124 @@
+.User {
+    position: relative;
+}
+
+/* Full-screen transparent black overlay */
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Centered white popup card container */
+.modal-card {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid #eaeaea;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 450px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eaeaea;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.user-details-modal h2 {
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0;
+}
+
+.user-details-1 svg {
+    font-size: 20px;
+    color: gray;
+    cursor: pointer;
+}
+
+.modal-backdrop label {
+    color: gray;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.modal-backdrop h3 {
+    margin-top: 5px;
+    margin-bottom: 0px;
+    font-size: 16px;
+}
+
+.user-deatails-status {
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    padding: 12px;
+    display: flex;
+    gap: 2cm;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.user-deatails-name {
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+}
+
+.user-deatails-active button {
+    color: green;
+    background-color: #e6f4ea;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+}
+
+.user-deatails-role button {
+    color: rgb(150, 21, 167);
+    background-color: #f3e8ff;
+    padding: 4px 12px;
+    border-radius: 6px;
+    border: none;
+    font-weight: bold;
+}
+
+.user-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.user-button button {
+    width: 80px;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background-color: #f1f3f5;
+    font-weight: bold;
+    cursor: pointer;
+}
+.user-deatails-status button{
+    margin-top: 2px;
+}
+.user-details-1 svg:hover{
+    color: red;
+}

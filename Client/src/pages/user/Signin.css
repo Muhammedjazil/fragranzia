@@ -1,0 +1,363 @@
+/* =========================
+   MAIN FORM
+========================= */
+
+.form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    margin-left: 3cm;
+}
+
+
+/* =========================
+   LEFT IMAGE
+========================= */
+
+.image {
+    width: 80%;
+    height: 597px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+  margin-top: 1cm;
+  margin-left: 1cm;
+    border-radius: 250px 0 250px 0;
+    position: relative;
+}
+
+.image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+
+    border-radius: 250px 0 250px 0;
+
+    background: rgba(0, 0, 0, 0.45);
+
+    z-index: 1;
+}
+
+.form .image h1,
+.form .image p {
+    position: relative;
+    z-index: 2;
+
+    color: white !important;
+
+    text-align: center;
+
+    margin-left: 0;
+}
+
+.image h1 {
+    padding-top: 235px;
+    margin-top: 0;
+
+    font-size: 40px;
+}
+
+.image p {
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+
+/* =========================
+   RIGHT FORM AREA
+========================= */
+
+.inputs {
+    width: 365px;
+
+  margin-top: 2cm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* =========================
+   GOOGLE + FACEBOOK
+========================= */
+
+.buttons {
+    width: 365px;
+
+    display: flex;
+
+    gap: 15px;
+
+    margin: 0;
+}
+
+.button1,
+.button2 {
+    width: 175px;
+}
+
+
+/* BUTTON */
+
+.form .buttons button {
+    width: 175px;
+    height: 48px;
+
+    margin: 0;
+
+    background-color: white;
+
+    border: 2px solid #0b5068;
+
+    border-radius: 7px;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* GOOGLE ICON */
+
+.button1 .bi-google {
+    margin-right: 10px;
+
+    font-size: 18px;
+
+    background: conic-gradient(
+        #4285f4 0deg 90deg,
+        #34a853 90deg 180deg,
+        #fbbc05 180deg 270deg,
+        #ea4335 270deg 360deg
+    );
+
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+
+/* FACEBOOK ICON */
+
+.button2 .bi-facebook {
+    margin-right: 10px;
+
+    font-size: 18px;
+
+    color: #1877f2;
+}
+
+
+/* =========================
+   DIVIDER
+========================= */
+
+.divider {
+    width: 365px;
+
+    display: flex;
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 20px;
+
+    margin: 27px 0;
+}
+
+.divider::before,
+.divider::after {
+    content: "";
+
+    flex: 1;
+
+    height: 1px;
+
+    background-color: #777;
+}
+
+.divider span {
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    font-weight: normal;
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form form {
+    width: 365px;
+}
+
+
+/* =========================
+   INPUT CONTAINER
+========================= */
+
+.icon {
+    width: 365px;
+
+    height: 54px;
+
+    position: relative;
+
+    margin: 0;
+}
+
+
+/* =========================
+   INPUT
+========================= */
+
+.inputs input {
+    width: 365px;
+
+    height: 54px;
+
+    box-sizing: border-box;
+
+    border: none;
+
+    border-radius: 8px;
+
+    outline: none;
+
+    background-color: #d9d9d9;
+
+    padding-left: 45px;
+
+    margin: 0;
+
+    font-size: 14px;
+}
+
+
+/* =========================
+   INPUT ICON
+========================= */
+
+.icon i {
+    position: absolute;
+
+    left: 17px;
+
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 18px;
+
+    z-index: 2;
+}
+
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    width: 365px;
+
+    height: 18px;
+
+    margin: 4px 0 20px 0;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   FORGET PASSWORD
+========================= */
+
+.form h6 {
+    width: 365px;
+
+    text-align: right;
+
+    margin: -5px 0 25px 0;
+
+    font-size: 12px;
+
+    font-weight: normal;
+
+    color: #07516a;
+
+    text-decoration: underline;
+}
+
+
+/* =========================
+   LOGIN BUTTON
+========================= */
+
+.submit {
+    width: 365px;
+}
+
+.submit button {
+    width: 365px;
+
+    height: 54px;
+
+    margin: 0;
+
+    border: none;
+
+    border-radius: 7px;
+
+    background-color: #004b63;
+
+    color: white;
+
+    font-weight: bold;
+
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   SIGN UP
+========================= */
+
+.form h3 {
+    width: 365px;
+
+    text-align: center;
+
+    margin: 20px 0 0 0;
+
+    font-size: 15px;
+
+    font-weight: normal;
+}
+
+.form h3 a {
+    color: #07516a;
+
+    text-decoration: underline;
+}
+
+
+/* =========================
+   HOVER
+========================= */
+
+.form input:hover {
+    opacity: 0.9;
+}
+
+.submit button:hover {
+    opacity: 0.85;
+}
+
+.button1:hover,
+.button2:hover {
+    transform: translateY(-2px);
+}

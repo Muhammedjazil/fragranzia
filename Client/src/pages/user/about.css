@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    font-family: "Poppins",sans-serif;
+}
+
+
+
+/* ===============below navbar============= */
+
+.home-belownav{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #103f4d;
+    color: white;
+    height: 40px;
+}
+.home-belownav p {
+    font-size: 14px;
+    font-weight: 600;
+}
+hr{
+    border: 1px solid rgb(241, 240, 237);
+}
+.about-section1{
+    margin-left: 1.5cm;
+}
+
+.about-image img{
+  width: 250px;
+}
+.about-image-1 img{
+    border-radius: 50px 0  50px 0;
+}
+.about-image-2 img{
+    border-radius: 0 50px 0 50px ;
+}
+.about-section1{
+    display: flex;
+    gap: 9cm;
+}
+.about-para p{
+    color: gray;
+    margin-top: .5cm;
+    margin-bottom: .5cm;
+}
+/* Main Footer Container */
+.home-footer {
+  background-color: #8ab6b5; /* Adjust shade to match your exact theme color */
+  color: #0b1f26;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 60px 80px 40px 80px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+/* Logo Section */
+.home-footerlogo h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #0b2530;
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+/* Columns */
+.home-footercolumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-footercolumn h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #0b2530;
+  margin-bottom: 20px;
+  margin-top: 0;
+}
+
+/* Lists and Links */
+.home-footercolumn ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.home-footercolumn ul li {
+  margin-bottom: 12px;
+}
+
+.home-footercolumn ul li a {
+  text-decoration: none;
+  color: #0b2530;
+  font-size: 0.95rem;
+  transition: opacity 0.2s ease;
+}
+
+.home-footercolumn ul li a:hover {
+  opacity: 0.7;
+}
+
+/* Contact Details */
+.home-footercolumn ul li svg {
+  margin-right: 10px;
+  vertical-align: middle;
+  font-size: 1.1rem;
+}
+
+/* Social Media Icons */
+.social-icons {
+  display: flex;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+.social-icons a {
+  color: #0b2530;
+  font-size: 1.2rem;
+  text-decoration: none;
+}
+
+/* Footer Bottom Bar */
+.home-footerbelow {
+  background-color: #8ab6b5;
+  border-top: 1px solid #0b2530;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+  font-size: 0.85rem;
+  color: #0b2530;
+}
+
+.home-footerbelow p {
+  margin: 0;
+}

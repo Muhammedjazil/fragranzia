@@ -1,0 +1,104 @@
+.all-details{
+    overflow-y: auto;
+    overflow-x: none;
+    display: flex;
+    width: 500px;
+   
+    gap: 3cm;
+}
+.all-product label{
+    font-size: 12px;
+    color: gray;
+}
+.all-product p,h4{
+    margin-left: 1cm;
+}
+.regular h4{
+    text-decoration: line-through;
+}
+.img-update input{
+    margin-top: 4.2cm;
+    margin-left: 1cm;
+    width: 200px;
+    border: 2px soloid gray;
+}
+.og-details{
+    width: 600px;
+    padding: 1cm;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+.descriptiuon-details textarea{
+    width: 500px;
+    height: 70px;
+     border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+.details-button{
+    display: flex;
+    margin-top: 1cm;
+}
+.details-button button{
+    padding: .2cm;
+    width: 90px;
+    border: none;
+    border-radius: 7px;
+}
+.cancel-details button{
+margin-left: 7cm;
+color:gray
+}
+.edit-details button{
+    margin-left: 1cm;
+    background-color: rgb(70, 70, 233);
+    width: 100px;
+    color: white;
+}
+.details-input {
+    width: 250px;
+    height: 200px;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+.all-product h5{
+    border: 1px solid blueviolet;
+    margin-left: 1cm;
+    width: 50px;
+    padding: .1cm;
+    border-radius: 4px;
+    color: blueviolet;
+}
+.og-details svg{
+    color: blueviolet;
+}
+.edit-details svg{
+    color: white;
+}
+
+.Product-details{
+    position: relative;
+}
+.og-details{
+    position: absolute;
+    left: 10cm;
+    top: -20%;
+    transform: translateY(50%);
+    background-color: white;
+
+}
+.img-update label{
+    color: gray;
+    font-size: 12px;
+}
+.descriptiuon-details label{
+     color: gray;
+    font-size: 12px;
+}
+.cross-1{
+    position: absolute;
+    left: 24.7cm;
+    top: 19%;
+}

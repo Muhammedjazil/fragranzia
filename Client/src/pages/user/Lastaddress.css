@@ -1,0 +1,87 @@
+.lastbuttons {
+    margin-left: 1cm;
+}
+
+
+/* ================= ORDERS CONTAINER ================= */
+
+.lastdata {
+    display: flex;
+    gap: 28px;
+    margin: 30px 25px;
+}
+
+
+/* ================= EACH ORDER CARD ================= */
+
+.fulldata {
+    width: 50%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+/* ================= ORDER ID ================= */
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.order-header h4 {
+    margin: 4px 0 15px 0;
+    font-size: 14px;
+}
+
+
+/* ================= IMAGE + DETAILS ================= */
+
+.lastsection1 {
+    display: flex;
+    align-items: center;
+}
+
+
+/* ================= IMAGE ================= */
+
+.lastimage img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+
+/* ================= DETAILS ================= */
+
+.lastdetails {
+    margin-left: 10px;
+}
+
+.lastdetails h6 {
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+
+/* ================= STATUS BUTTONS ================= */
+
+.delivered {
+    background-color: #087f36;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 10px;
+}
+
+.outdelivery {
+    background-color: #d49a12;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 6px 10px;
+    font-size: 10px;
+}
