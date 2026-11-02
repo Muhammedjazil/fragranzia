@@ -7,101 +7,164 @@ import {
   FiEdit,
   FiHome,
   FiEye,
+  FiLogOut 
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./users.css"
-
-
-const Customers=[
-  {id:1,name:"jazil",phone:"1234567891",email:"jazil@gmail.com"},
-  {id:1,name:"jazil",phone:"1234567891",email:"jazil@gmail.com"},
-  {id:1,name:"jazil",phone:"1234567891",email:"jazil@gmail.com"}
-]
+import { useEffect, useState } from "react";
+import UserService from "../../service/user-api-services/UserService";
+//=======registred customers=======
 
 export const Users=()=>{
+const[show,setshow]=useState({})
+const[user,setUser]=useState([])
+const[showdisplay,setshowdisplay]=useState(false)
 
+const {fetchcustomer,changeisactive}=UserService()
+  const handleshow=(user)=>{
+    setshow({
+      name:user.name,
+      email:user.email,
+      phone:user.phone 
+    })
+setshowdisplay(true)
+ 
+  }
+  const fetchusers=async()=>{
+    const response=await fetchcustomer()
+    setUser(response)
+  }
+useEffect(()=>{
+  fetchusers()
+},[])
 
+const handleactive = async (id) => {
+  try {
+    await changeisactive(id);
+
+    // Fetch the updated customer list from backend
+    await fetchusers();
+
+  } catch (error) {
+    console.log(
+      "Status update failed:",
+      error.response?.data || error.message
+    );
+  }
+};
 
     return(
         <div className="category">
        
-       <div className="category-nav">
-
-         <h2>Dashtar</h2>
-
-       <Link to="Dashboard"><FiGrid/>  Dashboard</Link>
-       <br/>
-       <br/>
-       <br/>
-       
-       <Link to="Product"><FiPackage/>  Product</Link>
-       <br/>
-       <br/>
-       <br/>
-
-
-       <Link to="Categories"><FiHome/>  Categories</Link>
-       <br/>
-       <br/>
-       <br/>
-
-
-       <Link to="Offer"><FiTag/>  Offer</Link>
-       <br/>
-       <br/>
-       <br/>
-
-       <Link to="Customer"><FiUsers/>  Customer</Link>
-       <br/>
-       <br/>
-       <br/>
+      
+            {/* Sidebar Navigation */}
+            <div className="category-nav">
+               <h2>Dashtar</h2>
+               <Link to="Dashboard"><FiGrid/>   Dashboard</Link>
+               
+               <Link to="/Product"><FiPackage/>   Product</Link>
+               
+               <Link to="/Categories"><FiHome/>   Categories</Link>
+             
+               <Link to="Offer"><FiTag/>   Offer</Link>
+              
+               <Link to="/Customer"><FiUsers/>   Customer</Link>
+               
+               <Link to="/order"><FiShoppingCart/>   order</Link>
+             
+           
+               <div className="category-logout">
+                  <br/>
+                  <button> <FiLogOut /> Log Out</button>
+               </div>
+            </div>
 
 
-       <Link to="order"><FiShoppingCart/>  order</Link>
-       <br/>
-       <br/>
-       <br/>
+     <div className="category-content">
+  <h1>User List</h1>
+  <p>manage registered customer account and status</p>
+  <br />
 
-    
+  <div className="cetegory-customers">
+    <table className="customer-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone</th>
+          <th>Email</th>
+          <th>Actions</th>
+          <th>Status</th>
+        </tr>
+      </thead>
 
-    <div className="category-logout">
-       <br/>
-     <button>LOg Out</button>
+      <tbody>
+        {user.map((user) => (
+          <tr key={user._id}>
+            <td>{user.name}</td>
+            <td>{user.phone || "Not provided"}</td>
+            <td>{user.email}</td>
+
+            <td>
+                <button
+    className="cust-show"
+    onClick={() => {
+      handleshow(user);
+   
+    }}
+  >
+    <FiEye /> Show
+  </button>
+            </td>
+
+            <td>
+              <td>
+  <button
+    className={user.isActive ? "active-status" : "blocked-status"}
+    onClick={() => handleactive(user._id)}
+  >
+    {user.isActive ? "Active" : "Blocked"}
+  </button>
+</td>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+</div>
+{showdisplay  &&(
+    <div className="showclass">
+      <h2>User Details</h2>
+      <label htmlFor="">FULL NAME</label><br/>
+          <h5>{show.name}</h5>
+      <label htmlFor="">EMAILADDRESS</label><br/>
+
+          <h5>{show.email}</h5>
+      <label htmlFor="">PHONENUMBER</label><br/>
+
+          <h5>{show.phone}</h5>
+          <div className="details-all">
+            <div>
+      <label htmlFor="">ACCOUNT STATUS</label><br/>
+        <h6>active</h6>
+      </div>
+
+      <div>
+      <label htmlFor=""> ROLE</label><br/>
+      <span>User</span>
+        
+      </div>
+          </div>
+
+      <label htmlFor=""> JOINED DATE</label><br/>
+
+<h5>June 26,2026 at 11:10AM</h5>
+        
+  <button onClick={()=>{setshowdisplay(false)}}>close</button>
     </div>
 
-      
-       </div>
+)}
 
-
-       <div className="category-content">
-
-        <h1>User List</h1>
-        <p>manage registerd customer account and status</p>
-        <br/>
-        
-        <div className="cetegory-customers">
-
-        <div className="cutomer-nav">
-          <div>Name </div>
-          <div>Phone</div>
-          <div>Email</div>
-          <div>Actions</div>
-          <div>Status</div>
-        </div>
-          
-         {Customers.map((user)=>(
-          <div className="cus-details" key={user.id}>
-            <div>{user.name}</div>
-            <div className="cust-phone">{user.phone}</div>
-            <div className="cust-email">{user.email}</div>
-            <div className="cust-show"><button><FiEye/>show</button></div>
-            <div className="cust-block"><button>block</button></div>
-            </div>
-         ))}
-
-        </div>
-
-       </div>
 
         </div>
     )

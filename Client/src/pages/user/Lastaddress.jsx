@@ -103,7 +103,7 @@ return(
           </div>
 
           <div className="profilesave-button2">
-            <button>Address</button>
+            <button> <Link to='/profilesave'>Address</Link></button>
           </div>
 
           <div className="profilesave-button1">

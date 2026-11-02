@@ -1,25 +1,163 @@
-.category-11{
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.category-11 {
     display: flex;
-}
-.category-13{
-    display: flex;
-    margin-top: 1cm;
-    margin-left: 2cm;
-    gap: 1cm;
-}
-.category-13 button{
-border: none;
-padding: .2cm;
-width: 80px;
-border-radius: 6px;
-}
-.category-13-3 button{
-    width: 140px;
-    margin-left: 17cm;
-    color: green;
+    width: 100%;
+    height: 100vh;
+    min-height: 100vh;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
 }
 
 
+/* =========================
+   MAIN CONTENT
+========================= */
+
+.category-12 {
+    flex: 1;
+    min-width: 0;
+    height: 100vh;
+
+    background-color: rgb(255, 253, 253);
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    padding: 20px;
+    overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================
+   TOOLBAR
+========================= */
+
+.category-13 {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    width: 100%;
+    margin: 0 0 20px;
+    flex-shrink: 0;
+}
+
+/* Common button style */
+
+.category-13 button {
+    height: 40px;
+    padding: 0 18px;
+
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+/* Export button */
+
+.category-13-1 button {
+    background-color: #e8f3f8;
+    
+    border: 1px solid #035f08;
+}
+
+.category-13-1 button:hover {
+    background-color: #089b74;
+    color: white;
+}
+
+/* Import button */
+
+.category-13-2 button {
+    background-color: #f5f5f5;
+    
+      border: 1px solid #035f08;
+
+}
+
+.category-13-2 button:hover {
+    background-color: #089b74;
+    color: white;
+}
+
+/* Add Category button */
+
+.category-13-3 {
+    margin-left: auto;
+}
+
+.category-13-3 button {
+    background-color:green;
+    color: white;
+    border: 1px solid #08799b;
+    width: auto;
+}
+
+.category-13-3 button:hover {
+    background-color: #05627e;
+}
+
+.category-13-3 svg {
+    font-size: 14px;
+    margin-right: 5px;
+    vertical-align: middle;
+}
+
+/* =========================
+   TABLE CONTAINER
+========================= */
+
+.category-14 {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: auto;
+
+    background: white;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+
+    margin: 0;
+    padding: 0;
+}
+
+/* Scrollbar */
+
+.category-14::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.category-14::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.category-14::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 10px;
+}
+
+.category-14::-webkit-scrollbar-thumb:hover {
+    background: #999;
+}
 
 /* =========================
    CATEGORY TABLE
@@ -27,33 +165,14 @@ border-radius: 6px;
 
 .category-table {
     width: 100%;
-    border-collapse: collapse;
+    min-width: 650px;
+
     table-layout: fixed;
-}
+    border-collapse: collapse;
+    border-spacing: 0;
 
-
-/* Table heading */
-
-.category-table th {
-    background-color: rgb(233, 230, 230);
-    height: 45px;
-    padding: 10px;
-    font-size: 15px;
-    font-weight: 500;
     text-align: center;
 }
-
-
-/* Table data */
-
-.category-table td {
-    height: 55px;
-    padding: 10px;
-    border-bottom: 1px solid #eaeaea;
-    font-size: 14px;
-    text-align: center;
-}
-
 
 /* Column widths */
 
@@ -77,139 +196,133 @@ border-radius: 6px;
     width: 17.5%;
 }
 
+/* Table heading */
 
-/* Name */
+.category-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
 
+    height: 45px;
+    padding: 10px;
+
+    background: rgb(233, 230, 230);
+
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+
+    border-bottom: 1px solid #ddd;
+}
+
+/* Table data */
+
+.category-table tbody td {
+    height: 55px;
+    padding: 10px;
+
+    font-size: 14px;
+    text-align: center;
+    vertical-align: middle;
+
+    background: white;
+    border-bottom: 1px solid #eaeaea;
+
+    overflow-wrap: break-word;
+}
+
+/* Name column */
+
+.category-table th:nth-child(1),
 .category-table td:nth-child(1) {
     text-align: left;
     padding-left: 20px;
 }
 
+/* Description column */
 
-/* Description */
-
+.category-table th:nth-child(2),
 .category-table td:nth-child(2) {
     text-align: left;
     padding-left: 20px;
+}
 
+.category-table tbody td:nth-child(2) {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-
-/* Edit button */
+/* =========================
+   EDIT BUTTON
+========================= */
 
 .edit-category-btn {
-    border: none;
-    background-color: #f5f5f5;
-    color: blue;
-    padding: 7px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
+
+    padding: 7px 12px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #eaf1ff;
+    color: #2563eb;
+
+    cursor: pointer;
+    white-space: nowrap;
 }
 
+.edit-category-btn:hover {
+    background-color: #d6e4ff;
+}
 
-/* Block button */
+/* =========================
+   BLOCK / UNBLOCK BUTTON
+========================= */
 
 .block-category-btn {
-    border: none;
-    background-color: #f5f5f5;
-    color: green;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
     padding: 7px 15px;
+
+    border: none;
     border-radius: 5px;
+
+    background-color: #e8f7ed;
+    color: green;
+
     cursor: pointer;
+    white-space: nowrap;
 }
 
-
-/* Table scrolling */
-
-.category-14 {
-    max-height: 500px;
-    overflow-y: auto;
-    overflow-x: auto;
+.block-category-btn:hover {
+    background-color: #d2f0dc;
 }
 
-
-/* Scrollbar */
-
-.category-14::-webkit-scrollbar {
-    width: 8px;
+.category-table svg {
+    font-size: 13px;
+    flex-shrink: 0;
 }
 
-.category-14::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-.category-14::-webkit-scrollbar-thumb {
-    background: #c1c1c1;
-    border-radius: 10px;
-}
-
-.category-14::-webkit-scrollbar-thumb:hover {
-    background: #a8a8a8;
-}
-
-
-.category-14{
-    background-color: white;
-    width: 1160px;
-   border: 1px solid #eaeaea;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    margin-top: 1cm;
-    margin-left: 1cm;
-    padding: 1cm;
-}
-.category-12{
-    background-color: rgb(255, 253, 253);
-    width: 1300px;
-       border: 1px solid #eaeaea;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
-}
-
-
-.all-button-category{
-    display: flex;
-    margin-top: 1cm;
-}
-.category-previous button{
-margin-left: 2cm;
-width: 70px;
-padding: .1cm;
-border: none;
-border-radius: 3px;
-}
-.all-button-category p{
-    margin-left: 10cm;
-}
-.category-next button{
-margin-left: 14cm;
-width: 50px;
-padding: .1cm;
-border: none;
-border-radius: 3px;
-}
-
-
-
-
-
+/* =========================
+   ADD CATEGORY MODAL
+========================= */
 
 .all-add-category {
     position: fixed;
-    top: 40%;
-    left: 34cm;
+    top: 50%;
+    left: 50%;
+
     transform: translate(-50%, -50%);
 
     width: 450px;
+    max-width: calc(100% - 30px);
+
     padding: 30px;
 
     background-color: white;
@@ -218,13 +331,13 @@ border-radius: 3px;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.18);
 
     z-index: 1000;
-    box-sizing: border-box;
 }
 
 .add-categories-1 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     margin-bottom: 20px;
 }
 
@@ -236,30 +349,43 @@ border-radius: 3px;
 .add-cross h1 {
     margin: 0;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .all-add-category label {
     display: block;
     margin-bottom: 7px;
+    font-weight: 500;
 }
 
 .all-add-category input {
     width: 100%;
     height: 42px;
+
     padding: 0 12px;
+
     border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box;
+    outline: none;
+}
+
+.all-add-category input:focus,
+.all-add-category textarea:focus {
+    border-color: #08799b;
 }
 
 .all-add-category textarea {
     width: 100%;
     padding: 10px 12px;
+
     border: 1px solid #ccc;
     border-radius: 6px;
-    box-sizing: border-box;
+
+    outline: none;
     resize: vertical;
 }
+
+/* Modal buttons */
 
 .cancel-add-buttons {
     display: flex;
@@ -271,20 +397,114 @@ border-radius: 3px;
 .add12 button {
     height: 40px;
     padding: 0 20px;
+
     border-radius: 6px;
     cursor: pointer;
+    font-weight: 600;
 }
 
 .cancel12 button {
     background: white;
     border: 1px solid #ccc;
+    color: #333;
+}
+
+.cancel12 button:hover {
+    background: #f2f2f2;
 }
 
 .add12 button {
-    background: #222;
+    background: #08799b;
     color: white;
     border: none;
 }
-.category-table{
-    text-align: center;
+
+.add12 button:hover {
+    background: #05627e;
+}
+
+/* =========================
+   PAGINATION
+========================= */
+
+.all-button-category {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.category-previous button,
+.category-next button {
+    padding: 7px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.all-button-category p {
+    margin-left: 20px;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+    .category-11 {
+        gap: 12px;
+    }
+
+    .category-nav {
+        width: 200px;
+        min-width: 200px;
+    }
+
+    .category-12 {
+        padding: 15px;
+    }
+}
+
+@media (max-width: 650px) {
+    .category-11 {
+        display: block;
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .category-nav {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+    }
+
+    .category-logout {
+        margin-top: 15px;
+    }
+
+    .category-12 {
+        width: 100%;
+        height: auto;
+        min-height: 80vh;
+        padding: 12px;
+        overflow: visible;
+    }
+
+    .category-13 {
+        flex-wrap: wrap;
+    }
+
+    .category-13-3 {
+        margin-left: auto;
+    }
+
+    .category-14 {
+        height: 500px;
+        flex: none;
+    }
+
+    .all-add-category {
+        width: 95%;
+        padding: 20px;
+    }
 }

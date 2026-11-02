@@ -15,6 +15,16 @@ const Fetchuser=async(req,res)=>{
      }
 }
 
+const addcategory=async(req,res)=>{
+try{
+  const category=await Category.find({isActive:false})
+  res.json(category)
+}
+catch(error){
+  res.json({message:"no category found!"})
+}
+}
+
 const onhandleedit=async(req,res)=>{
   let {id}=req.params
   let {name,description}=req.body
@@ -70,9 +80,12 @@ const handleblock=async(req,res)=>{
 
 
 
+
+
 module.exports={
   Onhandleadd,
   Fetchuser,
   onhandleedit,
-  handleblock
+  handleblock,
+  addcategory
 }

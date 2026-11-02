@@ -7,12 +7,19 @@ import {
   FiUsers,
   FiShoppingCart,
   FiHome,
+  FiLogOut 
 } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
+
+import  AdminService from"../../service/admin-api-services/AdminService"  //after front end and backend,db use use this
+
 const APIURL='http://localhost:7000/product'
 export const Addproduct = () => {
+
+  const {addToProduct,productcategory}=AdminService() 
+
   const navigate = useNavigate();
   const[allData,setallData]=useState([])
   const [formData, setFormData] = useState({
@@ -45,41 +52,86 @@ export const Addproduct = () => {
    useEffect(()=>{
     onhandlefetchdata()
    },[])
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault(); 
+  //                                                     //image + text data ഒരുമിച്ച് backend-ലേക്ക് അയക്കുന്നതിനാൽ
+  //   const data = new FormData();            //data → ആ object സൂക്ഷിക്കുന്ന variable name   new FormData()-->puthiya FormData object create   
+  //   data.append("name", formData.name);                                           //FormData()-->buildin fn aanu
+  // data.append("price", formData.price);         // Changed from product_price to price
+  //   data.append("saleprize", formData.SalePrice);    // Matched with your schema keys
+  //   data.append("stock", formData.stock);
+  //   data.append("category", formData.Category);
+  //   data.append("description", formData.description);
+
+  //   if (formData.image) {
+  //     data.append("image", formData.image);
+  //   }
+
+  //   try {
+  //     // Correct port 7000 and correct route /product/add
+  //     // const response = await axios.post("http://localhost:7000/product/add", data, {   //data--->not form an object, {data}-->object aakum
+  //     //   headers: {
+  //     //     "Content-Type": "multipart/form-data",                                           //etra information not compulsory
+  //     //   },
+
+      
+
+  //     // });
+
+  //     // if (response.status === 201 || response.status === 200) {
+  //     //   navigate("/Product"); 
+  //     // }
+
+
+  //     await addToProduct(data)  
+
+
+  //   } catch (error) {
+  //     console.error("Error connecting to server:", error.response?.data || error.message);
+  //   }
+  // };
   const handleSubmit = async (e) => {
-    e.preventDefault(); 
-                                                      //image + text data ഒരുമിച്ച് backend-ലേക്ക് അയക്കുന്നതിനാൽ
-    const data = new FormData();            //data → ആ object സൂക്ഷിക്കുന്ന variable name   new FormData()-->puthiya FormData object create   
-    data.append("name", formData.name);                                           //FormData()-->buildin fn aanu
-  data.append("price", formData.price);         // Changed from product_price to price
-    data.append("saleprize", formData.SalePrice);    // Matched with your schema keys
-    data.append("stock", formData.stock);
-    data.append("category", formData.Category);
-    data.append("description", formData.description);
+  e.preventDefault();
 
-    if (formData.image) {
-      data.append("image", formData.image);
-    }
+  const data = new FormData();
 
-    try {
-      // Correct port 7000 and correct route /product/add
-      const response = await axios.post("http://localhost:7000/product/add", data, {   //data--->not form an object, {data}-->object aakum
-        headers: {
-          "Content-Type": "multipart/form-data",                                           //etra information not compulsory
-        },
-      });
+  data.append("name", formData.name);
+  data.append("price", formData.price);
+  data.append("saleprize", formData.SalePrice);
+  data.append("stock", formData.stock);
+  data.append("category", formData.Category);
+  data.append("description", formData.description);
 
-      if (response.status === 201 || response.status === 200) {
-        navigate("/Product"); 
-      }
-    } catch (error) {
-      console.error("Error connecting to server:", error.response?.data || error.message);
-    }
-  };
+  if (formData.image) {
+    data.append("image", formData.image);
+  }
+
+  try {
+    const response = await addToProduct(data);
+
+    console.log("Product added successfully:", response);
+    alert("Product added successfully!");
+
+    navigate("/Product");
+  } 
+ catch (error) {
+  console.error("Status:", error.response?.status);
+  console.error("Response data:", error.response?.data);
+  console.error("Error message:", error.message);
+
+  alert(
+    error.response?.data?.message ||
+    error.message ||
+    "Failed to add product"
+  );
+}
+};
 
   //used to take data from category
 const handlecategory=async()=>{
-   let res=await axios.get('http://localhost:7000/category')
-  setcategoryisdata(res.data)
+  //  let res=await axios.get('http://localhost:7000/category')
+  let response=await productcategory()
+  setcategoryisdata(response)
    
 }
       
@@ -89,26 +141,26 @@ const handlecategory=async()=>{
         <h2>Dashtar</h2>
 
         <Link to="/Dashboard"><FiGrid /> Dashboard</Link>
-        <br /><br /><br />
+        
         
         <Link to="/Product"><FiPackage /> Product</Link>
-        <br /><br /><br />
+     
 
         <Link to="/Categories"><FiHome /> Categories</Link>
-        <br /><br /><br />
+        
 
         <Link to="/Offer"><FiTag /> Offer</Link>
-        <br /><br /><br />
+        
 
         <Link to="/Customer"><FiUsers /> Customer</Link>
-        <br /><br /><br />
+        
 
         <Link to="/order"><FiShoppingCart /> order</Link>
-        <br /><br /><br />
+        
 
         <div className="category-logout">
           <br />
-          <button type="button">Log Out</button>
+          <button type="button"><FiLogOut/> Log Out</button>
         </div>
       </div>
          

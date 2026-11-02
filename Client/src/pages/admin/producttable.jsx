@@ -10,7 +10,8 @@ import {
   FiHome,
   FiEye,
   FiPlus,
-  FiX
+  FiX,
+  FiLogOut 
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./producttable.css"
@@ -18,8 +19,10 @@ import { useEffect } from "react";
 
 const APIURL = "http://localhost:7000/product"
 
-
+import AdminService from "../../service/admin-api-services/AdminService";  
 export const Producttable = () => {
+
+const {showproduct,EditProductsubmit,Productstatus}=AdminService() 
 
   const [formData, setformData] = useState([])
   const [showAddProduct, setShowAddProduct] = useState(false);
@@ -56,9 +59,13 @@ export const Producttable = () => {
   // method,url match--->productRouter.js-->fncall--->productController.js
   const fetchdata = async () => {
     try {
-      let response = await axios.get('http://localhost:7000/product')
-      setformData(response.data)
-      console.log("Fetched Products from Backend:", response.data);
+      // let response = await axios.get('http://localhost:7000/product')
+      // setformData(response.data)
+      // console.log("Fetched Products from Backend:", response.data);
+
+      let response=await showproduct()       //AdminService vazhi product display
+      setformData(response)
+
     }
     catch (error) {
       console.log("error")
@@ -143,7 +150,10 @@ export const Producttable = () => {
         formData.append("image", newImage);
       }
 
-      await axios.put(`${APIURL}/${updateid}`, formData);
+      // await axios.put(`${APIURL}/${updateid}`, formData);  //last induvidual api calline avoid chyyan nammal write to AdminService.jsx
+   
+      await EditProductsubmit(updateid,formData)       //EditProductsubmit fncall  id-->updateid   data-->formData
+
 
       await fetchdata();
 
@@ -155,7 +165,11 @@ export const Producttable = () => {
     }
   };
   const handleblock = async (id, isActive) => {
-    await axios.put(`${APIURL}/block/${id}`, { isActive })
+    // await axios.put(`${APIURL}/block/${id}`, { isActive })  //individual api callinee avoidakaan AdminServer.jsx use aakum
+   
+    await Productstatus(id,{ isActive })                   //do this
+
+
     fetchdata()
   }
 
@@ -215,43 +229,30 @@ export const Producttable = () => {
           <h2>Dashtar</h2>
 
           <Link to="Dashboard"><FiGrid />  Dashboard</Link>
-          <br />
-          <br />
-          <br />
+         
 
           <Link to="/Product"><FiPackage />  Product</Link>
-          <br />
-          <br />
-          <br />
+       
 
 
           <Link to="/Categories"><FiHome />  Categories</Link>
-          <br />
-          <br />
-          <br />
-
+       
 
           <Link to="Offer"><FiTag />  Offer</Link>
-          <br />
-          <br />
-          <br />
+          
 
           <Link to="/Customer"><FiUsers />  Customer</Link>
-          <br />
-          <br />
-          <br />
+         
 
 
-          <Link to="order"><FiShoppingCart />  order</Link>
-          <br />
-          <br />
-          <br />
+          <Link to="/order"><FiShoppingCart />  order</Link>
+        
 
 
 
           <div className="category-logout">
             <br />
-            <button>Log Out</button>
+            <button><FiLogOut /> Log Out</button>
           </div>
 
 
@@ -307,10 +308,10 @@ export const Producttable = () => {
                         <td>{user.stock}</td>
 
                         <td>
-                          <button onClick={() => { handleshow(user) }}><FiEye />Show</button>      {/*()=>setupdate(true) */}
+                          <button className="firstbutton" onClick={() => { handleshow(user) }}><FiEye />Show</button>      {/*()=>setupdate(true) */}
 
 
-                          <button onClick={() => handleEditClick(user)}><FiEdit />Edit</button>
+                          <button className="secondbutton" onClick={() => handleEditClick(user)}><FiEdit />Edit</button>
                         </td>
 
                         <td>
@@ -391,7 +392,7 @@ export const Producttable = () => {
 
               {editData.image && (
                 <img
-                  src={`http://localhost:7000/uploads/${editData.image}`}
+                  src={editData.image}
                   alt={editData.name}
                   className="edit-product-thumbnail"
                 />
@@ -459,7 +460,7 @@ export const Producttable = () => {
                 <br />
                 <div className="details-input">
                   <img
-                    src={`http://localhost:7000/uploads/${show.image}`}
+                    src={show.image}
                     alt={show.name}
                   />
                 </div>

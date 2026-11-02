@@ -114,7 +114,7 @@
     border: 1px solid #dddddd;
 
     border-radius: 50%;
-
+    
     padding: 8px;
 
     font-size: 35px;
@@ -122,7 +122,9 @@
     background-color: #0b1f26;
     color: white;
 }
-
+.home-navicons svg{
+    margin-left: 1cm;
+}
 
 /* ================================================= */
 /* ================= OFFER BAR ===================== */
@@ -783,39 +785,36 @@
 .product-card {
     flex: 0 0 280px;
     
-    min-width: 280px;
+    min-width: 320px;
 }
 
 
 /* ================= PRODUCT IMAGE ================= */
 
 .product-image {
-    height: 360px;
+    height: 380px; /* Increased from 360px */
     width: 350px;
     background: white;
     border: 1px solid #e5e5e5;
-    border-radius: 60px 0 60px 0;
+    border-radius: 90px 0 90px 0;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     position: relative;
-
     display: flex;
     align-items: center;
     justify-content: center;
-
     overflow: hidden;
 }
 
+
 /* ================= PRODUCT IMAGE IMG ============= */
 
+
 .product-image img {
-    width: 85%;
-
-    height: 85%;
-
+    width: 100%;
+    height: 150%;
     object-fit: contain;
+    transform: scale(1.2);
 }
-
-
 /* ================= NEW BADGE ===================== */
 
 .new-badge {
@@ -1291,6 +1290,12 @@
     text-align: center;
 }
 
+.home-navsearch svg{
+    color: gray;
+}
+.home-navicons svg{
+    color: gray;
+}
 
 /* ================= CATEGORY IMAGE =============== */
 
@@ -1298,10 +1303,8 @@
     width: 230px;
     height: 230px;
     margin: 0 auto;
-
     border-radius: 50%;
     border: 2px solid #eeeeee;
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1313,12 +1316,14 @@
 }
 
 .category-image img {
-    width: 85%;
-    height: 85%;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
     display: block;
 }
-
+.category-item{
+    margin-left: .5cm;
+}
 
 /* ================= CATEGORY NAME ================ */
 
@@ -1331,4 +1336,890 @@
     color: #111;
 
     white-space: nowrap;
+}
+.home-footercolumn svg{
+    color: black;
+}
+
+/* ==========================================
+   RESPONSIVE CSS
+   Keep your existing CSS above this section
+========================================== */
+
+/* Prevent horizontal overflow */
+.home {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+.home img {
+    max-width: 100%;
+}
+
+/* ==========================================
+   TABLETS AND SMALL LAPTOPS
+========================================== */
+
+@media (max-width: 1024px) {
+
+    /* Navbar */
+    .home-fullnav {
+        height: auto;
+        min-height: 70px;
+        padding: 15px 3%;
+        gap: 15px;
+    }
+
+    .home-fullnav1 {
+        gap: 18px;
+    }
+
+    .home-nav ul {
+        gap: 15px;
+    }
+
+    .home-navsearch {
+        width: 180px;
+    }
+
+    .home-navicons svg {
+        margin-left: 0;
+    }
+
+    /* Hero */
+    .home-hero {
+        width: 94%;
+        height: auto;
+        min-height: 350px;
+        padding: 30px;
+        gap: 15px;
+    }
+
+    .home-hero1 {
+        margin: 0 10px;
+        flex: 1;
+    }
+
+    #home-img1 {
+        width: 240px;
+        max-width: 50%;
+        left: 0;
+    }
+
+    #home-img2 {
+        width: 210px;
+        max-width: 45%;
+        right: 0;
+        top: 25px;
+    }
+
+    /* Offer cards */
+    .home-belowhero {
+        width: 94%;
+        height: auto;
+        gap: 15px;
+    }
+
+    .home-belowhero1,
+    .home-belowhero2,
+    .home-belowhero3 {
+        width: 33.333%;
+        min-width: 0;
+    }
+
+    .home-belowhero h3 {
+        font-size: 18px;
+        margin: 20px 12px 8px;
+    }
+
+    .home-belowhero p {
+        font-size: 12px;
+        margin: 0 12px;
+    }
+
+    .home-belowhero1 img {
+        width: 40%;
+        object-fit: cover;
+    }
+
+    .home-belowhero2 img {
+        max-width: 100%;
+        object-fit: contain;
+    }
+
+    .home-belowhero3 img {
+        max-width: 75%;
+        object-fit: contain;
+    }
+
+    /* Service features */
+    .home-characteristics {
+        width: 94%;
+    }
+
+    .home-characteristics1,
+    .home-characteristics2,
+    .home-characteristics3 {
+        padding: 20px 12px;
+        gap: 12px;
+    }
+
+    .home-characteristics h3 {
+        font-size: 14px;
+    }
+
+    .home-characteristics p {
+        font-size: 12px;
+    }
+
+    /* Products */
+    .products-container {
+        gap: 25px;
+        margin-left: 0;
+    }
+
+    .product-card {
+        flex: 0 0 280px;
+        min-width: 0;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 320px;
+    }
+
+    .product-image img {
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+        transform: none;
+    }
+
+    /* New arrivals: preserve the three-card layout */
+    .home-newarrivals {
+        width: 94%;
+        margin: 20px auto;
+        gap: 15px;
+    }
+
+    .home-newarrival,
+    .home-limitededition,
+    .home-sellers {
+        width: auto;
+        min-width: 0;
+        height: 400px;
+        margin-left: 0;
+    }
+
+    .home-newarrivals img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* Categories */
+    .categories-list {
+        gap: 15px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+    }
+
+    .category-item {
+        flex: 0 0 180px;
+        width: 180px;
+        margin-left: 0;
+    }
+
+    .category-image {
+        width: 160px;
+        height: 160px;
+    }
+
+    /* Elegance banner */
+    .home-elegance {
+        width: 94%;
+    }
+
+    .home-elegance img {
+        width: 50%;
+        max-width: 50%;
+        height: 100%;
+        right: -20px;
+        top: 0;
+    }
+
+    /* Footer */
+    .home-footer {
+        height: auto;
+        min-height: 300px;
+        padding: 40px 4%;
+        gap: 25px;
+    }
+
+    .home-footerbelow {
+        height: auto;
+        min-height: 75px;
+        padding: 20px 4%;
+        gap: 15px;
+    }
+}
+
+/* ==========================================
+   TABLETS AND LARGE PHONES
+========================================== */
+
+@media (max-width: 768px) {
+
+    /* Navbar keeps all original links */
+    .home-fullnav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .home-fullnav1 {
+        width: 100%;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .home-nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px 22px;
+    }
+
+    .home-navsearch {
+        width: min(300px, 60%);
+    }
+
+    /* Hero */
+    .home-hero {
+        min-height: 300px;
+        padding: 25px 20px;
+    }
+
+    .home-hero1 {
+        margin: 0;
+    }
+
+    .home-hero1 h1 {
+        font-size: clamp(22px, 4vw, 32px);
+    }
+
+    .home-hero1 p {
+        font-size: 13px;
+    }
+
+    #home-img1 {
+        width: 55%;
+        max-width: 55%;
+    }
+
+    #home-img2 {
+        width: 50%;
+        max-width: 50%;
+        margin-left: -15px;
+    }
+
+    /* Offer cards retain the three-column structure */
+    .home-belowhero {
+        gap: 10px;
+    }
+
+    .home-belowhero1,
+    .home-belowhero2,
+    .home-belowhero3 {
+        height: 200px;
+    }
+
+    .home-belowhero h3 {
+        font-size: 15px;
+        margin: 15px 8px 6px;
+    }
+
+    .home-belowhero p {
+        font-size: 11px;
+        margin: 0 8px;
+    }
+
+    .home-belowhero3 span {
+        padding: 15px;
+        margin: 0 10px;
+    }
+
+    /* Service features */
+    .home-characteristics {
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+
+    .home-characteristics1,
+    .home-characteristics2,
+    .home-characteristics3 {
+        padding: 15px 20px;
+    }
+
+    /* Product cards */
+    .featured-section {
+        padding: 25px 4%;
+    }
+
+    .products-container {
+        gap: 16px;
+    }
+
+    .product-card {
+        flex: 0 0 230px;
+    }
+
+    .product-image {
+        height: 280px;
+        border-radius: 60px 0 60px 0;
+    }
+
+    /* Quote */
+    .home-quote {
+        padding: 25px 5%;
+    }
+
+    .home-quote p {
+        width: 100%;
+        font-size: clamp(20px, 3.5vw, 28px);
+        line-height: 1.5;
+    }
+
+    /* New arrivals retain three cards */
+    .home-newarrivals {
+        gap: 10px;
+    }
+
+    .home-newarrival,
+    .home-limitededition,
+    .home-sellers {
+        height: 300px;
+    }
+
+    .home-newarrivals h1 {
+        left: 10px;
+        bottom: 20px;
+        font-size: 20px;
+    }
+
+    /* Categories */
+    .categories {
+        padding: 20px 4%;
+    }
+
+    .category-item {
+        flex: 0 0 140px;
+        width: 140px;
+    }
+
+    .category-image {
+        width: 125px;
+        height: 125px;
+    }
+
+    /* Elegance banner */
+    .home-elegance {
+        height: auto;
+        min-height: 230px;
+        padding: 25px;
+    }
+
+    .home-elegance h1,
+    .home-elegance p,
+    .home-elegance button {
+        margin-left: 0;
+    }
+
+    .home-elegance h1 {
+        max-width: 60%;
+        font-size: 24px;
+    }
+
+    .home-elegance p {
+        max-width: 60%;
+        font-size: 12px;
+    }
+
+    .home-elegance img {
+        width: 45%;
+        max-width: 45%;
+        right: -15px;
+    }
+
+    /* Footer changes column count only when needed */
+    .home-footer {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        height: auto;
+        padding: 30px 5%;
+        gap: 25px;
+    }
+
+    .home-footerlogo {
+        margin-top: 0;
+    }
+
+    .home-footerbelow {
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+/* ==========================================
+   MOBILE PHONES
+========================================== */
+
+@media (max-width: 480px) {
+
+    /* Navbar */
+    .home-fullnav {
+        padding: 12px 4%;
+        gap: 12px;
+    }
+
+    #nav-heading {
+        font-size: 23px;
+    }
+
+    .home-fullnav1 {
+        gap: 12px;
+    }
+
+    .home-nav ul {
+        gap: 10px 16px;
+    }
+
+    .home-nav a {
+        font-size: 13px;
+    }
+
+    .home-navsearch {
+        width: 65%;
+        flex: 1;
+        min-width: 0;
+    }
+
+    .home-navicons {
+        gap: 12px;
+    }
+
+    .home-navicons svg {
+        margin-left: 0;
+    }
+
+    .home-belownav {
+        height: auto;
+        min-height: 38px;
+        padding: 8px 10px;
+        text-align: center;
+    }
+
+    .home-belownav p {
+        font-size: 10px;
+    }
+
+    /* Hero: retain text and images in a two-column layout */
+    .home-hero {
+        width: 92%;
+        min-height: 260px;
+        height: auto;
+        padding: 22px 12px;
+        gap: 5px;
+    }
+
+    .home-hero1 {
+        flex: 1 1 55%;
+        min-width: 0;
+    }
+
+    .home-hero1 h1 {
+        font-size: 22px;
+        line-height: 1.3;
+    }
+
+    .home-hero1 p {
+        font-size: 11px;
+        line-height: 1.5;
+    }
+
+    .home-hero1 button {
+        width: 105px;
+        height: 36px;
+    }
+
+    .home-hero2 {
+        flex: 1 1 45%;
+        min-width: 0;
+    }
+
+    #home-img1 {
+        width: 60%;
+        max-width: 60%;
+        left: 0;
+    }
+
+    #home-img2 {
+        width: 50%;
+        max-width: 50%;
+        right: 0;
+        top: 15px;
+        margin-left: -10px;
+    }
+
+    /* Three offer cards stay in one row */
+    .home-belowhero {
+        width: 92%;
+        gap: 7px;
+    }
+
+    .home-belowhero1,
+    .home-belowhero2,
+    .home-belowhero3 {
+        width: 33.333%;
+        height: 175px;
+    }
+
+    .home-belowhero h3 {
+        font-size: 12px;
+        line-height: 1.35;
+        margin: 12px 6px 5px;
+    }
+
+    .home-belowhero p {
+        font-size: 10px;
+        line-height: 1.4;
+        margin: 0 6px;
+    }
+
+    .home-belowhero1 img {
+        width: 35%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .home-belowhero2 img {
+        width: 100%;
+        height: 85px;
+        object-fit: contain;
+    }
+
+    .home-belowhero3 img {
+        width: 75%;
+        height: 100px;
+        right: 0;
+        bottom: -5px;
+    }
+
+    .home-belowhero3 span {
+        bottom: 10px;
+        padding: 9px;
+        margin: 0 5px;
+        font-size: 10px;
+    }
+
+    /* Service features */
+    .home-characteristics {
+        width: 92%;
+    }
+
+    .home-characteristics1,
+    .home-characteristics2,
+    .home-characteristics3 {
+        padding: 13px;
+        gap: 12px;
+    }
+
+    .home-characteristics1 svg,
+    .home-characteristics2 svg,
+    .home-characteristics3 svg {
+        width: 27px;
+        height: 27px;
+        flex-shrink: 0;
+    }
+
+    .home-characteristics h3 {
+        font-size: 13px;
+    }
+
+    .home-characteristics p {
+        margin-top: 5px;
+        font-size: 11px;
+    }
+
+    /* Product cards */
+    .featured-section {
+        padding: 20px 4%;
+    }
+
+    .featured-header h2 {
+        font-size: 19px;
+    }
+
+    .scroll-buttons {
+        gap: 5px;
+    }
+
+    .scroll-buttons button {
+        width: 30px;
+        height: 30px;
+        font-size: 21px;
+    }
+
+    .products-container {
+        gap: 12px;
+    }
+
+    .product-card {
+        flex: 0 0 180px;
+        min-width: 0;
+    }
+
+    .product-image {
+        width: 100%;
+        height: 220px;
+        border-radius: 45px 0 45px 0;
+    }
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        padding: 8px;
+        object-fit: contain;
+        transform: none;
+    }
+
+    .new-badge {
+        width: 35px;
+        height: 35px;
+        top: 8px;
+        left: 8px;
+        font-size: 10px;
+    }
+
+    .product-details h3 {
+        font-size: 12px;
+    }
+
+    .price {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .price strong {
+        font-size: 14px;
+    }
+
+    .cart-button {
+        height: 36px;
+        font-size: 12px;
+    }
+
+    /* Quote */
+    .home-quote p {
+        font-size: 18px;
+    }
+
+    /* New arrivals retain the three-card row */
+    .home-newarrivals {
+        width: 92%;
+        gap: 7px;
+    }
+
+    .home-newarrival,
+    .home-limitededition,
+    .home-sellers {
+        height: 200px;
+        min-width: 0;
+    }
+
+    .home-newarrivals h1 {
+        left: 6px;
+        bottom: 12px;
+        font-size: 14px;
+    }
+
+    /* Categories */
+    .categories {
+        padding: 20px 4%;
+    }
+
+    .categories-header h2 {
+        font-size: 19px;
+    }
+
+    .category-item {
+        flex: 0 0 105px;
+        width: 105px;
+    }
+
+    .category-image {
+        width: 95px;
+        height: 95px;
+    }
+
+    .category-item p {
+        font-size: 12px;
+        white-space: normal;
+    }
+
+    /* Elegance: preserve side-by-side content */
+    .home-elegance {
+        width: 92%;
+        min-height: 200px;
+        padding: 18px 14px;
+        gap: 5px;
+    }
+
+    .home-elegance h1 {
+        max-width: 65%;
+        font-size: 20px;
+        line-height: 1.35;
+    }
+
+    .home-elegance p {
+        max-width: 65%;
+        margin-top: 10px;
+        font-size: 11px;
+    }
+
+    .home-elegance button {
+        width: 100px;
+        height: 38px;
+        margin-top: 12px;
+        font-size: 13px;
+    }
+
+    .home-elegance img {
+        width: 42%;
+        max-width: 42%;
+        height: 160px;
+        right: -10px;
+        top: 15px;
+    }
+
+    /* Footer */
+    .home-footer {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 25px 5%;
+        gap: 22px 12px;
+    }
+
+    .home-footerlogo {
+        grid-column: 1 / -1;
+    }
+
+    .home-footerlogo h1 {
+        font-size: 26px;
+    }
+
+    .home-footercolumn h3 {
+        font-size: 14px;
+        margin-bottom: 12px;
+    }
+
+    .home-footercolumn a {
+        font-size: 11px;
+        overflow-wrap: anywhere;
+    }
+
+    .home-footercolumn li {
+        gap: 5px;
+    }
+
+    .home-footercolumn svg {
+        width: 15px;
+        height: 15px;
+        flex-shrink: 0;
+    }
+
+    .social-icons {
+        gap: 10px;
+    }
+
+    .social-icons svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    .home-footerbelow {
+        padding: 15px 4%;
+        gap: 8px;
+    }
+
+    .home-footerbelow p {
+        font-size: 10px;
+        line-height: 1.6;
+    }
+}
+
+/* ==========================================
+   VERY SMALL PHONES
+========================================== */
+
+@media (max-width: 360px) {
+
+    .home-nav ul {
+        gap: 9px 12px;
+    }
+
+    .home-nav a {
+        font-size: 12px;
+    }
+
+    .home-navicons {
+        gap: 8px;
+    }
+
+    .home-hero1 h1 {
+        font-size: 19px;
+    }
+
+    .home-hero1 p {
+        font-size: 10px;
+    }
+
+    .home-belowhero h3 {
+        font-size: 11px;
+        margin: 10px 4px 5px;
+    }
+
+    .home-belowhero p {
+        font-size: 9px;
+        margin: 0 4px;
+    }
+
+    .home-belowhero3 span {
+        padding: 7px;
+        font-size: 9px;
+    }
+
+    .product-card {
+        flex-basis: 165px;
+    }
+
+    .product-image {
+        height: 200px;
+    }
+
+    .home-newarrival,
+    .home-limitededition,
+    .home-sellers {
+        height: 170px;
+    }
+
+    .home-newarrivals h1 {
+        font-size: 12px;
+    }
+
+    .home-elegance h1 {
+        font-size: 18px;
+    }
+
+    .home-elegance p {
+        font-size: 10px;
+    }
 }

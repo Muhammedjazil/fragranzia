@@ -11,14 +11,21 @@ import {
   FiEdit,
   FiHome,
   FiPlus,
-  FiX
+  FiX,
+  FiLogOut 
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
-
+                                                                            // //after front end and backend,db use use this
+import AdminService from "../../service/admin-api-services/AdminService";  //we import AdminService
+                                                         //AdminService use chythu namukk orro fn num individual API call kodukkunath prevent aaka(http://localhost...) 
 const APIURL = "http://localhost:7000/category"
 
 export const Category = () => {
     // State to control whether the Add Category drawer/modal is open or closed
+
+const {AddCategory,getCategory,EditCategory,StatusCategory}=AdminService()  //we destructure these fn from AdminService
+
+
     const [isAddOpen, setIsAddOpen] = useState(false);
     const [name, setname] = useState("");
     const [description, setdes] = useState("");
@@ -28,8 +35,9 @@ export const Category = () => {
 
     const Fetchuser = async () => {
         try {
-            let res = await axios.get(APIURL);
-            setallData(res.data);
+            // let res = await axios.get(APIURL); //=========imp:--> (laststep)after complete frontend and backend and db we use useAxiosPrivate and Adminservive.jsx(last step)
+             let res = await getCategory()          //so do this  ,use repeated API callinee  avoidaakan   
+            setallData(res);
         } catch (error) {
             console.log(error);
         }
@@ -43,12 +51,14 @@ export const Category = () => {
         try {
             if(editId){//edit user
 
-            await axios.put(`${APIURL}/${editId}`,{name,description})
+            // await axios.put(`${APIURL}/${editId}`,{name,description})  so we pass to AdminService
+            await EditCategory(editId,{name,description}) //EditCategory fncall and pass chyenda data argument ,fn written in AdminService.jsx
 
             }
             else{
                 //add user
-            await axios.post(APIURL, { name, description });
+            // await axios.post(APIURL, { name, description });           //we move to admin service-->then move useAxiosPrivate-->then move backend
+            await AddCategory({ name, description })    //Addcategory fncall with data to send
             }
             Fetchuser();
             setname("");       // Clear input field
@@ -78,7 +88,9 @@ const Onhandlecancel=()=>{
 }
 
 const handleblock=async(id,isActive)=>{
-    await axios.put(`${APIURL}/block/${id}`,{isActive})
+    // await axios.put(`${APIURL}/block/${id}`,{isActive})
+    await StatusCategory(id,{isActive})  // //StatusCategory fncall with data to send
+
   Fetchuser();
 }
 
@@ -89,25 +101,26 @@ const handleblock=async(id,isActive)=>{
             <div className="category-nav">
                <h2>Dashtar</h2>
                <Link to="Dashboard"><FiGrid/>   Dashboard</Link>
-               <br/><br/><br/>
+               
                <Link to="/Product"><FiPackage/>   Product</Link>
-               <br/><br/><br/>
-               <Link to="Categories"><FiHome/>   Categories</Link>
-               <br/><br/><br/>
+               
+               <Link to="/Categories"><FiHome/>   Categories</Link>
+             
                <Link to="Offer"><FiTag/>   Offer</Link>
-               <br/><br/><br/>
-               <Link to="Customer"><FiUsers/>   Customer</Link>
-               <br/><br/><br/>
-               <Link to="order"><FiShoppingCart/>   order</Link>
-               <br/><br/><br/>
+              
+               <Link to="/Customer"><FiUsers/>   Customer</Link>
+               
+               <Link to="/order"><FiShoppingCart/>   order</Link>
+             
            
                <div className="category-logout">
                   <br/>
-                  <button>Log Out</button>
+                  <button> <FiLogOut /> Log Out</button>
                </div>
             </div>
 
             {/* Main Content Area */}
+
             <div className="category-12">
                 <div className="category-13">
                     <div className="category-13-1">
@@ -137,8 +150,6 @@ const handleblock=async(id,isActive)=>{
                  </thead>
                  <tbody>
 
-                  
-
                        {allData.map((user) => (
                            <tr key={user._id}>
                                <td>{user.name}</td>
@@ -151,24 +162,14 @@ const handleblock=async(id,isActive)=>{
                              <button className="block-category-btn" onClick={()=>{handleblock(user._id,user.isActive)}}>UnBlock</button>}
                               </td>
                               </tr>
-                          
+              
                        ))}
                               </tbody>
                               </table>
                   
                 </div>
 
-                <div className="all-button-category">
-                   <div className="category-previous">
-                      <button>previous</button>
-                   </div>
-                   <div>
-                      <p>Page 1 of 2</p>
-                   </div>
-                   <div className="category-next">
-                      <button>next</button>
-                   </div>
-                </div>
+               
             </div>
 
             {/* Conditionally Rendered Add Category Drawer/Modal */}

@@ -1,5 +1,6 @@
 import "./profile.css"
 import { Link } from "react-router-dom"
+import { useState, useEffect } from "react";
 import {
   FiShoppingCart,
   FiBell,
@@ -16,10 +17,30 @@ import {
   FiLinkedin,
 } from "react-icons/fi";
 
+import UserService from "../../service/user-api-services/UserService";
 
 export const Profile=()=>{
 
+ const {userDeatils}=UserService()
 
+const[user,setUser]=useState({})
+const fetchuser=async()=>{
+  try{
+  // let response=await axios.get('http://localhost:7000//api/auth/userdetails') to avoid repeated api call we use userservice.jsx
+  let response=await userDeatils()
+   console.log("USER DATA FROM API:", response);
+  setUser(response)
+  }
+    catch (error) {
+    console.error("API error:", error.response?.data || error.message);
+  }
+}
+
+useEffect(()=>{
+  fetchuser()
+},[])
+
+console.log(user)
 
 
     return(
@@ -82,11 +103,11 @@ export const Profile=()=>{
             <Link to="/notifications">
               <FiBell />
             </Link>
-               <span2>
+               <span>
             <Link to="/profile">
               <FiUser />
             </Link>
-            </span2>
+            </span>
 
           </div>
 
@@ -109,6 +130,8 @@ export const Profile=()=>{
 
        
     <div className="profile-button2">
+            
+      
     <button>Address</button>
      </div>
 
@@ -123,24 +146,24 @@ export const Profile=()=>{
   <div className="profile-input-1">
     <label htmlFor="">Full Name</label>
     <br/>
-    <input type="text" placeholder="Thomas"></input>
+    <input type="text" value={user.name || ""} readOnly />
     <br/>
     <br/>
        <label htmlFor="">Date of Birth</label>
     <br/>
-    <input type="number" placeholder="10/2/2004"></input>
+    <input type="number" value={user.dateOfBirth} ></input>
 
   </div>
 
    <div className="profile-input-2">
     <label htmlFor="">Email</label>
     <br/>
-    <input type="email" placeholder="thomas12@gmail.com" ></input>
+   <input type="email" value={user.email || ""} readOnly />
     <br/>
     <br/>
        <label htmlFor="">Gender</label>
     <br/>
-    <input type="text" placeholder="Male"></input>
+    <input type="text" value={user.gender}/>
 
   </div>
 
@@ -148,21 +171,23 @@ export const Profile=()=>{
    <div className="profile-input-3">
     <label htmlFor="">Phone Number</label>
     <br/>
-    <input type="number" placeholder="+91 98765 43210"></input>
+   <input type="text" value={user.phone} readOnly />
     <br/>
     <br/>
-       <label htmlFor="">Password</label>
+      
     <br/>
-    <input type="password" placeholder="********"></input>
-
-    <br/>
-    <br/>
-    <button><Link to='/profilesave'>Edit</Link></button>
+    <Link to='/profilesave'>
+    <button>Edit</button></Link>
 
   </div>
 
      </div>
 </div>
-        </div>
+
+      
+
+      </div>
+ 
+
     )
 }

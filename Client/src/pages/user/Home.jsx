@@ -15,9 +15,15 @@ import Image12 from "../../assets/sub7.jpg";
 import Image13 from "../../assets/sub8.jpg";
 import Image14 from "../../assets/sub9.jpg";
 import Image15 from "../../assets/sub19.jpg";
+import cat1 from "../../assets/cat1.jpg";
+import cat2 from "../../assets/cat2.jfif";
+import cat3 from "../../assets/cat3.avif";
+import cat4 from "../../assets/cat4.webp";
+import cat5 from "../../assets/cat5.webp";
 
 import { Link } from "react-router-dom";
 
+import UserService from "../../service/user-api-services/UserService"
 import {
   FiShoppingCart,
   FiBell,
@@ -32,38 +38,45 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
+  FiHeart
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
    const categories = [
         {
-            name: "Eau De Parfum",
-            image: Image1
+            name: "For women",
+            image: cat1
         },
         {
-            name: "Concentrated",
-            image: Image2
+            name: "For men",
+            image: cat2
         },
         {
             name: "Deodorants",
-            image: Image3
-        },
-        {
-            name: "Body Mist",
-            image: Image4
+            image: cat3
         },
         {
             name: "Combo",
-            image: Image5
+            image: cat4
+        },
+        {
+            name: "Body Mist",
+            image: cat5
         }
     ];
 
 
 export const Home = () => {
 
+   const [likedProducts, setLikedProducts] = useState([]);
+
+   const { getHome, addToCart,handlewishlist,getWishlist} = UserService();
   const[allData,setallData]=useState([])
   const scrollProducts = (amount) => {
     const container = document.querySelector(".products-container");   //.products-container enna class stote--->conatainer enna variable
+
+  
+
 
     if (container) {
       container.scrollBy({  //scrollBy-->todcroll
@@ -74,12 +87,76 @@ export const Home = () => {
   };
 
   const fechData=async()=>{
-    let res=await axios.get('http://localhost:7000/product')
-    setallData(res.data)
+    // let res=await axios.get('http://localhost:7000/product')
+    // setallData(res.data)
+    let res=await getHome() 
+    setallData(res)
+
   }
 useEffect(()=>{
-fechData()
+fechData();
+fetchWishlist();
 },[])
+//===============================//
+
+const handleAddToCart = async (product) => {
+  try {
+    // await axios.post(`http://localhost:7000/${product._id}`)
+    const response = await addToCart(product._id);   //to avoid multiple API calss we use UserServive.jsx, so do this
+
+    console.log("Cart response:", response);
+    alert(`${product.name} added to cart!`);
+  } catch (error) {
+    console.error("Status:", error.response?.status);
+    console.error("Backend error:", error.response?.data);
+    console.error("Error message:", error.message);
+
+    alert(
+      error.response?.data?.message ||
+      "Unable to add product to cart"
+    );
+  }
+};
+//================heart=================
+
+const handleLike = async(productId) => {
+// const response=await axios.post(`http://localhost:7000/wishlist/${id}`)
+  const response=await handlewishlist(productId)
+
+  setLikedProducts((prev) =>
+    prev.includes(productId)
+      ? prev.filter((id) => id !== productId)  //again click to remove
+      : [...prev, productId]
+  );
+  
+
+};
+
+//====we add====
+
+const fetchWishlist = async () => {
+  try {
+    const response = await getWishlist();
+
+    console.log("Saved wishlist from backend:", response);
+
+    const wishlistIds = Array.isArray(response)
+      ? response
+          .filter((product) => product && product._id)
+          .map((product) => String(product._id))
+      : [];
+
+    setLikedProducts(wishlistIds);
+  } catch (error) {
+    console.error(
+      "Error fetching wishlist:",
+      error.response?.status,
+      error.response?.data || error.message
+    );
+  }
+};
+
+
   return (
     <div className="home">
 
@@ -97,7 +174,7 @@ fechData()
               <ul>
 
                 <li>
-                                                  <Link to="/Home">Home</Link>
+               <Link to="/Home">Home</Link>
 
                 </li>
 
@@ -145,7 +222,7 @@ fechData()
               <FiBell />
             </Link>
 
-            <Link to="/profile">
+            <Link to="/profilesave">
               <FiUser />
             </Link>
 
@@ -383,25 +460,61 @@ fechData()
         <div className="products-container">
 
           {allData.map((product) => (
-
+           
             <div
               className="product-card"
               key={product._id}
             >
 
+                
+<div className="likeicon">
+  <span
+    className="like"
+    onClick={() => handleLike(String(product._id))}
+    style={{
+      color: likedProducts.includes(String(product._id))
+        ? "red"
+        : "black",
+      cursor: "pointer",
+    }}
+  >
+    <FiHeart
+      fill={
+        likedProducts.includes(String(product._id))
+          ? "red"
+          : "none"
+      }
+      color={
+        likedProducts.includes(String(product._id))
+          ? "red"
+          : "black"
+      }
+    />
+  </span>
+</div>
+
+
               {/* PRODUCT IMAGE */}
+             
 
               <div className="product-image">
-
+                <Link to={`/productpage2/${product._id}`}>         {/* productpage2 leek aaa specific product id koode pass aakum params aaki */}
                 <span className="new-badge">
                   New
                 </span>
 
-                <img
+                {/* <img
                   src={`http://localhost:7000/uploads/${product.image}`}
                   alt={product.name}
-                />
+                /> */}
 
+                {/* take data from clounary */}
+
+                <img
+                src={product.image}
+                alt={product.name}
+                 />
+                    </Link>
               </div>
 
 
@@ -423,23 +536,27 @@ fechData()
                   </strong>
 
                   <del>
-                    RS {product.oldPrice}
+                    RS {product.saleprice}
                   </del>
 
                 </div>
 
+            
+              
+            
+          <button
+             className="cart-button"
+            type="button"
+            onClick={() => handleAddToCart(product)}
+            >
+               Add to Cart
+             </button>
 
-                <button
-                  className="cart-button"
-                  type="button"
-                >
-                  Add to Cart
-                </button>
 
               </div>
 
             </div>
-
+   
           ))}
 
         </div>
@@ -499,6 +616,7 @@ fechData()
 
                 {categories.map((category, index) => (
                     <div className="category-item" key={index}>
+                      
 
                         <div className="category-image">
                             <img
@@ -529,23 +647,55 @@ fechData()
         <div className="products-container">
    
           {allData.map((product) => (
-
+          
             <div
               className="product-card"
               key={product._id}
             >
+         
+<div className="likeicon">
+  <span
+    className="like"
+    onClick={() => handleLike(String(product._id))}
+    style={{
+      color: likedProducts.includes(String(product._id))
+        ? "red"
+        : "black",
+      cursor: "pointer",
+    }}
+  >
+    <FiHeart
+      fill={
+        likedProducts.includes(String(product._id))
+          ? "red"
+          : "none"
+      }
+      color={
+        likedProducts.includes(String(product._id))
+          ? "red"
+          : "black"
+      }
+    />
+  </span>
+</div>
 
               {/* PRODUCT IMAGE */}
 
               <div className="product-image">
 
-               
+                 <Link to={`/productpage2/${product._id}`}>   
 
-                <img
+                {/* <img
                   src={`http://localhost:7000/uploads/${product.image}`}
                   alt={product.name}
-                />
+                /> */}
+                {/* to take image from clounary we use  */}
+                  <img
+                src={product.image}
+                alt={product.name}
+                 />
 
+                  </Link>
               </div>
 
 
@@ -567,23 +717,25 @@ fechData()
                   </strong>
 
                   <del>
-                    RS {product.oldPrice}
+                   RS {product.saleprice}
+
                   </del>
 
                 </div>
 
-
-                <button
-                  className="cart-button"
-                  type="button"
-                >
-                  Add to Cart
-                </button>
+     
+          <button
+             className="cart-button"
+            type="button"
+            onClick={() => handleAddToCart(product)}
+            >
+               Add to Cart
+             </button>
 
               </div>
 
             </div>
-
+         
           ))}
 
         </div>

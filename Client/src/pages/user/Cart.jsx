@@ -2,6 +2,9 @@ import Image6 from "../../assets/sub3.png";
 import Image12 from "../../assets/sub7.jpg";
 import "./Cart.css";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
+import UserService from "../../service/user-api-services/UserService";
+
 import {
   FiShoppingCart,
   FiBell,
@@ -14,35 +17,90 @@ import {
   FiYoutube,
   FiLinkedin,
 } from "react-icons/fi";
+import axios from "axios";
 
-const cartimg = [
-  {
-    id: 1,
-    image: Image6,
-    name: "Autograph eau de parfum 100ml for men",
-    price: "Rs 899",
-    oldprice: "Rs 2000",
-    offer: "61% off",
-  },
-  {
-    id: 2,
-    image: Image6,
-    name: "Autograph eau de parfum 100ml for men",
-    price: "Rs 899",
-    oldprice: "Rs 2000",
-    offer: "61% off",
-  },
-  {
-    id: 3,
-    image: Image12,
-    name: "Royal eau de parfum 100ml for men",
-    price: "Rs 899",
-    oldprice: "Rs 2000",
-    offer: "61% off",
-  },
-];
+// const cartimg = [
+//   {
+//     id: 1,
+//     image: Image6,
+//     name: "Autograph eau de parfum 100ml for men",
+//     price: "Rs 899",
+//     oldprice: "Rs 2000",
+//     offer: "61% off",
+//   },
+//   {
+//     id: 2,
+//     image: Image6,
+//     name: "Autograph eau de parfum 100ml for men",
+//     price: "Rs 899",
+//     oldprice: "Rs 2000",
+//     offer: "61% off",
+//   },
+//   {
+//     id: 3,
+//     image: Image12,
+//     name: "Royal eau de parfum 100ml for men",
+//     price: "Rs 899",
+//     oldprice: "Rs 2000",
+//     offer: "61% off",
+//   },
+// ];
 
 export const Cart = () => {
+  const[Product,setProduct]=useState([])
+
+  const { getCart,cartitemdelete,changequantity } = UserService();
+
+  const [loading, setLoading] = useState(true);
+
+  const[count,setcound]=useState(1)
+
+  const [cartTotal, setCartTotal] = useState(0);
+
+  const fetchCart = async () => {
+    try {
+      //let response= await axios.get('http://localhost:7000/api/auth/cart')
+      // setProduct(response.data)
+
+      const response = await getCart();    //to avoid multiple apicall we use UserService.jsx
+      setProduct(response.cart || []);
+      setCartTotal(response.cart_total || 0);
+    } catch (error) {
+      console.log(error.response?.data || error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+  fetchCart();
+}, []);
+
+
+const itemdelete=async(id)=>{
+    // await axios.delete(`http://localhost:7000/api/auth/delete/${id}`)
+  await cartitemdelete(id)                  //we use userservise.jsx  to avoid individual API call
+    console.log("Product ID:", id);
+  await fetchCart()
+  
+}
+
+
+ const handleQuantity=async(id,quantity)=>{
+//   // await axios.put(`http://localhost:7000/quanti/${id}`,{quantity})   //repeated API call avoid aakan use UserService.jsx 
+//  await changequantity(id,quantity)
+
+
+  try {
+    const response = await changequantity(id, quantity);
+    console.log("Quantity updated:", response);
+    await fetchCart();
+  } catch (error) {
+    console.log("Status:", error.response?.status);
+    console.log("Error:", error.response?.data || error.message);
+  }
+};
+
   return (
     <div className="cart">
       {/* NAVBAR */}
@@ -75,7 +133,7 @@ export const Cart = () => {
             <Link to="/notifications">
               <FiBell />
             </Link>
-            <Link to="/profile">
+            <Link to="/profilesave">
               <FiUser />
             </Link>
           </div>
@@ -93,10 +151,11 @@ export const Cart = () => {
         
         {/* Left Side: All Cart Items Stacked Vertically */}
         <div className="cart-section-3">
-          {cartimg.map((user) => (
-            <div className="cart-item" key={user.id}>
+          {/* {Product.map((user) => (         //here product,quatity store inside the cart at the collection so we canot take data directly inside the product
+                                                                                
+            <div className="cart-item" key={user._id}>
               <div className="cart-image">
-                <img src={user.image} alt={user.name} />
+                <img src={`http://localhost:7000/uploads/${user.image}`} />
               </div>
 
               <div className="cart-item-content">
@@ -104,7 +163,7 @@ export const Cart = () => {
 
                 <div className="cart-buttons-row">
                   <div className="cart-buttons">
-                    <button>-</button> <span>1</span> <button>+</button>
+                    <button>-</button> <span> {item.quantity}</span> <button>+</button>
                   </div>
                 </div>
 
@@ -127,7 +186,55 @@ export const Cart = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
+
+       {Product.map((item) => {                           //many cart item ind(cart lee kore product indukum user add chyunna)
+  const user = item.product;                         //item → ഒരു cart item.  item.product->ആ cart item-ൽ ഉള്ള product field. product store id of products in the product collection
+
+  if (!user) return null;
+
+  return (
+    <div className="cart-item" key={user._id}>
+      {/* <img
+        src={`http://localhost:7000/uploads/${user.image}`}
+        alt={user.name}
+      /> */}
+  {/* to take image from clounary */}
+      <img
+  src={user.image}
+  alt={user.name}
+/>
+
+          <div className="cart-buttons-row">
+                  <div className="cart-buttons">
+                      <button onClick={()=> handleQuantity(item.product._id, item.quantity + 1)}>+</button> <span>{item.quantity}</span> <button onClick={()=> handleQuantity(item.product._id, item.quantity - 1)}>-</button>
+                  </div>
+                </div>
+       <div className="cart-price">
+               <h2>{user.name}</h2>
+                  <span className="price-main">Rs {user.saleprice }</span>
+                  <span className="price-old">Rs {user.price}</span>
+                  <span className="price-offer">{user.offer}</span>
+                </div>
+                
+                <div className="allbuttonss">
+                  <div className="cart-button-1">
+                    <button onClick={()=>{itemdelete(user._id)}}>Delete</button>
+                  </div>
+                  <div className="cart-button-2">
+                    <button>Share</button>
+                  </div>
+                  <div className="cart-button-3">
+                    <button>Buy</button>
+                  </div>
+                </div>
+    </div>
+  );
+})}
+
+
+
+
         </div>
 
         {/* Right Side: Fixed Checkout Box */}
@@ -149,11 +256,12 @@ export const Cart = () => {
             <hr className="checkout-divider" />
             <div className="checkout-total-row">
               <span>Total Amount</span>
-              <span className="checkout-val-total">Rs 3,493</span>
+              <span className="checkout-val-total">{cartTotal}</span>
             </div>
           </div>
-          <button className="proceed-btn">Proceed to Buy</button>
-          
+          <Link to="/payment">
+          <button className="proceed-btn" >Proceed to Buy</button>
+          </Link>
           <div className="secure-payment-box">
             <p>Safe and Secure Payments. Easy returns. 100% Authentic products.</p>
           </div>

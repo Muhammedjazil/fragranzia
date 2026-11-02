@@ -34,8 +34,11 @@ import { Signin } from './pages/user/signin'
 // import perfumeeImage from "../../assets/perfumee.png";
 // import perfume3Image from "../../assets/perfume3.png"
 import { Home } from './pages/user/Home'
-import { User } from './pages/admin/user'
 import { Wishlist } from './pages/user/wishlist'
+import { Order } from './pages/admin/Order'
+import { Payment } from './pages/user/Payment'
+import AdminProtectedRoute from './components/protected-route/AdminProtectedRoute'
+import LoginProtectedRoute from './components/protected-route/LoginProtectedRoute'
 function App() {
   const [count, setCount] = useState(0)
 
@@ -45,11 +48,14 @@ function App() {
    {/* <Users/> */}
    {/* <User/> */}
  <Routes>
+  <Route element={<AdminProtectedRoute />}>  {/* Admin protected routes */}
     <Route path='/Product' element={<Producttable/>}/>
     <Route path='/addproduct' element={<Addproduct/>}/>
     <Route path='/Categories' element={<Category/>}/>
     <Route path='/Customer' element={<Users/>}/>
-   </Routes>   
+    <Route path='/order' element={<Order/>}/>
+        </Route>
+  
    
    {/* <Addproduct/> */}
     {/* <Updateproduct/> */}
@@ -61,21 +67,25 @@ function App() {
    {/*  */}
    {/* <Home/> */}
    {/* <Products/> */}
-  <Routes>
+
+      {/* Public routes */}
         <Route path='/' element={<Signup/>} />
         <Route path='/Signin' element={<Signin/>}/>
+
+ {/* Login protected user routes */}
+       <Route element={<LoginProtectedRoute />}>
         <Route path='/Home' element={<Home/>}/>
         <Route path='/products' element={<Products/>}/>
         <Route path='/productpage2/:id' element={<Productpage2/>}/>
-        <Route path='/cart'  element={<Cart/>}/>
+       <Route path='/cart' element={<Cart/>}/>
         <Route path='/about' element={<About/>}/>
-        <Route path='/profile' element={<Profile/>}/>
+        {/* <Route path='/profile' element={<Profile/>}/> */}
         <Route path='/profilesave' element={<Profilesave/>}/>
         <Route path='/last' element={<Lastaddress/>}/>
         <Route path='/gifting' element={<Wishlist/>}/>
-        
+        <Route path='/payment' element={<Payment/>}/>
+        </Route>
    </Routes>
-
 
    {/* <Product/> */}
 

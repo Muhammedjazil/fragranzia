@@ -2,9 +2,13 @@ import { useState } from "react";
 import "./Signup.css"
 import perfumeeImage from "../../assets/perfumee.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
 // import {Link} from 'react-router-dom'
+import UserService from "../../service/user-api-services/UserService";
 
 export const Signup=()=>{
+ const {signupedata}=UserService()
+
     let[formData,setformData]=useState({
         name:"",
         email:"",                         //user type chyyunna data evade store aakum
@@ -30,18 +34,18 @@ export const Signup=()=>{
 
     }))
     }
-    const onhandlesubmit=(e)=>{
+    const onhandlesubmit=async(e)=>{
         e.preventDefault()
         let next=true
         let err={
-        name:false,
+        name:false,    //initaially all are fill-->false
         email:false,              
         password:false,
         confirmpassword:false,
         agree:false,
         }
         if(formData.name==""){
-            err.name=true
+            err.name=true     //not fill-->true
             next=false
         }
         if(formData.email=="" ||  !/^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/.test(formData.email)){
@@ -61,12 +65,17 @@ export const Signup=()=>{
             next=false
         }
         setformErr(err)
-        if(next==true){
-            alert("SignUp successfully")
+        if(next){
+           
             //code for backend
-        }
 
-
+            //   await axios.post("http://localhost:7000/api/auth/register", formData);   //send form data to backend
+            await signupedata(formData)
+              console.log(formData)
+            alert("SignUp successfully")
+            }
+      
+          
     }
     const onhandleBlur=(e)=>{
        let {name}=e.target
