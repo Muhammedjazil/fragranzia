@@ -7,17 +7,21 @@ import {
   FiUsers,
   FiShoppingCart,
   FiHome,
-  FiLogOut 
+  FiLogOut ,
+    FiX,
+   FiMenu
 } from "react-icons/fi";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect } from "react";
-
+import { toast } from "react-toastify";
 import  AdminService from"../../service/admin-api-services/AdminService"  //after front end and backend,db use use this
 
 const APIURL='http://localhost:7000/product'
 export const Addproduct = () => {
 
+    const [menuOpen, setMenuOpen] = useState(false);
+  
   const {addToProduct,productcategory}=AdminService() 
 
   const navigate = useNavigate();
@@ -110,7 +114,8 @@ export const Addproduct = () => {
     const response = await addToProduct(data);
 
     console.log("Product added successfully:", response);
-    alert("Product added successfully!");
+        // Success toast
+    toast.success("Product added successfully!");
 
     navigate("/Product");
   } 
@@ -119,11 +124,8 @@ export const Addproduct = () => {
   console.error("Response data:", error.response?.data);
   console.error("Error message:", error.message);
 
-  alert(
-    error.response?.data?.message ||
-    error.message ||
-    "Failed to add product"
-  );
+  // Error toast
+    toast.error("Failed to add product!");
 }
 };
 
@@ -137,44 +139,62 @@ const handlecategory=async()=>{
       
   return (
     <form onSubmit={handleSubmit} className="add-product">
-      <div className="category-nav">
-        <h2>Dashtar</h2>
+    
+              <div className="category-nav">
+  <div className="nav-header">
+    <h2>Dashtar</h2>
 
-        <Link to="/Dashboard"><FiGrid /> Dashboard</Link>
-        
-        
-        <Link to="/Product"><FiPackage /> Product</Link>
-     
+    <button
+      type="button"
+      className="hamburger"
+      onClick={() => setMenuOpen(!menuOpen)}
+      aria-label="Toggle navigation"
+    >
+      {menuOpen ? <FiX /> : <FiMenu />}
+    </button>
+  </div>
 
-        <Link to="/Categories"><FiHome /> Categories</Link>
-        
+  <div className={`category-nav-links ${menuOpen ? "active" : ""}`}>
+    <Link to="Dashboard" onClick={() => setMenuOpen(false)}>
+      <FiGrid /> Dashboard
+    </Link>
 
-        <Link to="/Offer"><FiTag /> Offer</Link>
-        
+    <Link to="/Product" onClick={() => setMenuOpen(false)}>
+      <FiPackage /> Product
+    </Link>
 
-        <Link to="/Customer"><FiUsers /> Customer</Link>
-        
+    <Link to="/Categories" onClick={() => setMenuOpen(false)}>
+      <FiHome /> Categories
+    </Link>
 
-        <Link to="/order"><FiShoppingCart /> order</Link>
-        
+    <Link to="Offer" onClick={() => setMenuOpen(false)}>
+      <FiTag /> Offer
+    </Link>
 
-        <div className="category-logout">
-          <br />
-          <button type="button"><FiLogOut/> Log Out</button>
-        </div>
-      </div>
-         
+    <Link to="/Customer" onClick={() => setMenuOpen(false)}>
+      <FiUsers /> Customer
+    </Link>
+
+    <Link to="/order" onClick={() => setMenuOpen(false)}>
+      <FiShoppingCart /> Order
+    </Link>
+
+    <div className="category-logout">
+      <button><FiLogOut /> Log Out</button>
+    </div>
+  </div>
+</div>
       <div className="add-productdetails">
         <h1>Add Product</h1>
         <p>Add your product and necessary information from here</p>
 
-        <div className="inpusts1">
-          <div className="input1-1">
+        <div className="inpusts01">
+          <div className="input1-001">
             <label>Product Title/Name</label><br />
             <input type="text" name="name" value={formData.name} onChange={handlechange} required />
           </div>
 
-          <div className="input1-2">
+          <div className="input1-002">
             <label>Product Price</label><br />
             <input type="number" name="price" value={formData.price} onChange={handlechange} required />
           </div>

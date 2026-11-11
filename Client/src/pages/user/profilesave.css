@@ -1,302 +1,354 @@
+/* =====================================================
+   GLOBAL SETTINGS
+===================================================== */
 
-/* ================================================= */
-/* ================= MAIN PAGE ===================== */
-/* ================================================= */
+* {
+    box-sizing: border-box;
+}
 
 .profilesave {
     width: 100%;
     min-height: 100vh;
     margin: 0;
     padding: 0;
-    overflow: visible;
-    background-color: #ffffff;
-    box-sizing: border-box;
+    background: #ffffff;
+    overflow-x: hidden;
 }
 
+.profilesave button,
+.profilesave input,
+.profilesave textarea,
+.profilesave select {
+    font-family: inherit;
+}
 
-/* ================================================= */
-/* ================= NAVBAR ======================== */
-/* ================================================= */
+button {
+    cursor: pointer;
+}
 
-.profileiconcolor svg{
+/* =====================================================
+   NAVBAR ICON
+===================================================== */
+
+.profileiconcolor svg {
     background-color: #003d50;
-    font: white;
+    color: white;
     border-radius: 20px;
     width: 25px;
     height: 25px;
+    padding: 3px;
 }
 
-/* ================================================= */
-/* ================= PROFILE ======================= */
-/* ================================================= */
+/* =====================================================
+   PROFILE MAIN CONTAINER
+===================================================== */
 
-.full-data {
-    width: 1100px;
-    max-width: calc(100% - 80px);
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 35px;
-    padding-bottom: 50px;
-    box-sizing: border-box;
+.full-data,
+.data-full {
+    width: 90%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 35px 0 50px;
+    position: relative;
+    background: transparent;
+    border: none;
+    box-shadow: none;
 }
 
-/* PROFILE TITLE */
+/* =====================================================
+   PROFILE TITLE
+===================================================== */
 
-.profilesave-data {
+.profilesave-data,
+.profile-data {
     margin: 0;
     padding: 0;
 }
 
-.profilesave-data h1 {
-    margin: 0 0 5px 0;
+.profilesave-data h1,
+.profile-data h1 {
+    margin: 0 0 5px;
     font-size: 30px;
+    font-weight: 600;
     color: #111;
 }
 
-.profilesave-data h4 {
+.profilesave-data h4,
+.profile-data h4 {
     margin: 0;
     color: gray;
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 400;
 }
 
+/* =====================================================
+   PROFILE / ADDRESS / ORDER TABS
+===================================================== */
 
-/* ================================================= */
-/* ================= PROFILE BUTTONS =============== */
-/* ================================================= */
-
-.profilesave-button {
+.profilesave-button,
+.profile-button {
     width: 100%;
     display: flex;
-    gap: 40px;
-    margin-top: 40px;
-    margin-left: 0;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 35px 0 0;
 }
 
-.profilesave-button button {
+.profilesave-button button,
+.profile-button button {
     width: 190px;
-    height: 38px;
-    padding: 8px;
-    border: 1px solid gray;
+    min-height: 40px;
+    padding: 9px 15px;
+    border: 1px solid #003d50;
     border-radius: 6px;
-    outline: none;
     background: white;
-    cursor: pointer;
+    color: #003d50;
+    font-size: 14px;
+    font-weight: 500;
+    transition: 0.3s ease;
 }
 
-.profilesave-button1 button {
+.profilesave-button button:hover,
+.profile-button button:hover {
+    background: #eef5f6;
+}
+
+.profilesave-button button.tab-active {
     background: #003d50;
     color: white;
     border-color: #003d50;
 }
 
+.profile-button1 button {
+    background: #003d50;
+    color: white;
+    border-color: #003d50;
+}
 
-/* ================================================= */
-/* ================= PROFILE INPUTS ================ */
-/* ================================================= */
+/* =====================================================
+   PROFILE INPUTS
+===================================================== */
 
-.profilesave-inputs {
+.profilesave-inputs,
+.profile-inputs {
     width: 100%;
-    margin: 38px 0 0 0;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    column-gap: 40px;
-    row-gap: 20px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px 35px;
+    margin-top: 38px;
 }
 
 .profilesave-input-1,
 .profilesave-input-2,
-.profilesave-input-3 {
+.profilesave-input-3,
+.profile-input-1,
+.profile-input-2,
+.profile-input-3 {
     width: 100%;
+    min-width: 0;
 }
 
-/* LABEL */
-
-.profilesave-inputs label {
+.profilesave-inputs label,
+.profile-inputs label {
     display: inline-block;
     margin-bottom: 7px;
-    font-size: 15px;
     color: #111;
+    font-size: 15px;
 }
-
-/* INPUT */
 
 .profilesave-inputs input {
     width: 100%;
-    height: 38px;
-    box-sizing: border-box;
-    padding: 8px 10px;
-    border: 1px solid rgb(230, 228, 224);
+    height: 40px;
+    padding: 8px 12px;
+    border: 1px solid #e6e4e0;
+    border-radius: 5px;
     background: white;
     outline: none;
-    border-radius: 5px;
-    font-size: 13px;
+    font-size: 14px;
 }
 
+.profilesave-inputs input:focus {
+    border-color: #003d50;
+}
 
-/* ================================================= */
-/* ================= SAVE BUTTON =================== */
-/* ================================================= */
-
-.profilesave-input-3 button {
-    display: block;
-    width: 100px;
-    height: 38px;
-    padding: 8px;
-    margin-left: auto;
-    margin-top: 2px;
+.profile-inputs input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
     border: none;
-    background: rgb(16, 235, 235);
-    color: white;
-    outline: none;
     border-radius: 5px;
-    cursor: pointer;
+    background: #f2efef;
+    color: #333;
+    outline: none;
+    font-size: 14px;
 }
 
+.profile-inputs input:focus {
+    background: #eae7e7;
+}
 
-/* ================================================= */
-/* ================= ADDRESS SECTION =============== */
-/* ================================================= */
+.profilesave-input-3 button,
+.profile-input-3 button {
+    display: block;
+    width: 110px;
+    height: 40px;
+    margin: 2px 0 0 auto;
+    padding: 8px;
+    border: 1px solid #003d50;
+    border-radius: 5px;
+    background: #003d50;
+    color: white;
+    transition: 0.3s;
+}
+
+.profilesave-input-3 button:hover,
+.profile-input-3 button:hover {
+    background: white;
+    color: #003d50;
+}
+
+/* =====================================================
+   ADDRESS SECTION
+===================================================== */
+
+/* Outer address section */
 
 .dataaaas {
     position: relative;
-    left: auto;
-    top: auto;
-    transform: none;
-
     width: 100%;
-    max-width: 1200px;
-    height: auto;
-
-    margin: 30px auto 0;
-    padding: 0;
-
+    max-width: 1700px;
+    margin: 30px auto;
+    padding: 0 30px;
     box-sizing: border-box;
-    background-color: white;
 }
 
+/* Important: the outer section is NOT a grid.
+   The address-details element controls the card layout. */
 
-/* ================================================= */
-/* ================= ADDRESS BUTTONS =============== */
-/* ================================================= */
+.dataaaas > * {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+/* =====================================================
+   ADDRESS BUTTONS
+===================================================== */
 
 .address-buttons {
     width: 100%;
-    min-height: 40px;
-
     display: flex;
     align-items: center;
-    gap: 25px;
-
-    position: relative;
-
-    margin: 0 0 35px 0;
-    padding: 0;
-
-    box-sizing: border-box;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 30px;
 }
-
-/* PROFILE / ADDRESS / ORDER */
 
 .address-button1,
 .address-button2,
 .address-button3 {
     flex-shrink: 0;
-    margin-right: 0;
 }
 
 .address-buttons button {
-    width: 200px;
+    width: 180px;
     height: 40px;
     padding: 8px;
-    border: 1px solid #aaa;
+    border: 1px solid #003d50;
     border-radius: 6px;
-    background-color: white;
-    color: #333;
+    background: white;
+    color: #003d50;
     font-size: 14px;
-    cursor: pointer;
 }
-
-/* ACTIVE ADDRESS BUTTON */
 
 .address-button2 button {
-    background-color: #003d50;
+    background: #003d50;
     color: white;
-    border-color: #003d50;
 }
 
-
-/* ================================================= */
-/* ================= ADD ADDRESS =================== */
-/* ================================================= */
+/* =====================================================
+   ADD ADDRESS BUTTON
+===================================================== */
 
 .add-address {
     position: absolute;
-    right: 0;
-    top: 0;
-    display: block;
+    top: -2cm;
+    right: 30px;
 }
 
 .add-address button {
-    display: block;
     width: 160px;
-    height: 40px;
-    padding: 8px;
-    background-color: #003d50;
-    color: white;
+    min-height: 40px;
+    padding: 9px;
     border: 1px solid #003d50;
     border-radius: 6px;
+    background: #003d50;
+    color: white;
     font-size: 14px;
-    cursor: pointer;
+    transition: 0.3s;
 }
 
+.add-address button:hover {
+    background: white;
+    color: #003d50;
+}
 
-/* ================================================= */
-/* ================= ADDRESS CARD ================== */
-/* ================================================= */
+/* =====================================================
+   ADDRESS CARDS - DESKTOP
+===================================================== */
 
 .address-details {
     width: 100%;
-    display: block;
-    margin: 0;
-    padding: 0;
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 35px;
+    row-gap: 25px;
+    margin-top: 20px;
+    align-items: stretch;
 }
 
 .address-details-1 {
     width: 100%;
+    min-width: 0;
     min-height: 180px;
-    padding: 25px;
-    box-sizing: border-box;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: white;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    padding: 30px;
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
-
-
-/* ================================================= */
-/* ================= ADDRESS TITLE ================= */
-/* ================================================= */
 
 .address-details-1 h3 {
     display: flex;
     align-items: center;
-    gap: 20px;
-    margin: 0;
-    padding: 0;
-    font-size: 18px;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 12px 0;
     color: #222;
+    font-size: 18px;
 }
 
-/* OFFICE */
+.address-details-1 p {
+    margin: 15px 0;
+    color: #555;
+    font-size: 14px;
+    line-height: 1.8;
+    overflow-wrap: anywhere;
+}
+
+.address-details h4 {
+    color: black;
+}
 
 .office {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+    color: #555;
     font-size: 13px;
     font-weight: normal;
-    color: #555;
 }
 
 .office svg {
@@ -304,35 +356,12 @@
     height: 17px;
 }
 
-
-/* ================================================= */
-/* ================= ADDRESS TEXT ================== */
-/* ================================================= */
-
-.address-details-1 p {
-    display: block;
-    margin: 18px 0 12px 0;
-    padding: 0;
-    font-size: 14px;
-    line-height: 1.8;
-    color: #555;
-}
-
-.address-details h4 {
-    color: black;
-}
-
-
-/* ================================================= */
-/* ================= PHONE ========================= */
-/* ================================================= */
-
 .phone {
     display: inline-flex;
     align-items: center;
     gap: 7px;
-    font-size: 14px;
     color: #333;
+    font-size: 14px;
 }
 
 .phone svg {
@@ -340,1002 +369,241 @@
     height: 16px;
 }
 
-
-/* ================================================= */
-/* ================= ADDRESS FORMS ================= */
-/* ================================================= */
-
-.add-address-og,
-.edit-address-og {
-    width: 1200px;
-    max-width: calc(100% - 40px);
-    margin: 30px auto;
-    padding: 30px;
-    box-sizing: border-box;
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-.add-address-og h2,
-.edit-address-og h2 {
-    font-size: 22px;
-    margin-bottom: 0.6cm;
-}
-
-.add-address-og button,
-.edit-address-og button {
-    width: 120px;
-    height: 40px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-}
-
-.btn-12 {
-    margin-left: 0.4cm;
-    margin-bottom: 1cm;
-}
-
-.btn11 {
-    background-color: #003d50;
-    color: white;
-}
-
-/* ADDRESS NAME / PHONE INPUTS */
-
-.add-input {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.add-input input {
-    width: 300px;
-    max-width: 100%;
-    height: 40px;
-    border: 2px solid gray;
-    border-radius: 4px;
-    outline: none;
-    padding-left: 15px;
-    box-sizing: border-box;
-}
-
-.name-add1 {
-    margin-left: 0;
-}
-
-.add-address-og label,
-.edit-address-og label {
-    display: inline-block;
-    margin: 0 0 7px 3px;
-}
-
-/* ADDRESS TEXTAREA */
-
-.text-area textarea {
-    width: 100%;
-    min-height: 120px;
-    border: 1px solid gray;
-    border-radius: 6px;
-    outline: none;
-    padding: 10px;
-    box-sizing: border-box;
-    resize: vertical;
-}
-
-.edit-address-og input,
-.edit-address-og textarea {
-    background-color: #f8f4f4;
-}
-
-/* CITY / PINCODE / STATE / LANDMARK */
-
-.all-small-inputs {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    margin-top: 0.4cm;
-}
-
-.all-small-inputs input {
-    width: 300px;
-    max-width: 100%;
-    height: 40px;
-    border-radius: 6px;
-    outline: none;
-    border: 2px solid gray;
-    padding: 8px 10px;
-    box-sizing: border-box;
-}
-
-.small-inputs12 {
-    margin-left: 0;
-}
-
-.eachone12 {
-    margin-left: 0;
-}
-
-/* SAVE ADDRESS BUTTON */
-
-.add-save button{
-    display: block;
-    width: 120px;
-    height: 40px;
-    background-color: #003d50;
-    color: white;
-    margin: 25px 0 0 auto;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-}
-
-.add-save:hover {
-    transform: scale(1.05);
-}
-
-
-/* ================================================= */
-/* ================= ORDER LINK ==================== */
-/* ================================================= */
-
-.profilesave-button3 a {
-    text-decoration: none;
-    color: black;
-}
-
-/* EDIT BUTTON ON ADDRESS CARD */
+/* ADDRESS CARD BUTTONS */
 
 .address-details-1 button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 6px;
-    background-color: #ffffff;
-    color: #2878b5;
-    border: 1px solid #2878b5;
-    padding: 7px 14px;
     min-width: 78px;
-    height: 34px;
+    min-height: 34px;
+    margin: 5px 8px 5px 0;
+    padding: 7px 12px;
+    border: 1px solid #2878b5;
     border-radius: 7px;
+    background: white;
+    color: #2878b5;
     font-size: 13px;
     font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-left: 15px;
+    transition: 0.3s;
 }
 
-.address-details-1 button:hover {
-    background-color: #2878b5;
-    color: #ffffff;
-    box-shadow: 0 3px 8px rgba(40, 120, 181, 0.2);
+.address-details-1 button:hover:not(:disabled) {
+    background: #2878b5;
+    color: white;
+}
+
+.address-details-1 button:disabled {
+    opacity: 0.7;
+    cursor: default;
 }
 
 .address-details-1 button svg {
     width: 14px;
     height: 14px;
-    color: inherit;
-    padding: 0;
-    transition: transform 0.3s ease;
 }
-
-.address-details-1 button:hover svg {
-    transform: scale(1.1);
-}
-
-
-/* ================================================= */
-/* ================= RESPONSIVE ==================== */
-/* ================================================= */
-
-@media (max-width: 1200px) {
-    .dataaaas,
-    .add-address-og,
-    .edit-address-og {
-        width: calc(100% - 40px);
-    }
-
-   .address-buttons {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    gap: 25px;
-    margin: 0 0 35px 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-    .address-button1,
-    .address-button2,
-    .address-button3 {
-        flex: 0 1 auto;
-    }
-
-    .address-buttons button {
-        width: 170px;
-    }
-
-    .add-address button {
-        width: 150px;
-    }
-}
-
-@media (max-width: 900px) {
-    .profilesave-sections {
-        display: none;
-    }
-
-    .profilesave-search {
-        margin-left: auto;
-    }
-
-    .profilesave-icons {
-        margin-right: 20px;
-    }
-
-    .full-data {
-        width: calc(100% - 40px);
-        max-width: none;
-    }
-
-    .profilesave-inputs {
-        grid-template-columns: 1fr;
-    }
-
-   /* .dataaaas {
-    position: relative;
-    width: 100%;
-    max-width: 1200px;
-    margin: 30px auto;
-    padding: 0;
-    height: auto;
-    box-sizing: border-box;
-    background-color: white;
-} */
-/* 
-    .address-buttons {
-        height: auto;
-        flex-wrap: wrap;
-        gap: 10px;
-        padding-bottom: 50px;
-    }
-
-    .address-button1,
-    .address-button2,
-    .address-button3 {
-        margin-right: 0;
-    }
-
-.address-buttons button {
-    width: 320px;  /* Increase this value */
-    /* height: 40px; */
-/* } */ 
-.add-address {
-    position: static;
-    margin-left: auto;
-    top: 20%;
-    flex-shrink: 0;
-}
-
-.add-address button {
-    width: 160px;
-    height: 40px;
-    padding: 8px;
-    background-color: #003d50;
-    color: white;
-    border: 1px solid #003d50;
-    border-radius: 6px;
-    font-size: 14px;
-    cursor: pointer;
-}
-.profilesave{
-    position: relative;
-}
-
-    .add-address button {
-        width: 160px;
-    }
-
-    .all-small-inputs {
-        gap: 15px;
-    }
-}
-
-@media (max-width: 600px) {
-    .profilesave-nav {
-        height: 80px;
-    }
-
-    .profilesave-head {
-        margin-left: 20px;
-    }
-
-    .profilesave-head h1 {
-        font-size: 20px;
-    }
-
-    .profilesave-search {
-        display: none;
-    }
-
-    .profilesave-icons {
-        margin-left: auto;
-        margin-right: 20px;
-    }
-
-    .full-data,
-    /* .dataaaas {
-        width: calc(100% - 30px);
-        max-width: none;
-    } */
-
-    /* .profilesave-button {
-        flex-direction: column;
-        gap: 10px;
-    } */
-
-    /* .profilesave-button button {
-        width: 100%;
-    } */
-/* Main navigation tabs */
-
-.profilesave-button {
-    width: 100%;
-    display: flex;
-    gap: 40px;
-    margin-top: 40px;
-    margin-left: 0;
-}
-
-.profilesave-button button {
-    width: 190px;
-    height: 38px;
-    padding: 8px;
-    border: 1px solid gray;
-    border-radius: 6px;
-    outline: none;
-    background: white;
-    color: #333;
-    cursor: pointer;
-    transition: 0.3s ease;
-}
-
-/* Currently selected tab */
-.profilesave-button button.tab-active {
-    background: #003d50;
-    color: white;
-    border-color: #003d50;
-}
-
-.profilesave-button button:hover {
-    border-color: #003d50;
-}
-    /* .address-buttons {
-        width: 100%;
-        flex-direction: column;
-        align-items: stretch;
-        height: auto;
-        padding-bottom: 0;
-        gap: 10px;
-    }
-
-    .address-button1,
-    .address-button2,
-    .address-button3 {
-        width: 100%;
-        margin-right: 0;
-    }
-
-    .address-buttons button {
-        width: 100%;
-    } */
-
-    .add-address {
-        position: static;
-        width: 100%;
-        margin-top: 5px;
-    }
-
-    .add-address button {
-        width: 100%;
-    }
-
-    .address-details-1 {
-        padding: 18px;
-    }
-
-    .address-details-1 h3 {
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-
-    .add-address-og,
-    .edit-address-og {
-        width: calc(100% - 30px);
-        max-width: none;
-        padding: 20px;
-    }
-
-    .add-input {
-        flex-direction: column;
-    }
-
-    .add-input input,
-    .all-small-inputs input {
-        width: 100%;
-    }
-
-    .all-small-inputs {
-        flex-direction: column;
-    }
-
-    .eachone,
-    .eachone12 {
-        width: 100%;
-        margin-left: 0;
-    }
-
-    .text-area textarea {
-        width: 100%;
-    }
-}
-.last-class1{
-    width: 1200px;
-    margin-left: 4cm;
-    background-color: #ffffff;
-    padding: 30px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border-radius: 15px;
-    border-radius: 1px solid #eaeaea;
-
-}
-.last-class1 h2{
-    margin-bottom: 1cm;
-}
-.last-class1 button{
-    width: 200px;
-    padding: .1cm;
-    height: 40px;
-    border-radius: 5px;
-    background-color: #003d50;
-    color: white;
-}
-
-.last-class1 svg{
-    color: white;
-    font-size: 20px;
-}
-.btn11 svg{
-    color: white;
-}
-.btn-12 svg{
-color: black;
-}
-.last-class1 .btn-121 svg {
-    color: white;
-}
-.btn-121{
-    margin-left: 1cm;
-}
-.add-input{
-    margin-top: .3cm;
-}
-.small-inputs22{
-    margin-top: .5cm;
-}
-.small-inputs22 select{
-    height: 38px;
-    width: 300px;
-}
-.country{
-    margin-top: .5cm;
-}
-
-
-
-
-/*  profil.jsx */
 
 /* =====================================================
-   PROFILE CONTENT
+   ADD / EDIT ADDRESS POPUPS
 ===================================================== */
 
-.data-full {
-    width: 90%;
-    max-width: 1100px;
-
-    margin-left: auto !important;
-    margin-right: auto !important;
-
-    padding-top: 35px;
-    padding-bottom: 50px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   PROFILE TITLE
-===================================================== */
-
-.profile-data {
-    margin: 0;
-    padding: 0;
-}
-
-.profile-data h1 {
-    margin: 0 0 5px 0;
-
-    font-size: 30px;
-    font-weight: 600;
-
-    color: #111;
-}
-
-.profile-data h4 {
-    margin: 0;
-
-    color: gray;
-
-    font-size: 16px;
-    font-weight: 400;
-}
-
-
-/* =====================================================
-   PROFILE BUTTONS
-===================================================== */
-
-.profile-button {
-    display: flex;
-    align-items: center;
-
-    gap: 40px;
-
-    margin-top: 40px;
-
-    width: 100%;
-}
-
-.profile-button button {
-    width: 190px;
-    height: 38px;
-
-    padding: 8px;
-
-    border: 1px solid #999;
-
-    border-radius: 6px;
-
-    outline: none;
-
-    background-color: white;
-
-    color: #111;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.profile-button button:hover {
-    border-color: #003d50;
-
-    color: #003d50;
-}
-
-
-/* =====================================================
-   ACTIVE PROFILE BUTTON
-===================================================== */
-
-.profile-button1 button {
-    background-color: #003d50;
-
-    color: white;
-
-    border-color: #003d50;
-}
-
-.profile-button1 button:hover {
-    background-color: #003d50;
-
-    color: white;
-}
-
-
-/* =====================================================
-   INPUT SECTION
-===================================================== */
-
-.profile-inputs {
-    width: 100%;
-
-    display: grid;
-
-    grid-template-columns: repeat(3, 1fr);
-
-    column-gap: 40px;
-
-    row-gap: 20px;
-
-    margin-top: 38px;
-
-    box-sizing: border-box;
-}
-
-
-/* =====================================================
-   INPUT COLUMNS
-===================================================== */
-
-.profile-input-1,
-.profile-input-2,
-.profile-input-3 {
-    width: 100%;
-}
-
-
-/* =====================================================
-   LABEL
-===================================================== */
-
-.profile-inputs label {
-    display: inline-block;
-
-    margin-bottom: 7px;
-
-    font-size: 16px;
-
-    font-weight: 400;
-
-    color: #111;
-}
-
-
-/* =====================================================
-   INPUT BOX
-===================================================== */
-
-.profile-inputs input {
-    width: 100%;
-    height: 35px;
-
-    box-sizing: border-box;
-
-    padding: 8px 10px;
-
-    border: none;
-
-    border-radius: 5px;
-
-    outline: none;
-
-    background-color: #f2efef;
-
-    color: #333;
-
-    font-size: 13px;
-}
-
-.profile-inputs input:focus {
-    background-color: #eae7e7;
-}
-
-.profile-inputs input::placeholder {
-    color: #777;
-}
-
-
-/* =====================================================
-   EDIT BUTTON
-===================================================== */
-
-.profile-input-3 button {
-    display: block;
-
-    width: 105px;
-    height: 38px;
-
-    margin-left: auto;
-    margin-top: 2px;
-
-    padding: 8px;
-
-    border: 2px solid #111;
-
-    border-radius: 5px;
-
-    outline: none;
-
-    background-color: white;
-
-    color: #111;
-
-    font-size: 14px;
-
-    cursor: pointer;
-
-    transition: 0.2s;
-}
-
-.profile-input-3 button:hover {
-    background-color: #003d50;
-
-    color: white;
-
-    border-color: #003d50;
-}
-
-
-/* =====================================================
-   TABLET
-===================================================== */
-
-@media (max-width: 1000px) {
-
-    .data-full {
-        width: 90%;
-    }
-
-    .profile-inputs {
-        column-gap: 25px;
-    }
-
-    .profile-button {
-        gap: 25px;
-    }
-
-    .profile-button button {
-        width: 170px;
-    }
-}
-
-
-/* =====================================================
-   MOBILE
-===================================================== */
-
-@media (max-width: 700px) {
-
-    .data-full {
-        width: 90%;
-
-        padding-top: 25px;
-    }
-
-    .profile-data h1 {
-        font-size: 26px;
-    }
-
-    .profile-button {
-        flex-direction: column;
-
-        align-items: stretch;
-
-        gap: 12px;
-    }
-
-    .profile-button button {
-        width: 100%;
-    }
-
-    .profile-inputs {
-        grid-template-columns: 1fr;
-
-        row-gap: 20px;
-    }
-
-    .profile-inputs input {
-        width: 100%;
-    }
-
-    .profile-input-3 button {
-        margin-left: 0;
-    }
-}
-.home-fullnav span2 svg{
-    background-color: #003d50;
-    color: white;
-    border-radius: 10px;
-    padding: 1px;
-}
-.profile-button3 a {
-    text-decoration: none;
-    color: black;
-}
-.full-data{
-    position: relative;
-    
-}
-
-
-
-.full-data {
-  position: relative;
-  box-shadow: none;
-  border: none;
-  background: transparent;
-}/*
-
-
-
-
-/* Add Address popup above the blur */
-
-
-/* Blur the background outside the popup */
-
-
-/* Keep edit popup clear and above the blur */
-
-/* EDIT ADDRESS: BLUR BACKGROUND */
-.edit-address-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(255, 255, 255, 0.1);
-
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    z-index: 10000;
-}
-
-/* EDIT ADDRESS POPUP */
-/* EDIT ADDRESS POPUP */
-/* Blur the background outside the popup */
-.edit-address-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(255, 255, 255, 0.15);
-
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    z-index: 10000;
-}
-
-/* Edit Address popup — same style as editsave */
-.edit-address-og {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 80%;
-    max-width: 1200px;
-
-    box-sizing: border-box;
-    padding: 30px;
-
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-
-    z-index: 10001;
-}
-/* Blur background outside Add Address popup */
-.profile-blur-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(255, 255, 255, 0.15);
-
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    z-index: 10000;
-}
-
-/* Add Address popup — same style as Edit Address */
-.add-address-og {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 80%;
-    max-width: 1200px;
-
-    box-sizing: border-box;
-    padding: 30px;
-
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-
-    z-index: 10001;
-}
-/* Blur the outside background */
+.profile-blur-overlay,
+.edit-address-overlay,
 .last-class-overlay {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-
-    background: rgba(255, 255, 255, 0.15);
-
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    z-index: 10000;
-}
-
-/* Keep the edit popup clear */
-.last-class1 {
-    position: fixed;
-    top: 50%;
-    left: 40%;
-    transform: translate(-50%, -50%);
-
-    width: 80%;
-    max-width: 1200px;
-    max-height: 90vh;
-    overflow-y: auto;
-
-    box-sizing: border-box;
-    padding: 30px;
-
-    background-color: #ffffff;
-    border: 1px solid #eaeaea;
-    border-radius: 15px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
-
-    z-index: 10001;
-}
-
-/* Blur the background behind the profile edit popup */
-.profile-blur-overlay {
     position: fixed;
     inset: 0;
     width: 100%;
     height: 100%;
-
-    background: rgba(0, 0, 0, 0.2);
-    -webkit-backdrop-filter: blur(8px);
-    backdrop-filter: blur(8px);
-
-    z-index: 9998;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+    z-index: 10000;
 }
 
-/* Keep the profile edit popup clear */
+.add-address-og,
+.edit-address-og,
+.last-class1 {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 85%;
+    max-width: 1000px;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 30px;
+    border: 1px solid #eaeaea;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+    z-index: 10001;
+}
+
+.add-address-og h2,
+.edit-address-og h2,
+.last-class1 h2 {
+    margin: 0 0 25px;
+    color: #222;
+    font-size: 22px;
+}
+
+/* ADDRESS TYPE BUTTONS */
+
+.add-address-og button,
+.edit-address-og button,
+.last-class1 button {
+    min-height: 40px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn11 {
+    background: #003d50;
+    color: white;
+    border: 1px solid #003d50;
+}
+
+.btn-12 {
+    margin-left: 12px;
+    margin-bottom: 15px;
+    background: white;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+/* =====================================================
+   ADDRESS FORM INPUTS
+===================================================== */
+
+.add-input,
+.all-small-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.add-input input,
+.all-small-inputs input,
+.small-inputs22 select {
+    width: 100%;
+    min-width: 0;
+    height: 42px;
+    padding: 9px 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    background: white;
+    font-size: 14px;
+}
+
+.add-input input:focus,
+.all-small-inputs input:focus,
+.small-inputs22 select:focus {
+    border-color: #003d50;
+}
+
+.add-address-og label,
+.edit-address-og label {
+    display: inline-block;
+    margin: 10px 0 7px;
+    color: #333;
+    font-size: 14px;
+}
+
+.text-area {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.text-area textarea {
+    width: 100%;
+    min-height: 110px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    resize: vertical;
+    font-size: 14px;
+}
+
+.text-area textarea:focus {
+    border-color: #003d50;
+}
+
+.edit-address-og input,
+.edit-address-og textarea {
+    background: #f8f4f4;
+}
+
+.small-inputs22 {
+    width: 100%;
+    margin-top: 15px;
+}
+
+.small-inputs22 select {
+    max-width: 100%;
+}
+
+.country {
+    margin-top: 15px;
+}
+
+.name-add1,
+.small-inputs12,
+.eachone12 {
+    margin-left: 0;
+}
+
+/* ADDRESS SAVE BUTTON */
+
+.add-save {
+    display: block;
+    width: 130px;
+    min-height: 42px;
+    margin: 25px 0 0 auto;
+    padding: 10px 20px;
+    border: 1px solid #003d50;
+    border-radius: 6px;
+    background: #003d50;
+    color: white;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.add-save:hover {
+    background: white;
+    color: #003d50;
+}
+
+.add-save:active {
+    transform: scale(0.97);
+}
+
+/* =====================================================
+   PROFILE EDIT POPUP
+===================================================== */
+
 .profile-edit-popup {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     width: 85%;
     max-width: 1000px;
     max-height: 85vh;
     overflow-y: auto;
-
     padding: 30px;
-    box-sizing: border-box;
-
-    background: #ffffff;
     border: 1px solid #ddd;
     border-radius: 12px;
+    background: white;
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
-
-    z-index: 9999;
+    z-index: 10001;
 }
 
-/* Profile popup input layout */
 .profile-edit-popup .profilesave-inputs {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1344,658 +612,215 @@ color: black;
     margin: 0;
 }
 
-@media (max-width: 700px) {
-    .profile-edit-popup {
-        width: 92%;
-        padding: 20px;
-    }
-
-    .profile-edit-popup .profilesave-inputs {
-        grid-template-columns: 1fr;
-    }
-}
-/* //==============new================= */
-
-/* ================= MY ORDER MAIN SECTION ================= */
+/* =====================================================
+   ORDER SECTION
+===================================================== */
 
 .myorder {
-  width: 100%;
-  min-height: 100vh;
-  padding: 30px 5%;
-  box-sizing: border-box;
-  background-color: #f8f8f8;
-}
-
-/* ================= PROFILE / ADDRESS / MY ORDER TABS ================= */
-
-/* My Order active button */
-/* .myorder .profilesave-button {
-  display: flex;
-  align-items: center;
-  gap: 35px;
-  width: 100%;
-  margin-left: 3.4cm;
-  margin-bottom: 35px;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #e5e5e5;
-}
-/* Profile and Address buttons */
-/* .myorder .profilesave-button34 button,
-.myorder .profilesave-button2 button {
-  background-color: transparent;
-  color: #444444;
-  font-weight: 500;
-} */
-
-/* Hover effect */
-/* .myorder .profilesave-button34 button:hover,
-.myorder .profilesave-button2 button:hover {
-  background-color: #eeeeee;
-  color: #222222;
-} */
-
-/* My Order hover effect */
-/* .myorder .profilesave-button1 button:hover {
-  background-color: #005064;
-  color: #ffffff;
-} */
-
-/* Remove link underline */
-/* .myorder .profilesave-button button a {
-  color: inherit;
-  text-decoration: none;
-} */ 
-/* ================= ORDER LIST ================= */
-
-.lastdata {
-  display: flex;
-  flex-direction: column;
-  gap: 22px;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
-}
-
-/* ================= INDIVIDUAL ORDER CARD ================= */
-
-.fulldata {
-  width: 100%;
-  padding: 22px 25px;
-  box-sizing: border-box;
-  background-color: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.fulldata:hover {
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.08);
-  transform: translateY(-2px);
-}
-
-/* ================= ORDER HEADER ================= */
-
-.order-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 12px;
-  padding-bottom: 17px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #eee;
-}
-
-.order-header h4 {
-  margin: 0;
-  color: #222;
-  font-size: 16px;
-  font-weight: 600;
-  overflow-wrap: anywhere;
-}
-
-/* ================= DELIVERY STATUS BUTTONS ================= */
-
-.order-header button {
-  padding: 7px 14px;
-  border: none;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: capitalize;
-  cursor: default;
-}
-
-.order-header .delivered {
-  color: #187344;
-  background-color: #e5f6ec;
-}
-
-.order-header .outdelivery {
-  color: #956000;
-  background-color: #fff2d5;
-}
-
-/* ================= PRODUCT IMAGE + DETAILS ================= */
-
-.lastsection1 {
-  display: flex;
-  align-items: center;
-  gap: 25px;
-  width: 100%;
-}
-
-.lastimage {
-  width: 125px;
-  height: 125px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background-color: #f7f7f7;
-  border-radius: 8px;
-}
-
-.lastimage img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 8px;
-  box-sizing: border-box;
-}
-
-.lastdetails {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 10px;
-}
-
-.lastdetails h6 {
-  margin: 0;
-  color: #333;
-  font-size: 15px;
-  font-weight: 500;
-  line-height: 1.5;
-}
-
-.lastdetails h6:first-child {
-  color: #171717;
-  font-size: 17px;
-  font-weight: 600;
-}
-
-.lastdetails h6:last-child {
-  color: #222;
-  font-size: 16px;
-  font-weight: 600;
-}
-
-/* ================= TABLET ================= */
-
-@media (max-width: 768px) {
-
-
- .myorder .profilesave-button {
-    display: flex;
-    align-items: center;
-    gap: 25px;
+    position: relative;
     width: 100%;
-    margin: 0 0 20px;
-    padding-bottom: 15px;
-    border-bottom: 1px solid #e5e5e5;
-    box-sizing: border-box;
-}
-  .myorder .profilesave-button button {
-    padding: 10px 14px;
-    font-size: 14px;
-  }
-
-  .fulldata {
-    padding: 18px;
-  }
-
-  .lastimage {
-    width: 105px;
-    height: 105px;
-  }
-
-  .lastsection1 {
-    gap: 18px;
-  }
+    min-height: auto;
+    margin: 0;
+    padding: 10px 5%;
+    background: white;
 }
 
-/* ================= MOBILE ================= */
-
-@media (max-width: 480px) {
-
-  .myorder .profilesave-button {
-    gap: 3px;
-    justify-content: space-between;
-  }
-
-  .myorder .profilesave-button button {
-    padding: 10px 8px;
-    font-size: 12px;
-  }
-
-  .fulldata {
-    padding: 15px;
-    border-radius: 9px;
-  }
-
-  .order-header {
-    align-items: flex-start;
-  }
-
-  .order-header h4 {
-    font-size: 14px;
-  }
-
-  .order-header button {
-    padding: 6px 10px;
-    font-size: 11px;
-  }
-
-  .lastsection1 {
-    align-items: flex-start;
-    gap: 14px;
-  }
-
-  .lastimage {
-    width: 85px;
-    height: 95px;
-  }
-
-  .lastdetails {
-    gap: 8px;
-  }
-
-  .lastdetails h6 {
-    font-size: 13px;
-  }
-
-  .lastdetails h6:first-child {
-    font-size: 15px;
-  }
-
-  .lastdetails h6:last-child {
-    font-size: 14px;
-  }
+.myorder .lastdata {
+    margin-top: 20px;
 }
 
-
-
-/* ================= PREMIUM ORDER LIST ================= */
-
-/* ================= ORDER LIST ================= */
+/* =====================================================
+   ORDER LIST
+===================================================== */
 
 .lastdata {
+    width: 100%;
+    max-width: 1100px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 25px;
-
-    width: 100%;
-    max-width: 1100px;
-
+    gap: 22px;
     margin: 30px auto 50px;
-    padding: 0 20px;
-
-    box-sizing: border-box;
+    padding: 0 10px;
 }
-/* ================= ORDER CARD ================= */
-/* ================= ORDER CARD ================= */
+
+/* =====================================================
+   ORDER CARD
+===================================================== */
 
 .fulldata {
     width: 100%;
     max-width: 950px;
-
     margin: 0 auto;
-    padding: 28px 30px;
-
-    box-sizing: border-box;
-
-    background: #ffffff;
+    padding: 25px 30px;
     border: 1px solid #e8e2d8;
-    border-radius: 16px;
-
-    box-shadow: 0 6px 22px rgba(30, 45, 45, 0.06);
-}
-
-.fulldata:hover {
-  box-shadow: 0 12px 30px rgba(16, 63, 77, 0.12);
-  transform: translateY(-3px);
-}
-
-/* ================= ORDER HEADER ================= */
-
-.order-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 14px;
-  padding-bottom: 20px;
-  margin-bottom: 22px;
-  border-bottom: 1px solid #eee9e0;
-}
-
-.order-header h4 {
-  margin: 0;
-  color: #173d43;
-  font-size: 15px;
-  font-weight: 700;
-  letter-spacing: 0.3px;
-  overflow-wrap: anywhere;
-}
-
-/* ================= DELIVERY STATUS ================= */
-
-.order-header button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100px;
-  padding: 8px 15px;
-  border: 1px solid transparent;
-  border-radius: 30px;
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.3px;
-  text-transform: capitalize;
-  cursor: default;
-}
-
-.order-header .delivered {
-  color: #176b45;
-  background: #eaf7ef;
-  border-color: #ccebd8;
-}
-
-.order-header .outdelivery {
-  color: #8a610c;
-  background: #fff6df;
-  border-color: #f2e2b6;
-}
-
-/* ================= PRODUCT ROW ================= */
-
-.lastsection1 {
-  display: flex;
-  align-items: center;
-  gap: 26px;
-  width: 100%;
-  padding: 4px 0 20px;
-  margin-bottom: 18px;
-  border-bottom: 1px solid #f0ece5;
-}
-
-.lastimage {
-  width: 125px;
-  height: 135px;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  background: #f7f4ef;
-  border: 1px solid #eee7dc;
-  border-radius: 12px;
-}
-
-.lastimage img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  padding: 10px;
-  box-sizing: border-box;
-  transition: transform 0.35s ease;
-}
-
-.fulldata:hover .lastimage img {
-  transform: scale(1.06);
-}
-
-/* ================= PRODUCT DETAILS ================= */
-
-.lastdetails {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 11px;
-  min-width: 0;
-}
-
-.lastdetails h6 {
-  margin: 0;
-  color: #656565;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 1.6;
-}
-
-.lastdetails h6:first-child {
-  color: #173d43;
-  font-size: 17px;
-  font-weight: 600;
-  line-height: 1.5;
-}
-
-.lastdetails h6:last-child {
-  color: #173d43;
-  font-size: 17px;
-  font-weight: 700;
-}
-
-/* ================= ORDER TOTAL & PAYMENT ================= */
-
-.fulldata > h4 {
-  margin: 12px 0;
-  color: #173d43;
-  font-size: 18px;
-  font-weight: 700;
-  text-align: right;
-}
-
-.fulldata > p {
-  margin: 8px 0 0;
-  color: #686868;
-  font-size: 13px;
-  text-align: right;
-  line-height: 1.6;
-}
-
-/* ================= EMPTY ORDERS ================= */
-
-.lastdata > p {
-  padding: 45px 20px;
-  margin: 0;
-  color: #777;
-  text-align: center;
-  background: #fcfbf8;
-  border: 1px dashed #d9d0c2;
-  border-radius: 14px;
-  font-size: 15px;
-}
-
-/* ================= TABLET ================= */
-
-@media (max-width: 768px) {
-  .lastdata {
-    gap: 20px;
-    margin-top: 25px;
-    padding: 0;
-  }
-
-  .fulldata {
-    padding: 22px;
-  }
-
-  .lastsection1 {
-    gap: 18px;
-  }
-
-  .lastimage {
-    width: 105px;
-    height: 115px;
-  }
-
-  .lastdetails h6:first-child {
-    font-size: 15px;
-  }
-}
-
-/* ================= MOBILE ================= */
-
-@media (max-width: 480px) {
-  .lastdata {
-    margin-top: 20px;
-    gap: 16px;
-  }
-
-  .fulldata {
-    padding: 16px;
-    border-radius: 12px;
-  }
-
-  .order-header {
-    align-items: flex-start;
-    padding-bottom: 14px;
-    margin-bottom: 15px;
-  }
-
-  .order-header h4 {
-    max-width: 100%;
-    font-size: 13px;
-  }
-
-  .order-header button {
-    min-width: auto;
-    padding: 7px 11px;
-    font-size: 11px;
-  }
-
-  .lastsection1 {
-    align-items: flex-start;
-    gap: 13px;
-    padding-bottom: 15px;
-    margin-bottom: 14px;
-  }
-
-  .lastimage {
-    width: 82px;
-    height: 95px;
-    border-radius: 8px;
-  }
-
-  .lastimage img {
-    padding: 5px;
-  }
-
-  .lastdetails {
-    gap: 7px;
-  }
-
-  .lastdetails h6 {
-    font-size: 12px;
-  }
-
-  .lastdetails h6:first-child {
-    font-size: 14px;
-  }
-
-  .lastdetails h6:last-child {
-    font-size: 15px;
-  }
-
-  .fulldata > h4 {
-    font-size: 16px;
-  }
-
-  .fulldata > p {
-    font-size: 12px;
-  }
-}
-.myorder {
-    position: relative;
-    top: 0;
-    left: 0;
-    transform: none;
-    margin-top: 0;
-    padding: 10px 5%;
-    width: 100%;
-    min-height: auto;
-    box-sizing: border-box;
-    background-color: white;
-}
-
-
-.myorder .lastdata {
-    margin-top: 0;
-   
-}
-/* All three buttons */
-.profilesave-button button {
-    background-color: white;
-    color: #003d50;
-    border: 1px solid #003d50;
-    cursor: pointer;
+    border-radius: 15px;
+    background: white;
+    box-shadow: 0 5px 18px rgba(30, 45, 45, 0.06);
     transition: 0.3s ease;
 }
 
-/* Currently selected button */
-.profilesave-button button.tab-active {
-    background-color: #003d50;
-    color: white;
+.fulldata:hover {
+    box-shadow: 0 10px 25px rgba(16, 63, 77, 0.12);
+    transform: translateY(-2px);
 }
-.add-save {
-    background-color: #003d50;
-    color: white;
-    border: 1px solid #003d50;
-    padding: 10px 28px;
-    border-radius: 6px;
+
+/* ORDER HEADER */
+
+.order-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding-bottom: 18px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eee9e0;
+}
+
+.order-header h4 {
+    margin: 0;
+    color: #173d43;
     font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all 0.3s ease;
+    font-weight: 700;
+    overflow-wrap: anywhere;
 }
 
-/* Hover effect */
-.add-save:hover {
-    background-color: white;
-    color: #003d50;
-    border: 1px solid #003d50;
-    box-shadow: 0 3px 8px rgba(0, 61, 80, 0.15);
+.order-header button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 100px;
+    padding: 8px 14px;
+    border: 1px solid transparent;
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: capitalize;
+    cursor: default;
 }
 
-/* Click effect */
-.add-save:active {
-    transform: scale(0.97);
+.order-header .delivered {
+    color: #176b45;
+    background: #eaf7ef;
+    border-color: #ccebd8;
 }
+
+.order-header .outdelivery {
+    color: #8a610c;
+    background: #fff6df;
+    border-color: #f2e2b6;
+}
+
+/* ORDER PRODUCT */
+
+.lastsection1 {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    padding: 5px 0 20px;
+    margin-bottom: 18px;
+    border-bottom: 1px solid #f0ece5;
+}
+
+.lastimage {
+    width: 125px;
+    height: 135px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid #eee7dc;
+    border-radius: 12px;
+    background: #f7f4ef;
+}
+
+.lastimage img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    padding: 10px;
+    object-fit: contain;
+}
+
+.lastdetails {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.lastdetails h6 {
+    margin: 0;
+    color: #656565;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.lastdetails h6:first-child {
+    color: #173d43;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.lastdetails h6:last-child {
+    color: #173d43;
+    font-size: 17px;
+    font-weight: 700;
+}
+
+/* ORDER TOTAL */
+
+.fulldata > h4 {
+    margin: 12px 0;
+    color: #173d43;
+    font-size: 18px;
+    text-align: right;
+}
+
+.fulldata > p {
+    margin: 8px 0 0;
+    color: #686868;
+    font-size: 13px;
+    text-align: right;
+    line-height: 1.6;
+}
+
+/* EMPTY ORDER */
+
+.lastdata > p {
+    width: 100%;
+    padding: 40px 20px;
+    margin: 0;
+    border: 1px dashed #d9d0c2;
+    border-radius: 12px;
+    background: #fcfbf8;
+    color: #777;
+    text-align: center;
+}
+
+/* =====================================================
+   CANCEL ORDER POPUP
+===================================================== */
+
 .cancel-section {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-
     width: 92%;
     max-width: 600px;
-    max-height: 80vh;
+    max-height: 85vh;
     overflow-y: auto;
-
     padding: 28px;
-    box-sizing: border-box;
-
-    background: #ffffff;
-    border: none;
     border-radius: 18px;
-
+    background: white;
     box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
-
     z-index: 10002;
     animation: cancelPopupIn 0.25s ease-out;
 }
@@ -2003,70 +828,68 @@ color: black;
 .cancel-section h3 {
     margin: 0 0 22px;
     padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
     color: #292929;
     font-size: 23px;
-    font-weight: 700;
-    border-bottom: 1px solid #eeeeee;
 }
 
 .cancel-section p {
     margin: 10px 0;
-    color: #555555;
+    color: #555;
     font-size: 14px;
     line-height: 1.6;
 }
 
-.cancel-section .cancel-item {
+.cancel-section .cancel-item,
+.cancel-item {
     display: flex;
     align-items: center;
     gap: 15px;
     padding: 15px;
     margin-top: 15px;
-    background: #f8f8f8;
-    border: 1px solid #eeeeee;
+    border: 1px solid #eee;
     border-radius: 12px;
+    background: #f8f8f8;
 }
 
-.cancel-section .cancel-item img {
-    width: 75px;
-    height: 75px;
+.cancel-item img {
+    width: 80px;
+    height: 90px;
+    flex-shrink: 0;
     object-fit: contain;
     border-radius: 8px;
-    background: #ffffff;
+    background: white;
 }
 
 .cancel-actions {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
     gap: 12px;
     margin-top: 25px;
 }
 
 .cancel-actions button {
-    padding: 11px 20px;
+    min-height: 40px;
+    padding: 10px 18px;
     border: none;
-    border-radius: 8px;
+    border-radius: 7px;
     font-size: 14px;
     font-weight: 600;
-    cursor: pointer;
-    transition: 0.2s ease;
+    transition: 0.2s;
 }
 
 .cancel-actions button:first-child {
-    background: #eeeeee;
-    color: #333333;
-}
-
-.cancel-actions button:first-child:hover {
-    background: #dddddd;
+    background: #eee;
+    color: #333;
 }
 
 .cancel-actions .confirm-cancel-btn {
     background: #c62828;
-    color: #ffffff;
+    color: white;
 }
 
-.cancel-actions .confirm-cancel-btn:hover {
+.confirm-cancel-btn:hover {
     background: #a91f1f;
 }
 
@@ -2075,21 +898,705 @@ color: black;
         opacity: 0;
         transform: translate(-50%, -47%);
     }
+
     to {
         opacity: 1;
         transform: translate(-50%, -50%);
     }
 }
 
+/* =====================================================
+   RETURN ORDER OVERLAY
+===================================================== */
+
+.return-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 99999;
+}
+
+/* =====================================================
+   RETURN ORDER POPUP
+===================================================== */
+
+.return-popup {
+    position: relative;
+    width: 100%;
+    max-width: 600px;
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 16px;
+    background: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+}
+
+.return-close {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 50%;
+    background: #f5e8ec;
+    color: #8b1e3f;
+    font-size: 20px;
+}
+
+.return-close:hover {
+    background: #8b1e3f;
+    color: white;
+}
+
+.return-popup h2 {
+    margin: 0 40px 25px 0;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #eee;
+    color: #8b1e3f;
+    font-size: 24px;
+}
+
+.return-popup h3 {
+    margin: 25px 0 15px;
+    color: #333;
+    font-size: 18px;
+}
+
+/* RETURN INFORMATION */
+
+.return-info {
+    padding: 18px;
+    border: 1px solid #f0e5e9;
+    border-radius: 10px;
+    background: #faf7f8;
+}
+
+.return-info p {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    padding: 10px 0;
+    margin: 0;
+    border-bottom: 1px solid #eee5e8;
+    color: #555;
+    font-size: 14px;
+    overflow-wrap: anywhere;
+}
+
+.return-info p:last-child {
+    border-bottom: none;
+}
+
+.return-info strong {
+    min-width: 125px;
+    color: #333;
+}
+
+/* RETURN PRODUCTS */
+
+.return-products {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.return-item {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding: 15px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+    background: white;
+}
+
+.return-item img {
+    width: 85px;
+    height: 95px;
+    flex-shrink: 0;
+    padding: 5px;
+    border-radius: 8px;
+    background: #f8f5f6;
+    object-fit: contain;
+}
+
+.return-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.return-item-details h4 {
+    margin: 0 0 10px;
+    color: #333;
+    font-size: 16px;
+    overflow-wrap: anywhere;
+}
+
+.return-item-details p {
+    margin: 6px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.return-item-details p:last-child {
+    color: #8b1e3f;
+    font-weight: 600;
+}
+
+/* RETURN TOTAL */
+
+.return-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 22px;
+    padding: 18px;
+    border-radius: 9px;
+    background: #faf1f4;
+    color: #333;
+    font-size: 16px;
+}
+
+.return-total strong:last-child {
+    color: #8b1e3f;
+    font-size: 20px;
+}
+
+/* RETURN REASON */
+
+.return-reason {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 22px;
+}
+
+.return-reason label {
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.return-reason select {
+    width: 100%;
+    min-height: 43px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    color: #333;
+    font-size: 14px;
+    outline: none;
+}
+
+.return-reason select:focus {
+    border-color: #8b1e3f;
+}
+
+/* RETURN ACTIONS */
+
+.return-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.return-actions button {
+    min-width: 100px;
+    min-height: 40px;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 7px;
+    background: #8b1e3f;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+.return-actions button:hover {
+    background: #68152e;
+}
+
+/* POPUP SCROLLBAR */
+
+.return-popup::-webkit-scrollbar,
+.cancel-section::-webkit-scrollbar,
+.add-address-og::-webkit-scrollbar,
+.edit-address-og::-webkit-scrollbar {
+    width: 6px;
+}
+
+.return-popup::-webkit-scrollbar-thumb,
+.cancel-section::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: #d9a8b8;
+}
+
+/* =====================================================
+   TABLET RESPONSIVE - 1024px
+===================================================== */
+
+@media (max-width: 1024px) {
+
+    .full-data,
+    .data-full {
+        width: 92%;
+    }
+
+    .profilesave-inputs,
+    .profile-inputs {
+        column-gap: 20px;
+    }
+
+    .profilesave-button,
+    .profile-button {
+        gap: 15px;
+    }
+
+    .profilesave-button button,
+    .profile-button button {
+        width: 170px;
+    }
+
+    .dataaaas {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .address-details {
+        column-gap: 25px;
+    }
+
+    .add-address-og,
+    .edit-address-og {
+        width: 90%;
+    }
+}
+
+/* =====================================================
+   TABLET RESPONSIVE - 768px
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .full-data,
+    .data-full {
+        width: 92%;
+        padding-top: 25px;
+    }
+
+    .profilesave-data h1,
+    .profile-data h1 {
+        font-size: 27px;
+    }
+
+    .profilesave-inputs,
+    .profile-inputs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+
+    .profilesave-button,
+    .profile-button {
+        gap: 12px;
+    }
+
+    .profilesave-button button,
+    .profile-button button {
+        flex: 1 1 0;
+        width: auto;
+        min-width: 0;
+    }
+
+    .address-buttons {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .address-buttons button {
+        width: 150px;
+    }
+
+    .add-address {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin-top: 5px;
+    }
+
+    .add-address button {
+        width: 100%;
+    }
+
+    /* Two cards on wider tablets */
+
+    .address-details {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        column-gap: 18px;
+        row-gap: 18px;
+    }
+
+    .address-details-1 {
+        padding: 18px;
+    }
+
+    .add-address-og,
+    .edit-address-og,
+    .last-class1 {
+        width: 92%;
+        padding: 25px;
+    }
+
+    .add-input,
+    .all-small-inputs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .profile-edit-popup {
+        width: 92%;
+        padding: 25px;
+    }
+
+    .profile-edit-popup .profilesave-inputs {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .myorder {
+        padding: 10px 4%;
+    }
+
+    .lastdata {
+        padding: 0;
+    }
+
+    .fulldata {
+        padding: 22px;
+    }
+
+    .lastimage {
+        width: 105px;
+        height: 115px;
+    }
+
+    .lastsection1 {
+        gap: 18px;
+    }
+}
+
+/* =====================================================
+   MOBILE RESPONSIVE - 600px
+===================================================== */
+
 @media (max-width: 600px) {
+
+    .profilesave {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .full-data,
+    .data-full {
+        width: 92%;
+        padding-top: 22px;
+        padding-bottom: 30px;
+    }
+
+    .profilesave-data h1,
+    .profile-data h1 {
+        font-size: 24px;
+    }
+
+    .profilesave-data h4,
+    .profile-data h4 {
+        font-size: 14px;
+    }
+
+    .profilesave-button,
+    .profile-button {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 8px;
+        margin-top: 25px;
+    }
+
+    .profilesave-button button,
+    .profile-button button {
+        width: 100%;
+        min-width: 0;
+        min-height: 40px;
+        padding: 8px 4px;
+        font-size: 12px;
+    }
+
+    .profilesave-inputs,
+    .profile-inputs {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 25px;
+    }
+
+    .profilesave-inputs input,
+    .profile-inputs input {
+        width: 100%;
+        height: 42px;
+    }
+
+    .profilesave-input-3 button,
+    .profile-input-3 button {
+        width: 100%;
+        margin: 10px 0 0;
+    }
+
+    /* Address section */
+
+    .dataaaas {
+        width: 100%;
+        margin-top: 25px;
+        padding: 0 12px;
+    }
+
+    .address-buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+
+    .address-button1,
+    .address-button2,
+    .address-button3 {
+        width: 100%;
+    }
+
+    .address-buttons button {
+        width: 100%;
+    }
+
+    .add-address {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+        margin: 5px 0 0;
+    }
+
+    .add-address button {
+        width: 100%;
+    }
+
+    /* One card per row on mobile */
+
+    .address-details {
+        grid-template-columns: 1fr;
+        column-gap: 0;
+        row-gap: 15px;
+        margin-top: 15px;
+    }
+
+    .address-details-1 {
+        width: 100%;
+        padding: 16px;
+        min-height: auto;
+        border-radius: 8px;
+    }
+
+    .address-details-1 h3 {
+        gap: 8px;
+        font-size: 16px;
+    }
+
+    .address-details-1 p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+    .office {
+        font-size: 12px;
+    }
+
+    .phone {
+        font-size: 13px;
+    }
+
+    /* Address forms */
+
+    .add-address-og,
+    .edit-address-og,
+    .last-class1 {
+        width: 94%;
+        max-height: 88vh;
+        padding: 20px 16px;
+        border-radius: 12px;
+    }
+
+    .add-address-og h2,
+    .edit-address-og h2,
+    .last-class1 h2 {
+        font-size: 19px;
+        margin-bottom: 18px;
+    }
+
+    .add-address-og button,
+    .edit-address-og button,
+    .last-class1 button {
+        max-width: 100%;
+    }
+
+    .btn-12 {
+        margin-left: 5px;
+    }
+
+    .add-input,
+    .all-small-inputs {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-top: 12px;
+    }
+
+    .add-input input,
+    .all-small-inputs input,
+    .small-inputs22 select {
+        width: 100%;
+        height: 42px;
+    }
+
+    .text-area textarea {
+        width: 100%;
+        min-height: 100px;
+    }
+
+    .add-save {
+        width: 100%;
+    }
+
+    .profile-edit-popup {
+        width: 94%;
+        max-height: 88vh;
+        padding: 20px 16px;
+    }
+
+    .profile-edit-popup .profilesave-inputs {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    /* Orders */
+
+    .myorder {
+        width: 100%;
+        padding: 10px 4%;
+    }
+
+    .lastdata {
+        margin-top: 20px;
+        gap: 15px;
+    }
+
+    .fulldata {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .order-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 10px;
+        padding-bottom: 13px;
+        margin-bottom: 15px;
+    }
+
+    .order-header h4 {
+        font-size: 13px;
+    }
+
+    .order-header button {
+        min-width: auto;
+        padding: 7px 12px;
+        font-size: 11px;
+    }
+
+    .lastsection1 {
+        align-items: flex-start;
+        gap: 12px;
+        padding-bottom: 15px;
+        margin-bottom: 12px;
+    }
+
+    .lastimage {
+        width: 85px;
+        height: 95px;
+        border-radius: 8px;
+    }
+
+    .lastimage img {
+        padding: 5px;
+    }
+
+    .lastdetails {
+        gap: 7px;
+    }
+
+    .lastdetails h6 {
+        font-size: 12px;
+    }
+
+    .lastdetails h6:first-child {
+        font-size: 14px;
+    }
+
+    .lastdetails h6:last-child {
+        font-size: 14px;
+    }
+
+    .fulldata > h4 {
+        font-size: 16px;
+    }
+
+    .fulldata > p {
+        font-size: 12px;
+    }
+
+    /* Cancel popup */
+
     .cancel-section {
         width: 94%;
-        padding: 20px;
-        max-height: 85vh;
+        max-height: 88vh;
+        padding: 20px 16px;
+        border-radius: 12px;
     }
 
     .cancel-section h3 {
-        font-size: 20px;
+        font-size: 19px;
+    }
+
+    .cancel-section .cancel-item {
+        align-items: flex-start;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .cancel-item img {
+        width: 65px;
+        height: 75px;
     }
 
     .cancel-actions {
@@ -2099,384 +1606,399 @@ color: black;
     .cancel-actions button {
         width: 100%;
     }
-}
-.cancel-item {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  padding: 12px 0;
-  border-bottom: 1px solid #eee;
-}
 
-.cancel-item img {
-  width: 80px;
-  height: 90px;
-  object-fit: contain;
-  border-radius: 8px;
-  background: white;
-}
+    /* Return popup */
 
+    .return-overlay {
+        padding: 10px;
+    }
 
+    .return-popup {
+        width: 100%;
+        max-height: 90vh;
+        padding: 20px 15px;
+        border-radius: 12px;
+    }
 
+    .return-popup h2 {
+        font-size: 20px;
+    }
 
-.cancel-actions button {
-  padding: 10px 18px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
+    .return-popup h3 {
+        font-size: 16px;
+    }
 
-.confirm-cancel-btn {
-  background: #b42323;
-  color: white;
-}
+    .return-info {
+        padding: 12px;
+    }
 
-.confirm-cancel-btn:hover {
-  background: #8f1919;
-}
+    .return-info p {
+        flex-direction: column;
+        gap: 5px;
+        font-size: 13px;
+    }
 
-/* ================= RETURN OVERLAY ================= */
+    .return-info strong {
+        min-width: auto;
+    }
 
-/* ================= RETURN POPUP ================= */
-.return-popup {
-  position: relative;
-  width: 100%;
-  max-width: 650px;
-  max-height: 85vh;
-  overflow-y: auto;
-  background: #ffffff;
-  padding: 30px;
-  border-radius: 14px;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-}
+    .return-item {
+        gap: 10px;
+        padding: 10px;
+    }
 
-/* ================= CLOSE ICON ================= */
-.return-close {
-  position: absolute;
-  top: 15px;
-  right: 18px;
-  width: 35px;
-  height: 35px;
-  border: none;
-  border-radius: 50%;
-  background: #f5e8ec;
-  color: #8b1e3f;
-  font-size: 20px;
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  transition: 0.3s ease;
-}
+    .return-item img {
+        width: 65px;
+        height: 75px;
+    }
 
-.return-close:hover {
-  background: #8b1e3f;
-  color: #ffffff;
+    .return-item-details h4 {
+        font-size: 13px;
+    }
+
+    .return-item-details p {
+        font-size: 12px;
+    }
+
+    .return-total {
+        padding: 13px 10px;
+        font-size: 13px;
+    }
+
+    .return-total strong:last-child {
+        font-size: 16px;
+    }
+
+    .return-actions {
+        flex-direction: column;
+    }
+
+    .return-actions button {
+        width: 100%;
+    }
 }
 
-/* ================= POPUP HEADING ================= */
-.return-popup h2 {
-  color: #8b1e3f;
-  font-size: 24px;
-  margin: 0 40px 25px 0;
-  padding-bottom: 15px;
-  border-bottom: 1px solid #eeeeee;
+/* =====================================================
+   SMALL MOBILE - 380px
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .full-data,
+    .data-full {
+        width: 94%;
+    }
+
+    .profilesave-button,
+    .profile-button {
+        gap: 5px;
+    }
+
+    .profilesave-button button,
+    .profile-button button {
+        padding: 7px 2px;
+        font-size: 11px;
+    }
+
+    .address-details-1 {
+        padding: 13px;
+    }
+
+    .lastsection1 {
+        gap: 9px;
+    }
+
+    .lastimage {
+        width: 72px;
+        height: 85px;
+    }
+
+    .lastdetails h6:first-child {
+        font-size: 13px;
+    }
+
+    .lastdetails h6 {
+        font-size: 11px;
+    }
+
+    .fulldata {
+        padding: 12px;
+    }
+
+    .return-popup {
+        padding: 18px 12px;
+    }
 }
 
-.return-popup h3 {
-  color: #333333;
-  font-size: 18px;
-  margin: 25px 0 15px;
+/* =====================================================
+   LARGE DESKTOP
+===================================================== */
+
+@media (min-width: 1400px) {
+
+    .full-data,
+    .data-full {
+        max-width: 1150px;
+    }
+
+    .dataaaas {
+        max-width: 1700px;
+    }
 }
 
-/* ================= ORDER INFORMATION ================= */
-.return-info {
-  background: #faf7f8;
-  padding: 18px;
-  border-radius: 10px;
-  border: 1px solid #f0e5e9;
+/* =====================================================
+   FINAL ADDRESS WIDTH FIX
+===================================================== */
+.profilesave .dataaaas {
+    position: relative;
+    width: calc(100% - 48px) !important;
+    max-width: 1200px !important;
+    margin: 30px auto !important;
+    padding: 0 !important;
+    box-sizing: border-box;
 }
 
-.return-info p {
-  display: flex;
-  justify-content: space-between;
-  gap: 15px;
-  margin: 0;
-  padding: 10px 0;
-  color: #555555;
-  font-size: 14px;
-  border-bottom: 1px solid #eee5e8;
-  overflow-wrap: anywhere;
+.profilesave .dataaaas .address-details {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 30px !important;
 }
 
-.return-info p:last-child {
-  border-bottom: none;
+.profilesave .dataaaas .address-details-1 {
+    width: 100%;
+    min-width: 0;
+    padding: 30px;
 }
 
-.return-info strong {
-  color: #333333;
-  min-width: 125px;
+/* Tablet */
+@media (max-width: 768px) {
+    .profilesave .dataaaas {
+        width: calc(100% - 32px) !important;
+    }
 }
 
-/* ================= ORDERED PRODUCTS ================= */
-.return-products {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
+/* Mobile */
+@media (max-width: 550px) {
+    .profilesave .dataaaas {
+        width: calc(100% - 24px) !important;
+    }
+
+    .profilesave .dataaaas .address-details {
+        grid-template-columns: 1fr !important;
+        gap: 18px !important;
+    }
+
+    .profilesave .dataaaas .address-details-1 {
+        padding: 16px;
+    }
 }
-
-.return-item {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-  padding: 15px;
-  border: 1px solid #eeeeee;
-  border-radius: 10px;
-  background: #ffffff;
-  transition: 0.3s ease;
-}
-
-.return-item:hover {
-  border-color: #d9a8b8;
-  box-shadow: 0 4px 12px rgba(139, 30, 63, 0.07);
-}
-
-/* Product image */
-.return-item img {
-  width: 85px;
-  height: 95px;
-  object-fit: contain;
-  border-radius: 8px;
-  background: #f8f5f6;
-  padding: 5px;
-  box-sizing: border-box;
-  flex-shrink: 0;
-}
-
-/* Product details */
-.return-item-details {
-  flex: 1;
-  min-width: 0;
-}
-
-.return-item-details h4 {
-  color: #333333;
-  font-size: 16px;
-  margin: 0 0 10px;
-  overflow-wrap: anywhere;
-}
-
-.return-item-details p {
-  color: #666666;
-  font-size: 14px;
-  margin: 6px 0;
-}
-
-.return-item-details p:last-child {
-  color: #8b1e3f;
-  font-weight: 600;
-}
-
-/* ================= TOTAL AMOUNT ================= */
-.return-total {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 15px;
-  margin-top: 22px;
-  padding: 18px;
-  background: #faf1f4;
-  border-radius: 9px;
-  color: #333333;
-  font-size: 16px;
-}
-
-.return-total strong:last-child {
-  color: #8b1e3f;
-  font-size: 20px;
-}
-
-/* ================= ACTION BUTTONS ================= */
-.return-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.return-actions button {
-  min-width: 100px;
-  padding: 11px 22px;
-  border: none;
-  border-radius: 7px;
-  background: #8b1e3f;
-  color: #ffffff;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s ease;
-}
-
-.return-actions button:hover {
-  background: #68152e;
-  transform: translateY(-1px);
-}
-
-/* ================= SCROLLBAR ================= */
-.return-popup::-webkit-scrollbar {
-  width: 6px;
-}
-
-.return-popup::-webkit-scrollbar-thumb {
-  background: #d9a8b8;
-  border-radius: 10px;
-}
-
-.return-popup::-webkit-scrollbar-track {
-  background: #f7f7f7;
-}
-
-/* ================= RESPONSIVE DESIGN ================= */
-@media (max-width: 600px) {
-  .return-overlay {
-    padding: 12px;
-  }
-
-  .return-popup {
-    padding: 22px 16px;
-    max-height: 90vh;
-  }
-
-  .return-popup h2 {
-    font-size: 20px;
-  }
-
-  .return-info {
-    padding: 12px;
-  }
-
-  .return-info p {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .return-item {
-    gap: 12px;
-    padding: 10px;
-  }
-
-  .return-item img {
-    width: 70px;
-    height: 80px;
-  }
-
-  .return-item-details h4 {
-    font-size: 14px;
-  }
-
-  .return-total {
-    padding: 14px 12px;
-    font-size: 14px;
-  }
-
-  .return-total strong:last-child {
-    font-size: 17px;
-  }
-
-  .return-actions button {
-    flex: 1;
-  }
-}
-
-.return-reason {
-  margin-top: 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.return-reason label {
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
-}
-
-.return-reason select {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  background-color: #fff;
-  color: #333;
-  font-size: 14px;
-  outline: none;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
-}
-
-.return-reason select:focus {
-  border-color: #8b1e3f;
-  box-shadow: 0 0 0 3px rgba(139, 30, 63, 0.1);
-}
-
-.return-reason select option {
-  padding: 10px;
-}
-
-.return-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-
+.profilesave .add-address {
+    position: relative;
+    top: -3.2cm;
+    left: 13cm;
+    width: 100%;
     display: flex;
     justify-content: center;
+    margin: 20px auto;
+}
+
+.profilesave .add-address button {
+    width: 180px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   ADD ADDRESS BUTTON - RESPONSIVE FIX
+========================================= */
+
+/* Desktop: preserve existing layout */
+@media (min-width: 769px) {
+    .profilesave .add-address {
+        position: relative;
+        top: -3.2cm;
+        left: 13cm;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        margin: 20px auto;
+    }
+}
+
+/* Tablet and mobile */
+@media (max-width: 768px) {
+    .profilesave .add-address {
+        position: relative;
+        top: 0;
+        left: 0;
+        width: 100%;
+        display: flex;
+        justify-content: flex-start;
+        margin: 15px 0 20px;
+    }
+
+    .profilesave .add-address button {
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 550px) {
+    .profilesave .add-address {
+        top: 0;
+        left: 0;
+        width: 100%;
+        margin: 12px 0 18px;
+    }
+
+    .profilesave .add-address button {
+        width: 100%;
+        min-height: 44px;
+    }
+}
+
+.log {
+    display: flex;
     align-items: center;
-
-    padding: 20px;
-    box-sizing: border-box;
-
-    background: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
-
-    z-index: 99999;
+    gap: 15px;
+    margin-top: 15px;
 }
 
-.return-popup {
-    position: relative;
-    width: 100%;
-    max-width: 600px;
-    max-height: 85vh;
-    overflow-y: auto;
+/* Edit button - keep your current theme color */
 
-    padding: 28px;
-    box-sizing: border-box;
-
-    background: #fff;
-    border-radius: 16px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
-}
-
-.return-close {
-    position: sticky;
-    top: 0;
-    float: right;
-
+.edit-btn {
+    background-color: #003d50;
+    color: white;
     border: none;
-    background: #f2f2f2;
-    border-radius: 50%;
-    width: 34px;
-    height: 34px;
-
-    font-size: 18px;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
     cursor: pointer;
+    transition: 0.3s ease;
 }
 
+/* Logout button - red color */
+
+.logout-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 10px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.logout-btn:hover {
+    background-color: #b02a37;
+}
+
+.edit-btn:hover {
+    filter: brightness(0.9);
+}
+
+/* PROFILE EDIT AND LOGOUT BUTTON COLORS */
+
+.profilesave .log .edit-btn {
+    background: #003d50 !important;
+    background-color: #003d50 !important;
+    color: #ffffff !important;
+    border: 1px solid #003d50 !important;
+}
+
+.profilesave .log .logout-btn {
+    background: #dc3545 !important;
+    background-color: #dc3545 !important;
+    color: #ffffff !important;
+    border: 1px solid #dc3545 !important;
+}
+
+.profilesave .log .edit-btn:hover {
+    background: #002c3a !important;
+    color: white !important;
+}
+
+.profilesave .log .logout-btn:hover {
+    background: #b02a37 !important;
+    color: white !important;
+}
+
+/* .log1 {
+    position: absolute;
+    top: 10%;
+    right: -3cm;
+} */
+
+
+/* //============================// */
+
+/* =========================================
+   MOBILE LOGOUT BUTTON FIX
+   Desktop style remains unchanged
+========================================= */
+/* =========================================
+   LOGOUT BUTTON POSITION FIX
+========================================= */
+
+/* Desktop: original logout position */
+@media (min-width: 601px) {
+    .profilesave .log1 {
+        position: absolute !important;
+        top: 10% !important;
+        right: -3cm !important;
+        left: auto !important;
+        width: auto !important;
+    }
+}
+
+/* Mobile: keep logout inside screen */
 @media (max-width: 600px) {
-    .return-popup {
-        padding: 18px;
-        max-height: 90vh;
+    .profilesave .log {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        flex-wrap: wrap !important;
+        gap: 12px !important;
+        width: 100% !important;
+        margin-top: 15px !important;
+    }
+
+    .profilesave .log1 {
+        position: static !important;
+        top: auto !important;
+        right: auto !important;
+        left: auto !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .profilesave .log2 {
+        position: static !important;
+        width: auto !important;
+        margin: 0 !important;
+    }
+
+    .profilesave .log .logout-btn,
+    .profilesave .log .edit-btn {
+        width: auto !important;
+        min-width: 100px !important;
+        padding: 10px 16px !important;
+        margin: 0 !important;
+        white-space: nowrap !important;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 380px) {
+    .profilesave .log .logout-btn,
+    .profilesave .log .edit-btn {
+        min-width: 90px !important;
+        padding: 9px 12px !important;
+        font-size: 13px !important;
     }
 }

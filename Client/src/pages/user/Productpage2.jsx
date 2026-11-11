@@ -223,7 +223,7 @@ return(
         <div className="Productpage2">
          {/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+      {/* <div className="home-fullnav">
 
         <h2 id="nav-heading">Fragranzia</h2>
 
@@ -235,7 +235,7 @@ return(
               <ul>
 
                 <li>
-                <Link to="/Home">Home</Link>
+                <Link to="/">Home</Link>
 
                 </li>
 
@@ -244,7 +244,7 @@ return(
                 </li>
 
                 <li>
-                  <Link to="/gifting">Gifting</Link>
+                  <Link to="/gifting">Wishlist</Link>
                 </li>
 
                 <li>
@@ -254,12 +254,12 @@ return(
               </ul>
             </nav>
 
-          </div>
+          </div> */}
 
 
           {/* SEARCH */}
 
-          <div className="home-navsearch">
+          {/* <div className="home-navsearch">
 
             <FiSearch />
 
@@ -268,11 +268,11 @@ return(
               placeholder="Search products..."
             />
 
-          </div>
+          </div> */}
 
 
           {/* ICONS */}
-
+{/* 
           <div className="home-navicons">
 
             <Link to="/cart">
@@ -291,7 +291,7 @@ return(
 
         </div>
 
-      </div>
+      </div> */}
 
 
     <div className="productpage-section-2">

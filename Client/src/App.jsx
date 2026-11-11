@@ -1,5 +1,5 @@
 
-import { BrowserRouter,Routes,Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 import { useState } from 'react'
 // import heroImg from './assets/hero.png'
@@ -18,7 +18,7 @@ import { Category } from './pages/admin/category'
 
 import { Products } from './pages/user/Productpage'
 import { Productpage2 } from './pages/user/Productpage2'
-import {Producttable} from './pages/admin/producttable'
+import { Producttable } from './pages/admin/producttable'
 // import { Payment } from './pages/user/payment'
 // import { Paymentsuccess } from './pages/user/paymentsuccess'
 // import { Paymentfailour } from './paymentfailour'
@@ -39,68 +39,105 @@ import { Order } from './pages/admin/Order'
 import { Payment } from './pages/user/Payment'
 import AdminProtectedRoute from './components/protected-route/AdminProtectedRoute'
 import LoginProtectedRoute from './components/protected-route/LoginProtectedRoute'
+// import { Paymentsuccess } from './pages/user/Paymentsuccess'
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { Dashboard } from './pages/admin/Dashboard'
+import AdminLayout from "./components/Layout/Adminlayout";
+import UserLayout from "./components/Layout/Userlayout"
 function App() {
-  const [count, setCount] = useState(0)
+ const [search, setSearch] = useState("");
 
   return (
     <>
 
-   {/* <Users/> */}
-   {/* <User/> */}
- <Routes>
-  <Route element={<AdminProtectedRoute />}>  {/* Admin protected routes */}
-    <Route path='/Product' element={<Producttable/>}/>
-    <Route path='/addproduct' element={<Addproduct/>}/>
-    <Route path='/Categories' element={<Category/>}/>
-    <Route path='/Customer' element={<Users/>}/>
-    <Route path='/order' element={<Order/>}/>
+      {/* <Users/> */}
+      {/* <Route
+  path="/Product"
+  element={
+    <AdminLayout>   adminlayoutil corresponding aayittulla jsx kodkuka
+      <Producttable />
+    </AdminLayout>
+  }
+/> */}
+      {/* <User/> */}
+      <Routes>
+        <Route element={<AdminProtectedRoute />}>  {/* Admin protected routes */}
+          <Route path='/Product' element={<Producttable />} />
+          <Route path='/Dashboard' element={<Dashboard />} />
+          <Route path='/addproduct' element={<Addproduct />} />
+          <Route path='/Categories' element={<Category />} />
+          <Route path='/Customer' element={<Users />} />
+          <Route path='/order' element={<Order />} />
         </Route>
-  
-   
-   {/* <Addproduct/> */}
-    {/* <Updateproduct/> */}
-    {/* <ProductDetails/> */}
-    {/* <Category/> */}
-    {/* <Category1/> */}
 
 
-   {/*  */}
-   {/* <Home/> */}
-   {/* <Products/> */}
+        {/* <Addproduct/> */}
+        {/* <Updateproduct/> */}
+        {/* <ProductDetails/> */}
+        {/* <Category/> */}
+        {/* <Category1/> */}
 
-      {/* Public routes */}
-        <Route path='/' element={<Signup/>} />
-        <Route path='/Signin' element={<Signin/>}/>
 
- {/* Login protected user routes */}
-       <Route element={<LoginProtectedRoute />}>
-        <Route path='/Home' element={<Home/>}/>
-        <Route path='/products' element={<Products/>}/>
-        <Route path='/productpage2/:id' element={<Productpage2/>}/>
-       <Route path='/cart' element={<Cart/>}/>
-        <Route path='/about' element={<About/>}/>
-        {/* <Route path='/profile' element={<Profile/>}/> */}
-        <Route path='/profilesave' element={<Profilesave/>}/>
-        <Route path='/last' element={<Lastaddress/>}/>
-        <Route path='/gifting' element={<Wishlist/>}/>
-        <Route path='/payment' element={<Payment/>}/>
-        </Route>
-   </Routes>
+        {/*  */}
+        {/* <Home/> */}
+        {/* <Products/> */}
 
-   {/* <Product/> */}
+        {/* Public routes */}
 
-   {/* <Productpage2/> */}
-   {/* <Signin/> */}
-{/* <Payment/> */}
-{/* <Paymentsuccess/> */}
-   {/* <Paymentfailour/> */}
-   {/* <Cart/> */}
-   {/* <About/> */}
-   {/* <Profile/> */}
-   {/* <Profilesave/> */}
 
-   {/* <Address/> */}
-   {/* <Lastaddress/> */}
+
+      
+       
+        <Route path='/signup' element={<Signup />} />
+        <Route path='/Signin' element={<Signin />} />
+
+        {/* Login protected user routes */}
+        {/* User routes */}
+<Route element={<LoginProtectedRoute />}>
+ 
+<Route
+  path="/"
+  element={
+    <UserLayout
+      search={search}
+      setSearch={setSearch}
+    >
+      <Home search={search} />
+    </UserLayout>
+  }
+/>
+    <Route path="/products" element={<Products />} />
+    <Route path="/productpage2/:id" element={<Productpage2 />} />
+    <Route path="/cart" element={<Cart />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/profilesave" element={<Profilesave />} />
+    <Route path="/last" element={<Lastaddress />} />
+    <Route path="/gifting" element={<Wishlist />} />
+    <Route path="/payment" element={<Payment />} />
+  </Route>
+      </Routes>
+
+      {/* Toast notifications */}
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        theme="colored"
+      />
+      {/* <Product/> */}
+
+      {/* <Productpage2/> */}
+      {/* <Signin/> */}
+      {/* <Payment/> */}
+      {/* <Paymentsuccess/> */}
+      {/* <Paymentfailour/> */}
+      {/* <Cart/> */}
+      {/* <About/> */}
+      {/* <Profile/> */}
+      {/* <Profilesave/> */}
+
+      {/* <Address/> */}
+      {/* <Lastaddress/> */}
     </>
   )
 }

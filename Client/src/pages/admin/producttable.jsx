@@ -1,29 +1,33 @@
 import { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
-  FiGrid,
-  FiPackage,
-  FiTag,
-  FiUsers,
-  FiShoppingCart,
+  // FiGrid,
+  // FiPackage,
+  // FiTag,
+  // FiUsers,
+  // FiShoppingCart,
   FiEdit,
-  FiHome,
+  // FiHome,
   FiEye,
   FiPlus,
   FiX,
-  FiLogOut 
+  // FiLogOut,
+  // FiMenu,
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./producttable.css"
 import { useEffect } from "react";
+import { toast } from "react-toastify";
+// import AdminNavbar from "../../components/admin/Adminnavbar";
 
 const APIURL = "http://localhost:7000/product"
 
-import AdminService from "../../service/admin-api-services/AdminService";  
+import AdminService from "../../service/admin-api-services/AdminService";
 export const Producttable = () => {
-
-const {showproduct,EditProductsubmit,Productstatus}=AdminService() 
-
+  // const navigate=useNavigate()
+  // const [menuOpen, setMenuOpen] = useState(false);
+  const { showproduct, EditProductsubmit, Productstatus } = AdminService()
   const [formData, setformData] = useState([])
   const [showAddProduct, setShowAddProduct] = useState(false);
   const [update, setupdate] = useState(false)
@@ -63,7 +67,7 @@ const {showproduct,EditProductsubmit,Productstatus}=AdminService()
       // setformData(response.data)
       // console.log("Fetched Products from Backend:", response.data);
 
-      let response=await showproduct()       //AdminService vazhi product display
+      let response = await showproduct()       //AdminService vazhi product display
       setformData(response)
 
     }
@@ -151,23 +155,27 @@ const {showproduct,EditProductsubmit,Productstatus}=AdminService()
       }
 
       // await axios.put(`${APIURL}/${updateid}`, formData);  //last induvidual api calline avoid chyyan nammal write to AdminService.jsx
-   
-      await EditProductsubmit(updateid,formData)       //EditProductsubmit fncall  id-->updateid   data-->formData
+
+      await EditProductsubmit(updateid, formData)       //EditProductsubmit fncall  id-->updateid   data-->formData
 
 
       await fetchdata();
 
       setedit(false);
       setNewImage(null);
+      // Success toast
+      toast.success("Product updated successfully!");
 
     } catch (error) {
       console.log(error);
+      // Error toast
+      toast.error("Failed to update product!");
     }
   };
   const handleblock = async (id, isActive) => {
     // await axios.put(`${APIURL}/block/${id}`, { isActive })  //individual api callinee avoidakaan AdminServer.jsx use aakum
-   
-    await Productstatus(id,{ isActive })                   //do this
+
+    await Productstatus(id, { isActive })                   //do this
 
 
     fetchdata()
@@ -216,47 +224,19 @@ const {showproduct,EditProductsubmit,Productstatus}=AdminService()
     seteditData({ ...editData, [e.target.name]: e.target.value });
   };
 
+  //remove the token
+  // const handleLogout=()=>{
 
-  
+  //  localStorage.removeItem("token");
+  //   toast.success("Logout successfully!");
+  //   navigate("/signin")
+  // }
 
   return (
     <div className="Product-all">
 
       <div className="Product-table-og">
 
-        <div className="category-nav">
-
-          <h2>Dashtar</h2>
-
-          <Link to="Dashboard"><FiGrid />  Dashboard</Link>
-         
-
-          <Link to="/Product"><FiPackage />  Product</Link>
-       
-
-
-          <Link to="/Categories"><FiHome />  Categories</Link>
-       
-
-          <Link to="Offer"><FiTag />  Offer</Link>
-          
-
-          <Link to="/Customer"><FiUsers />  Customer</Link>
-         
-
-
-          <Link to="/order"><FiShoppingCart />  order</Link>
-        
-
-
-
-          <div className="category-logout">
-            <br />
-            <button><FiLogOut /> Log Out</button>
-          </div>
-
-
-        </div>
 
         <div className="product-table2">
 
@@ -315,9 +295,21 @@ const {showproduct,EditProductsubmit,Productstatus}=AdminService()
                         </td>
 
                         <td>
-                          {user.isActive ? <button onClick={() => { handleblock(user._id, user.isActive) }}>Block</button> : <button onClick={() => { handleblock(user._id, user.isActive) }}>UnBlock</button>}
-
-
+                          {user.isActive ? (
+                            <button
+                              className="block-btn"
+                              onClick={() => handleblock(user._id, user.isActive)}
+                            >
+                              Block
+                            </button>
+                          ) : (
+                            <button
+                              className="unblock-btn"
+                              onClick={() => handleblock(user._id, user.isActive)}
+                            >
+                              UnBlock
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ))}

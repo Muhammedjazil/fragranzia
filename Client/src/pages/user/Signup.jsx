@@ -5,8 +5,10 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 // import {Link} from 'react-router-dom'
 import UserService from "../../service/user-api-services/UserService";
-
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 export const Signup=()=>{
+    const navigate=useNavigate()
  const {signupedata}=UserService()
 
     let[formData,setformData]=useState({
@@ -72,7 +74,8 @@ export const Signup=()=>{
             //   await axios.post("http://localhost:7000/api/auth/register", formData);   //send form data to backend
             await signupedata(formData)
               console.log(formData)
-            alert("SignUp successfully")
+            toast.success("SignUp successfull!")
+            navigate("/")
             }
       
           

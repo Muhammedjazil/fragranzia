@@ -13,13 +13,16 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
+   FiMenu,
+  FiX
 } from "react-icons/fi";
 import { useState, useEffect } from "react";
 import UserService from "../../service/user-api-services/UserService";
-
+import { toast } from "react-toastify";
 
 export const Wishlist=()=>{
-
+const[search,setSearch]=useState("")
+const [menuOpen, setMenuOpen] = useState(false);
 const [wishlist, setWishlist] = useState([]);
 const [loading, setLoading] = useState(true);
 
@@ -43,81 +46,85 @@ useEffect(() => {
   fetchWishlist();
 }, []);
 
+const filteredWishlist=wishlist.filter((product)=>
+  product.name.toLowerCase().includes(search.toLowerCase())
+)
+
+
 
     return(
         <div className="wishlist-page">
     
      {/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+     {/* <div className="home-fullnav">
 
-        <h2 id="nav-heading">Fragranzia</h2>
+  <h2 id="nav-heading">Fragranzia</h2>
 
-        <div className="home-fullnav1">
+  {/* Hamburger button - mobile only */}
+  {/* <button
+    className="mobile-menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  > */}
+    {/* {menuOpen ? <FiX /> : <FiMenu />}
+  </button> */} 
 
-          <div className="home-nav">
+  {/* <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
 
-            <nav>
-              <ul>
-
-                <li>
-                                                  <Link to="/Home">Home</Link>
-
-                </li>
-
-                <li>
-                  <Link to="/products">Products</Link>
-                </li>
-
-                <li>
-                  <Link to="/gifting">Gifting</Link>
-                </li>
-
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-
-              </ul>
-            </nav>
-
-          </div>
-
-
-          {/* SEARCH */}
-
-          <div className="home-navsearch">
-
-            <FiSearch />
-
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
-
-          </div>
-
-
-          {/* ICONS */}
-
-          <div className="home-navicons">
-
-            <Link to="/cart">
-              <FiShoppingCart />
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
+          </li>
 
-            <Link to="/notifications">
-              <FiBell />
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
+          </li>
 
-            <Link to="/profilesave">
-              <FiUser />
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
             </Link>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div> */}
 
-        </div>
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+      <FiSearch />
+      <input type="text" value={search} onChange={(e)=>{setSearch(e.target.value)}} placeholder="Search products..." />
+    </div> */}
 
-      </div>
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link>
+
+      <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link> */}
+
+      {/* <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
 
 
       {/* BREADCRUMB HEADER */}
@@ -133,7 +140,7 @@ useEffect(() => {
   ) : wishlist.length === 0 ? (
     <p>Your wishlist is empty.</p>
   ) : (
-    wishlist.map((product) => (
+    filteredWishlist.map((product) => (
       <div className="cart-item3" key={product._id}>
         <div className="cart-images">
           <Link to={`/productpage2/${product._id}`}>
@@ -169,10 +176,17 @@ useEffect(() => {
                   try {
                     await handlewishlist(product._id);
                     await fetchWishlist();
+
+                         // Success notification
+        toast.success(`${product.name} removed from wishlist!`);
                   } catch (error) {
                     console.error(
                       error.response?.data || error.message
                     );
+                       toast.error(
+          error.response?.data?.message ||
+          "Unable to remove product from wishlist!"
+        );
                   }
                 }}
               >
@@ -185,7 +199,8 @@ useEffect(() => {
                 onClick={async () => {
                   try {
                     await addToCart(product._id);       //here the fn is reused fron userService.jsx
-                    alert("Product added to cart!");
+                    
+                 toast.success(`${product.name} added to cart!`);
                   } catch (error) {
                     alert(
                       error.response?.data?.message ||

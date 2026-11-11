@@ -16,7 +16,11 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
+   FiMenu,
+  FiX
 } from "react-icons/fi";
+import { toast } from "react-toastify";
+
 import axios from "axios";
 
 // const cartimg = [
@@ -47,6 +51,11 @@ import axios from "axios";
 // ];
 
 export const Cart = () => {
+
+  const [search,setSearch]=useState("")
+
+   const [menuOpen, setMenuOpen] = useState(false);
+
   const[Product,setProduct]=useState([])
 
   const { getCart,cartitemdelete,changequantity } = UserService();
@@ -76,14 +85,29 @@ export const Cart = () => {
   fetchCart();
 }, []);
 
+//=====for serach=======//
 
-const itemdelete=async(id)=>{
-    // await axios.delete(`http://localhost:7000/api/auth/delete/${id}`)
-  await cartitemdelete(id)                  //we use userservise.jsx  to avoid individual API call
-    console.log("Product ID:", id);
-  await fetchCart()
-  
-}
+const filteredCart = Product.filter((item) =>
+  item.product?.name?.toLowerCase().includes(search.toLowerCase())
+);
+
+const itemdelete = async (id, productName) => {
+  try {
+    await cartitemdelete(id);
+
+    await fetchCart();
+
+    toast.success(`${productName} removed from cart!`);
+
+  } catch (error) {
+    console.error("Delete error:", error);
+
+    toast.error(
+      error.response?.data?.message ||
+      "Unable to remove product from cart!"
+    );
+  }
+};
 
 
  const handleQuantity=async(id,quantity)=>{
@@ -104,41 +128,76 @@ const itemdelete=async(id)=>{
   return (
     <div className="cart">
       {/* NAVBAR */}
-      <div className="home-fullnav">
-        <h2 id="nav-heading">Fragranzia</h2>
+                 
+{/*      
+<div className="home-fullnav">
 
-        <div className="home-fullnav1">
-          <div className="home-nav">
-            <nav>
-              <ul>
-                <li><Link to="/">Home</Link></li>
-                <li><Link to="/products">Products</Link></li>
-                <li><Link to="/gifting">Gifting</Link></li>
-                <li><Link to="/about">About</Link></li>
-              </ul>
-            </nav>
-          </div>
+  <h2 id="nav-heading">Fragranzia</h2> */}
 
-          <div className="home-navsearch">
-            <FiSearch />
-            <input type="text" placeholder="Search Here" />
-          </div>
+  {/* Hamburger button - mobile only */}
+  {/* <button
+    className="mobile-menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  >
+    {menuOpen ? <FiX /> : <FiMenu />}
+  </button>
 
-          <div className="home-navicons">
-            <span>
-              <Link to="/cart">
-                <FiShoppingCart />
-              </Link>
-            </span>
-            <Link to="/notifications">
-              <FiBell />
+  <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
+
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
-            <Link to="/profilesave">
-              <FiUser />
+          </li>
+
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
-          </div>
-        </div>
-      </div>
+          </li>
+
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
+            </Link>
+          </li>
+
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div> */}
+
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+      <FiSearch />
+      <input type="text" value={search} onChange={(e)=>{setSearch(e.target.value)}} placeholder="Search products..." />
+    </div> */}
+
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link> */}
+
+      {/* <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link>
+
+      <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
 
       {/* BREADCRUMB HEADER */}
       <div className="cart-section-2">
@@ -188,9 +247,11 @@ const itemdelete=async(id)=>{
             </div>
           ))} */}
 
-       {Product.map((item) => {                           //many cart item ind(cart lee kore product indukum user add chyunna)
+       {/* {Product.map((item) => {                           //many cart item ind(cart lee kore product indukum user add chyunna) */}
+     {/*======== for serach ===========*/}
+          {filteredCart.map((item) => {  
   const user = item.product;                         //item → ഒരു cart item.  item.product->ആ cart item-ൽ ഉള്ള product field. product store id of products in the product collection
-
+  
   if (!user) return null;
 
   return (
@@ -219,7 +280,9 @@ const itemdelete=async(id)=>{
                 
                 <div className="allbuttonss">
                   <div className="cart-button-1">
-                    <button onClick={()=>{itemdelete(user._id)}}>Delete</button>
+                    <button onClick={() => itemdelete(user._id, user.name)}>
+                      Delete
+                      </button>
                   </div>
                   <div className="cart-button-2">
                     <button>Share</button>
@@ -280,7 +343,7 @@ const itemdelete=async(id)=>{
           <ul>
             <li><Link to="/">Home</Link></li>
             <li><Link to="/products">Products</Link></li>
-            <li><Link to="/gifting">Gifting</Link></li>
+            <li><Link to="/gifting">Wishlist</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/profile">Profile</Link></li>
           </ul>

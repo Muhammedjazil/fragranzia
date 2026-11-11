@@ -17,83 +17,87 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
+  FiMenu,
+  FiX
 } from "react-icons/fi";
+import { useState } from "react";
 export const About=()=>{
-
+   const [menuOpen, setMenuOpen] = useState(false);
+ 
 
 
     return(
         <div className="About">
             
-        
-      <div className="home-fullnav">
+     
+{/* <div className="home-fullnav">
 
-        <h2 id="nav-heading">Fragranzia</h2>
+  <h2 id="nav-heading">Fragranzia</h2>
 
-        <div className="home-fullnav1">
+  {/* Hamburger button - mobile only */}
+  {/* <button
+    className="mobile-menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  > */}
+    {/* {menuOpen ? <FiX /> : <FiMenu />}
+  </button>
 
-          <div className="home-nav">
+  <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
 
-            <nav>
-              <ul>
-
-                <li>
-                  <Link to="/Home">Home</Link>
-                </li>
-
-                <li>
-                  <Link to="/products">Products</Link>
-                </li>
-
-                <li>
-                  <Link to="/gifting">Gifting</Link>
-                </li>
-
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-
-              </ul>
-            </nav>
-
-          </div>
-
-
-          {/* SEARCH */}
-
-          <div className="home-navsearch">
-
-            <FiSearch />
-
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
-
-          </div>
-
-
-          {/* ICONS */}
-
-          <div className="home-navicons">
-
-            <Link to="/cart">
-              <FiShoppingCart />
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
+          </li>
 
-            <Link to="/notifications">
-              <FiBell />
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
+          </li>
 
-            <Link to="/profile">
-              <FiUser />
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
             </Link>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div> */} 
 
-        </div>
-   
-      </div>
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+      <FiSearch />
+      <input type="text" placeholder="Search products..." />
+    </div> */}
+
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link>
+
+      <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link>
+
+      <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
     <hr/>
 <br/>
 <div className="about-section1">
@@ -179,7 +183,7 @@ export const About=()=>{
             </li>
 
             <li>
-              <Link to="/gifting">Gifting</Link>
+              <Link to="/gifting">Wishlist</Link>
             </li>
 
             <li>

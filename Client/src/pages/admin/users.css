@@ -1,184 +1,46 @@
-.category {
-    display: flex;
+
+/* =========================================
+   GLOBAL STYLES
+========================================= */
+
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
-.category{
+.category {
     position: relative;
     display: flex;
-   
-}
-
-
-
-
-.category-content {
-    margin-top: 1cm;
-    margin-left: 0.4cm;
-    background-color: #ffffff;
-    padding: 30px;
-    border: 1px solid #eaeaea;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05); /* Adds the soft card shadow and border effect */
-}
-.category-content h1{
-    font-weight: bolder;
-    margin-bottom: .5cm;
-}
-.category-content p{
-    margin-left: .2cm;
-}
-
-.showclass {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 450px;
-    padding: 30px;
-
-    background: #ffffff;
-    border-radius: 12px;
-
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
-
-    z-index: 1000;
-}
-
-
-/* ================= TITLE ================= */
-
-.showclass h2 {
-    margin: 0 0 25px 0;
-
-    font-size: 22px;
-    font-weight: 700;
-
-    color: #07506b;
-
-    border-bottom: 1px solid #e5e5e5;
-    padding-bottom: 15px;
-}
-
-
-/* ================= LABEL ================= */
-
-.showclass label {
-    display: inline-block;
-  margin-left:0 ;
-    margin-top: 12px;
-    margin-bottom: 5px;
-
-    font-size: 11px;
-    font-weight: 700;
-
-    color: #777;
-
-    letter-spacing: 0.5px;
-}
-
-
-/* ================= VALUE ================= */
-
-.showclass h5 {
-    margin: 0 0 8px 0;
-
-    font-size: 15px;
-    font-weight: 500;
-
-    color: #222;
-}
-
-
-/* ================= ACCOUNT STATUS + ROLE ================= */
-
-.details-all {
-    display: flex;
-    gap: 80px;
-
-    margin-top: 10px;
-    margin-bottom: 10px;
-}
-
-.details-all > div {
-    flex: 1;
-}
-
-
-/* ACCOUNT STATUS */
-
-.details-all h6 {
-    display: inline-block;
-
-    margin: 3px 0 0 0;
-    padding: 5px 12px;
-
-    border-radius: 20px;
-
-    background: #e7f8ee;
-    color: #16834b;
-
-    font-size: 12px;
-    font-weight: 600;
-}
-
-.cust-show svg{
-    color: green;
-    font-size: 13px;
-}
-
-/* ROLE */
-
-.details-all span {
-    display: inline-block;
- border-radius: 20px;
-    margin-top: 3px;
-    
-    font-size: 14px;
-    font-weight: 500;
-    padding: 5px 12px;
-
-       background: #e7f8ee;
-    color: #831671;
-}
-
-
-/* ================= CLOSE BUTTON ================= */
-
-.showclass button {
     width: 100%;
-
-    margin-top: 25px;
-    padding: 11px 0;
-
-    border: none;
-    border-radius: 6px;
-
-    background: #07506b;
-    color: white;
-
-    font-size: 14px;
-    font-weight: 600;
-
-    cursor: pointer;
+    min-height: 100vh;
+    overflow-x: hidden;
+    background: #f7f8fc;
+    font-family: "Poppins", sans-serif;
 }
 
-.showclass button:hover {
-    background: #063f54;
-}
-/* ================= USER LIST CONTENT ================= */
+/* =========================================
+   USER LIST CONTENT
+========================================= */
 
 .category-content {
     flex: 1;
     min-width: 0;
     min-height: 100vh;
+
+    margin-top: 1cm;
+    margin-left: 0.4cm;
+    margin-right: 15px;
+
     padding: 35px;
+
     background-color: #f7f8fc;
-    box-sizing: border-box;
-    overflow-x: auto;
-    font-family: "Poppins", sans-serif;
+    border: 1px solid #eaeaea;
+    border-radius: 12px;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+
+    overflow-x: hidden;
 }
 
 .category-content h1 {
@@ -196,39 +58,52 @@
     line-height: 1.6;
 }
 
-/* ================= CUSTOMER TABLE CONTAINER ================= */
+/* =========================================
+   CUSTOMER TABLE CONTAINER
+========================================= */
 
 .cetegory-customers {
     width: 100%;
     margin-top: 20px;
+
     background-color: #ffffff;
     border: 1px solid #e8ebf1;
     border-radius: 12px;
+
     box-shadow: 0 4px 18px rgba(30, 41, 59, 0.04);
+
     overflow-x: auto;
+    overflow-y: hidden;
 }
 
-/* ================= TABLE ================= */
+/* =========================================
+   CUSTOMER TABLE
+========================================= */
 
 .customer-table {
     width: 100%;
     min-width: 750px;
+
     border-collapse: separate;
     border-spacing: 0;
+
     text-align: left;
     background-color: #ffffff;
 }
 
-/* ================= TABLE HEADER ================= */
+/* TABLE HEADER */
 
 .customer-table thead th {
     padding: 18px 22px;
+
     background-color: #f4f6fa;
     color: #5b6575;
+
     font-size: 12px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.6px;
+
     white-space: nowrap;
     border-bottom: 1px solid #e6eaf0;
 }
@@ -241,18 +116,20 @@
     border-top-right-radius: 12px;
 }
 
-/* ================= TABLE BODY ================= */
+/* TABLE BODY */
 
 .customer-table tbody td {
     padding: 19px 22px;
+
     color: #3f4857;
     font-size: 14px;
     font-weight: 400;
+
     border-bottom: 1px solid #edf0f5;
     vertical-align: middle;
 }
 
-/* Customer name */
+/* CUSTOMER NAME */
 
 .customer-table tbody td:first-child {
     color: #202b3c;
@@ -260,27 +137,27 @@
     white-space: nowrap;
 }
 
-/* Phone number */
+/* PHONE */
 
 .customer-table .cust-phone {
     color: #5b6575;
     white-space: nowrap;
 }
 
-/* Email */
+/* EMAIL */
 
 .customer-table .cust-email {
     color: #596579;
     overflow-wrap: anywhere;
 }
 
-/* Remove last row border */
+/* LAST ROW */
 
 .customer-table tbody tr:last-child td {
     border-bottom: none;
 }
 
-/* ================= ROW HOVER EFFECT ================= */
+/* ROW HOVER */
 
 .customer-table tbody tr {
     transition: background-color 0.2s ease;
@@ -290,23 +167,31 @@
     background-color: #f8faff;
 }
 
-/* ================= SHOW BUTTON ================= */
+/* =========================================
+   SHOW BUTTON
+========================================= */
 
 .cust-show {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
+
     padding: 9px 14px;
+
     border: 1px solid #d9e5ff;
     border-radius: 7px;
+
     background-color: #eef4ff;
     color: #315fba;
+
     font-family: inherit;
     font-size: 13px;
     font-weight: 600;
+
     white-space: nowrap;
     cursor: pointer;
+
     transition: all 0.2s ease;
 }
 
@@ -319,6 +204,7 @@
     background-color: #315fba;
     border-color: #315fba;
     color: #ffffff;
+
     box-shadow: 0 3px 8px rgba(49, 95, 186, 0.18);
 }
 
@@ -326,19 +212,32 @@
     transform: scale(0.97);
 }
 
-/* ================= ACTIVE STATUS ================= */
+/* =========================================
+   ACTIVE / BLOCKED STATUS
+========================================= */
 
 .active-status,
 .blocked-status {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 6px 12px;
+
+    min-width: 85px;
+    padding: 7px 14px;
+
     border-radius: 20px;
+
+    font-family: inherit;
     font-size: 12px;
     font-weight: 600;
+
     white-space: nowrap;
+    cursor: pointer;
+
+    transition: 0.2s ease;
 }
+
+/* ACTIVE - GREEN */
 
 .active-status {
     color: #15803d;
@@ -346,13 +245,165 @@
     border: 1px solid #c9efd5;
 }
 
+.active-status:hover {
+    background-color: #c9efd5;
+}
+
+/* BLOCKED - RED */
+
 .blocked-status {
     color: #b42318;
     background-color: #fff0ee;
     border: 1px solid #ffd7d2;
 }
 
-/* ================= EMPTY TABLE / SCROLLBAR ================= */
+.blocked-status:hover {
+    background-color: #ffd7d2;
+}
+
+/* =========================================
+   USER DETAILS POPUP
+========================================= */
+
+.showclass {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 450px;
+    max-width: calc(100% - 30px);
+    max-height: calc(100vh - 30px);
+
+    padding: 30px;
+
+    background: #ffffff;
+    border-radius: 12px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+
+    z-index: 1000;
+    overflow-y: auto;
+}
+
+/* POPUP TITLE */
+
+.showclass h2 {
+    margin: 0 0 25px;
+
+    font-size: 22px;
+    font-weight: 700;
+
+    color: #07506b;
+
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 15px;
+}
+
+/* POPUP LABEL */
+
+.showclass label {
+    display: inline-block;
+
+    margin-top: 12px;
+    margin-bottom: 5px;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    color: #777;
+    letter-spacing: 0.5px;
+}
+
+/* POPUP VALUES */
+
+.showclass h5 {
+    margin: 0 0 8px;
+
+    font-size: 15px;
+    font-weight: 500;
+
+    color: #222;
+    overflow-wrap: anywhere;
+}
+
+/* ACCOUNT STATUS AND ROLE */
+
+.details-all {
+    display: flex;
+    gap: 30px;
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.details-all > div {
+    flex: 1;
+    min-width: 0;
+}
+
+/* ACCOUNT STATUS */
+
+.details-all h6 {
+    display: inline-block;
+
+    margin: 3px 0 0;
+    padding: 5px 12px;
+
+    border-radius: 20px;
+
+    background: #e7f8ee;
+    color: #16834b;
+
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* ROLE */
+
+.details-all span {
+    display: inline-block;
+
+    border-radius: 20px;
+    margin-top: 3px;
+    padding: 5px 12px;
+
+    font-size: 14px;
+    font-weight: 500;
+
+    background: #e7f8ee;
+    color: #831671;
+}
+
+/* POPUP CLOSE BUTTON */
+
+.showclass button {
+    width: 100%;
+
+    margin-top: 25px;
+    padding: 11px 0;
+
+    border: none;
+    border-radius: 6px;
+
+    background: #07506b;
+    color: white;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.showclass button:hover {
+    background: #063f54;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
 
 .cetegory-customers::-webkit-scrollbar {
     height: 7px;
@@ -372,22 +423,62 @@
     background-color: #9ba6b8;
 }
 
-/* ================= RESPONSIVE DESIGN ================= */
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
 
 @media (max-width: 1024px) {
+
     .category-content {
         padding: 25px;
     }
 
-    .customer-table thead th,
+    .customer-table thead th {
+        padding: 16px;
+    }
+
     .customer-table tbody td {
-        padding: 15px 16px;
+        padding: 16px;
     }
 }
 
+/* =========================================
+   SMALL TABLET
+========================================= */
+
+
+
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
+
+/* =========================================
+   SMALL TABLET - 768px
+========================================= */
+
+/* =========================================
+   TABLET AND MOBILE - 768px
+========================================= */
+
 @media (max-width: 768px) {
+
+    .category {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
     .category-content {
-        padding: 18px;
+        display: block;
+        width: auto;
+        min-width: 0;
+        min-height: calc(100vh - 30px);
+
+        margin: 15px;
+        padding: 20px;
+
+        overflow: visible;
     }
 
     .category-content h1 {
@@ -399,11 +490,22 @@
     }
 
     .cetegory-customers {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
         margin-top: 16px;
-        border-radius: 9px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        -webkit-overflow-scrolling: touch;
     }
 
     .customer-table {
+        display: table;
+        width: 700px;
         min-width: 700px;
     }
 
@@ -416,18 +518,218 @@
         padding: 15px 14px;
         font-size: 13px;
     }
+
+    .showclass {
+        width: 420px;
+        max-width: calc(100% - 30px);
+        padding: 25px;
+    }
 }
 
+/* =========================================
+   MOBILE - 480px
+========================================= */
+
 @media (max-width: 480px) {
+
+    .category {
+        display: block;
+        width: 100%;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
     .category-content {
-        padding: 12px;
+        display: block;
+        width: auto;
+        min-width: 0;
+
+        margin: 10px;
+        padding: 15px;
+
+        min-height: calc(100vh - 20px);
     }
 
     .category-content h1 {
         font-size: 21px;
+        margin-bottom: 7px;
+    }
+
+    .category-content p {
+        font-size: 12px;
+        line-height: 1.5;
+    }
+
+    /* TABLE CONTAINER */
+
+    .cetegory-customers {
+        display: block;
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+
+        margin-top: 15px;
+
+        overflow-x: auto;
+        overflow-y: hidden;
+
+        -webkit-overflow-scrolling: touch;
+    }
+
+    /* TABLE */
+
+    .customer-table {
+        display: table;
+        width: 650px;
+        min-width: 650px;
+        table-layout: auto;
+    }
+
+    .customer-table thead {
+        display: table-header-group;
+    }
+
+    .customer-table tbody {
+        display: table-row-group;
+    }
+
+    .customer-table tr {
+        display: table-row;
+    }
+
+    .customer-table th,
+    .customer-table td {
+        display: table-cell;
+        white-space: nowrap;
+    }
+
+    .customer-table thead th {
+        padding: 13px 12px;
+        font-size: 10px;
+    }
+
+    .customer-table tbody td {
+        padding: 13px 12px;
+        font-size: 12px;
+    }
+
+    .cust-show {
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+
+    .active-status,
+    .blocked-status {
+        min-width: 75px;
+        padding: 6px 10px;
+        font-size: 11px;
+    }
+
+    /* DETAILS POPUP */
+
+    .showclass {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        width: calc(100% - 30px);
+        max-width: 380px;
+        max-height: calc(100vh - 30px);
+
+        padding: 20px;
+        overflow-y: auto;
+        border-radius: 10px;
+    }
+
+    .showclass h2 {
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    .showclass label {
+        font-size: 10px;
+    }
+
+    .showclass h5 {
+        font-size: 14px;
+    }
+
+    .details-all {
+        gap: 15px;
+    }
+
+    .details-all h6,
+    .details-all span {
+        font-size: 11px;
+        padding: 5px 9px;
+    }
+
+    .showclass button {
+        margin-top: 20px;
+        padding: 10px;
+    }
+}
+
+/* =========================================
+   VERY SMALL MOBILE - 350px
+========================================= */
+
+@media (max-width: 350px) {
+
+    .category-content {
+        margin: 7px;
+        padding: 10px;
+    }
+
+    .category-content h1 {
+        font-size: 19px;
     }
 
     .customer-table {
+        width: 650px;
         min-width: 650px;
+    }
+
+    .showclass {
+        padding: 16px;
+    }
+
+    .details-all {
+        gap: 8px;
+    }
+}
+
+
+/* =========================================
+   VERY SMALL MOBILE - 350px
+========================================= */
+
+@media (max-width: 350px) {
+
+    .category-content {
+        margin: 7px;
+        padding: 10px;
+    }
+
+    .category-content h1 {
+        font-size: 19px;
+    }
+
+    .category-content p {
+        font-size: 11px;
+    }
+
+    .customer-table {
+        width: 650px;
+        min-width: 650px;
+    }
+
+    .showclass {
+        padding: 16px;
+    }
+
+    .details-all {
+        gap: 8px;
     }
 }

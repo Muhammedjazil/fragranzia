@@ -1,5 +1,5 @@
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import "./payment.css";
 
@@ -16,21 +16,26 @@ import {
   FiPhone,
   FiStar,
 } from "react-icons/fi";
-
 import {
   FaMoneyBillWave,
   FaUniversity,
-} from "react-icons/fa";
+FaCheck
 
+} from "react-icons/fa";
 import {
   SiGooglepay,
   SiPhonepe,
 } from "react-icons/si";
-
+import { RxCross2 } from 'react-icons/rx';
+import { toast } from "react-toastify";
 import UserService from "../../service/user-api-services/UserService";
-
+// import { useNavigate } from "react-router-dom";
 export const Payment = () => {
   // Cart products
+  // const navigate = useNavigate();
+  const navigate = useNavigate();
+  const[failour,setFailour]=useState(false)
+  const[success,setSuccess]=useState(false);
   const [Product, setProduct] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -39,7 +44,8 @@ export const Payment = () => {
   const [addressLoading, setAddressLoading] = useState(true);
 const [placingOrder, setPlacingOrder] = useState(false);
   // Selected payment method
-  const [paymentMethod, setPaymentMethod] = useState("cod");
+  // const [paymentMethod, setPaymentMethod] = useState();
+  const [paymentMethod, setPaymentMethod] = useState("COD"); //initaially a vlaue to be selected so,
 
   const {
     getCart,
@@ -152,32 +158,248 @@ const [placingOrder, setPlacingOrder] = useState(false);
   // PAGE
   // =========================================
 
-const handlePlaceOrder=async()=>{
-  if(!address?._id){
-    alert("please select ptimary address first")
-    return;
-  }
-  if(Product.length===0){
-    alert("your cart is empty")
-    return;
-  }
-  if(paymentMethod!="cod"){
-    alert("please select casg on delivary")
-    return
-  }
-  try{
-    setPlacingOrder(true)
-    const response=await placeOrder(address._id,"cod")
-    alert(response.message || "order placed successfully")
-       // Refresh cart after successful order
-      await fetchCart();
-      
-  }
-  catch(error){
-    console.log("order placed error")
-  }
-}
+// const handlePlaceOrder = async () => {
+//   if (!address?._id) {
+//     alert("Please select primary address first");
+//     return;
+//   }
 
+//   if (Product.length === 0) {
+//     alert("Your cart is empty");
+//     return;
+//   }
+
+//   try {
+//     setPlacingOrder(true);
+
+//     // Send the selected payment method
+//     const response = await placeOrder(
+//       address._id,
+//       paymentMethod
+//     );
+
+//     if (!response?.success) {
+//       alert(response?.message || "Order failed");
+//       return;
+//     }
+
+//     // COD payment
+//     if (paymentMethod === "cod") {
+//       alert("Order placed successfully");
+//       navigate("/Paymentsuccess");
+//       return;
+//     }
+
+//     // Online payment (UPI, card, etc.)
+//     if (response.razorpayOrder) {
+//       await handlePayment(response.razorpayOrder);
+//     }
+
+//   } catch (error) {
+//     console.error(
+//       "Order error:",
+//       error.response?.data || error.message
+//     );
+
+//     alert(error.response?.data?.message || "Something went wrong");
+
+//   } finally {
+//     setPlacingOrder(false);
+//   }
+// };
+
+const handlePlaceOrder = async () => {
+  if (!address?._id) {
+     toast.warning("Please select a primary address first!");
+    return;
+  }
+
+  if (Product.length === 0) {
+     toast.warning("Your cart is empty!");
+    return;
+  }
+
+  if (!paymentMethod) {
+    toast.warning("Please select a payment method!");
+    return;
+  }
+
+  try {
+    setPlacingOrder(true);
+
+    const response = await placeOrder(
+      address._id,
+      paymentMethod
+    );
+
+    console.log("Backend response:", response);
+
+    if (!response?.success) {
+        setFailour(true);
+      console.log("ppppppppppppppppppppppp");
+
+         toast.error(response?.message || "Order failed!");
+      return;
+    }
+
+    if (paymentMethod === "COD") {
+     
+      // navigate("/Paymentsuccess");
+      setSuccess(true);
+      return;
+    }
+
+    if (response.razorpayOrder) {
+      await handlePayment(response.razorpayOrder);
+    } else {
+          toast.error("Razorpay order was not created!");
+    }
+
+  } catch (error) {
+    console.log("Order error=================:", error.response?.data || error.message);
+    
+  setFailour(true);
+        toast.error(
+      error.response?.data?.message ||
+      "Something went wrong!"
+    );
+
+  } finally {
+    console.log("ttttttttttttttttttttttt");
+    
+    setPlacingOrder(false);
+  }
+};
+// //============================weadd===============
+// const handlePayment = async (data) => {
+//     try {
+//       console.log("==== handlePayment 1");
+
+//       const isScriptLoaded = await loadRazorpayScript();
+//       if (!isScriptLoaded) {
+//         alert(
+//           "Failed to load Razorpay SDK. Please check your internet connection."
+//         );
+//         return;
+//       }
+
+//       console.log("==== handlePayment 2");
+
+
+//       // Initialize Razorpay
+//       const options = {
+//         key: "rzp_test_TtcgxkiZwyZJ7b", // Replace with Razorpay Key ID
+//         amount: data.amount,
+//         currency: "INR",
+//         name: "Cart7",
+//         description: "Purchase Description",
+//         order_id: data.id,
+//         // handler: async function (response) {
+
+//         //   const verifyRes = await axios.post('http://localhost:3000/order/payment/verify-payment', {
+//         //     razorpay_order_id: response.razorpay_order_id,
+//         //     razorpay_payment_id: response.razorpay_payment_id,
+//         //     razorpay_signature: response.razorpay_signature,
+//         //   });
+
+//         //   if (verifyRes.data.success) {
+//         //     console.log("inside verifyRes.data.success");
+
+//         //     //  navigate("/order-success");
+//         //   } else {
+//         //     alert("Payment Failed!");
+//         //     console.log("elseeeeee");
+
+//         //   }
+
+//         // },
+
+//         // prefill: {
+//         //   name: "John Doe",
+//         //   email: "johndoe@example.com",
+//         //   contact: "9999999999",
+//         // },
+
+//         theme: {
+//           color: "#3399cc",
+//         },
+//       };
+
+//       const rzp1 = new window.Razorpay(options);
+//       rzp1.open();
+//     } catch (error) {
+//       console.error("Payment Error:--------------", error);
+//     }
+//   };
+const handlePayment = async (data) => {
+  try {
+    const isScriptLoaded = await loadRazorpayScript();
+
+    if (!isScriptLoaded) {
+          toast.error("Failed to load Razorpay SDK!");
+      return;
+    }
+
+    const options = {
+      key: "rzp_test_TtcgxkiZwyZJ7b",
+      amount: data.amount,
+      currency: data.currency,
+      name: "Fragranzia",
+      description: "Purchase",
+      order_id: data.id,
+
+      handler: async function (response) {
+         toast.success("Payment successful!");
+          setSuccess(true);
+        console.log("Payment successful:", response);
+
+        // Call your backend payment verification API here.
+        // Do not navigate to success until verification succeeds.
+      },
+
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const rzp1 = new window.Razorpay(options);
+
+    rzp1.on("payment.failed", function (response) {
+      console.log("Payment failed:", response.error);
+       setFailour(true);
+        toast.error(
+        response.error.description || "Payment failed!"
+      );
+    });
+
+    rzp1.open();
+
+  } catch (error) {
+    console.error("Payment error:", error);
+  
+    toast.error("Payment initialization failed!");
+  }
+};
+  //============weadd=============
+
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      if (window.Razorpay) {
+        resolve(true);
+        return;
+      }
+
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
 
   return (
     <div className="payment">
@@ -185,7 +407,7 @@ const handlePlaceOrder=async()=>{
       {/* NAVBAR */}
       {/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+      {/* <div className="home-fullnav">
 
         <h2 id="nav-heading">Fragranzia</h2>
 
@@ -206,7 +428,7 @@ const handlePlaceOrder=async()=>{
                 </li>
 
                 <li>
-                  <Link to="/gifting">Gifting</Link>
+                  <Link to="/gifting">Wishlist</Link>
                 </li>
 
                 <li>
@@ -216,12 +438,12 @@ const handlePlaceOrder=async()=>{
               </ul>
             </nav>
 
-          </div>
+          </div> */}
 
 
           {/* SEARCH */}
 
-          <div className="home-navsearch">
+          {/* <div className="home-navsearch">
 
             <FiSearch />
 
@@ -235,7 +457,7 @@ const handlePlaceOrder=async()=>{
 
           {/* ICONS */}
 
-          <div className="home-navicons">
+          {/* <div className="home-navicons">
 
             <Link to="/cart">
               <FiShoppingCart />
@@ -253,7 +475,7 @@ const handlePlaceOrder=async()=>{
 
         </div>
 
-      </div>
+      // </div> */} 
 
 
       {/* MAIN CHECKOUT LAYOUT */}
@@ -355,9 +577,11 @@ const handlePlaceOrder=async()=>{
 
             <div className="payment-address-tabs">
 
-              <Link to="/adress">
+              <button className="adadrs" onClick={()=>{navigate("/profilesave",{
+                state:{activeTab:"address"}
+              })}}>
                 Add address +
-              </Link>
+              </button>
 
 
             </div>
@@ -492,8 +716,8 @@ const handlePlaceOrder=async()=>{
               <input
                 type="radio"
                 name="payment"
-                value="cod"
-                checked={paymentMethod === "cod"}
+                value="COD"
+                checked={paymentMethod === "COD"}
                 onChange={(e) => setPaymentMethod(e.target.value)}
               />
             </label>
@@ -558,7 +782,64 @@ const handlePlaceOrder=async()=>{
 
       </div>
 
+
+  {/* =========================payment success============================*/}
+
+    {success &&(
+    <div className="section-success">
+       <div className="section-success-1">
+      <div className="Facheck">
+    <FaCheck/>
     </div>
+    
+    <div className="sucess-data">
+    <h1>Thank You for Ordering!</h1>
+    <p>Your order has been successfully placed.<br/> We're preparing it for shipment</p>
+    <br/>
+    <Link to="/home">
+    <button className="sucessbutton" >Back to Home</button></Link>
+   <button
+  className="sucess1"
+  onClick={() => {
+    navigate("/profilesave", {
+      state: { activeTab: "order" }
+    });
+  }}
+>
+  Track Order
+</button>
+    </div>
+    
+    
+    </div>
+    
+    </div>
+       )}
+
+       {failour && (
+       <div className="section-failour">
+          <div className="section-failour-1">
+         <div className="RxCross2">
+       <RxCross2/>
+       </div>
+       
+       <div className="failour-data">
+       <h1>Your order has failed!</h1>
+       <p>Your order cant be completed Please<br/> check your internet connection!</p>
+       <br/>
+    <Link to="/home">
+       <button>Back to Home</button></Link>
+       <button onClick={()=>{setFailour(false)}}>Retry</button>
+       </div>
+       
+       
+       </div>
+       
+       </div>
+       )}
+
+    </div>
+
   );
 };
 

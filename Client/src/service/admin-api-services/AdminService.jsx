@@ -70,6 +70,20 @@ const AdminService = () => {
     
   }
 
+  //take registerd user==pending===chyyanam
+
+const fetchcustomer=async()=>{
+  const response=await axiosPrivate.get("/api/auth/users")
+  return response.data;
+
+}
+
+const changeisactive=async(id)=>{
+  const response=await axiosPrivate.put(`/api/auth/isactive/${id}`)
+  return response.data;
+
+}
+
     return {
         // getHomePageData,
         // postRegister,
@@ -83,7 +97,9 @@ const AdminService = () => {
         showproduct,
         Productstatus,
        
-        productcategory
+        productcategory,
+        fetchcustomer,
+        changeisactive
     };
 };
 

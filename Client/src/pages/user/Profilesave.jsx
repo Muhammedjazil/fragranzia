@@ -1,5 +1,5 @@
 import "./profilesave.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import {
   FiShoppingCart,
@@ -10,7 +10,10 @@ import {
   FiHome,
   FiBriefcase,
   FiMapPin,
-  FiEdit 
+  FiEdit,
+  FiMenu, 
+  FiX,
+  FiLogOut
 } from "react-icons/fi";
     
 import img1 from "../../assets/sub4.png"
@@ -20,8 +23,8 @@ import { useState } from "react";
 import { useEffect } from "react";
 import UserService from "../../service/user-api-services/UserService";
 import axios from "axios";
-
-
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const product=[
     {id:1,orderid:"#FRG10234",image:img1,name:"Autograph eau de parfum 100ml for men",Qty: "1",price:"₹2,499"},
     {id:2,orderid:"#FRG10234",image:img1,name:"Autograph eau de parfum 100ml for men",Qty: "1",price:"₹2,499"}
@@ -30,6 +33,9 @@ const product=[
 
 
 export const Profilesave = () => {
+  const navigate=useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false);
+
   const [selectedReturnProduct, setSelectedReturnProduct] = useState(null);
   const [returnReason, setReturnReason] = useState("");
 const [isreturn, setIsreturn] = useState(false);
@@ -56,6 +62,9 @@ const [allData, setAllData] = useState([]);
  })
 
  const [selectedAddressId, setSelectedAddressId] = useState(null);                                     //{id:123324}
+  
+ const location = useLocation();
+
  const[order,setOrder]=useState(false)
 
 //  const[addaddressdata,setAddAddressdata]=useState({
@@ -103,9 +112,12 @@ const sendaddress=async()=>{
   await profiledata(user)
   console.log("data added")
    setPrfedit(false)
+   toast.success("Address addedsuccessfully")
   }
   catch(error){
     console.log("data not added")
+   toast.error("Address not added!");
+
   }
 }
 
@@ -143,7 +155,7 @@ const handlesave = async () => {
   try {
     await updateAddress(selectedAddressId, Editsave);   //editchytha data save chyyenda userinte id-->selectedAddressId
 
-    alert("Address updated successfully");
+    toast.success("Address updated successfully!");
 
     seteditsave(false);
     setEditAddress(false);
@@ -156,6 +168,9 @@ const handlesave = async () => {
       "Address update error:",
       error.response?.data || error.message
     );
+    toast.error(
+  error.response?.data?.message || "Failed to update address!"
+);
   }
 };
 
@@ -187,7 +202,7 @@ const handleAddAddress = async () => {
     // await axios.post("http://localhost:7000/address")
     await createAddress(Editsave);
 
-    alert("Address added successfully");
+   toast.success("Address added successfully!");
  await fetchediteduser();
     setAddAddress(false);
 
@@ -210,11 +225,9 @@ const handleAddAddress = async () => {
       "Add address error:",
       error.response?.data || error.message
     );
-
-    alert(
-      error.response?.data?.message ||
-      "Failed to add address"
-    );
+toast.error(
+  error.response?.data?.message || "Failed to add address!"
+);
     setAddAddress(false);
 
   }
@@ -244,18 +257,20 @@ console.log(user)
 const handleSetPrimary = async (addressId) => {
   try {
     await setPrimaryAddress(addressId);
-
     // Refresh addresses from MongoDB
     await fetchediteduser();
 
-    alert("Primary address updated successfully");
+      toast.success("Primary address updated successfully!");
   } catch (error) {
     console.error(
       "Set primary address error:",
       error.response?.data || error.message
     );
 
-    alert("Failed to set primary address");
+    toast.error(
+      error.response?.data?.message ||
+      "Failed to set primary address!"
+    );
   }
 };
 // ======================end============================//
@@ -279,8 +294,17 @@ const fetchorder = async () => {
 };
 
 const handleconform=async(id)=>{
+  try{
   await handlecancel(id)
-  await fetchorder()
+  await fetchorder();
+  toast.success("Order cancelled successfully!")
+  }
+  catch(error){
+ toast.error(
+      error.response?.data?.message ||
+      "Failed to cancel order!"
+    );
+  }
 }
 
 //remove the ordered product
@@ -321,6 +345,7 @@ const handlereturndetails = async (id) => {
 
     setItemreturn(response);
     setIsreturn(true);
+
   } catch (error) {
     console.error(
       "Return details error:",
@@ -335,81 +360,113 @@ const cancelproduct = async (productId, reason) => {
   // Send productId and reason to the backend
   return await requestReturn(productId, reason);
 };
+
+//we add this for when user click Trackorder it come to the myorder section
+useEffect(() => {
+  if(location.state?.activeTab=="address"){
+   setActiveTab("address");
+    setadresssection(true);
+    setOrder(false);
+
+    setAddAddress(false);
+    setEditAddress(false);
+    seteditsave(false);
+    setPrfedit(false);
+  }
+  if (location.state?.activeTab === "order") {
+    setActiveTab("order");
+    setOrder(true);
+    setadresssection(false);
+
+    setAddAddress(false);
+    setEditAddress(false);
+    seteditsave(false);
+    setPrfedit(false);
+  }
+}, [location.state]);
+
+//==========logout==========//
+const handlelogout=()=>{
+
+  localStorage.removeItem("token");
+   toast.success("Logout successfull!")
+   navigate("/Signin")
+ 
+ 
+}
   return (
     <div className="profilesave">
 
       {/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+{/* <div className="home-fullnav">
 
-        <h2 id="nav-heading">Fragranzia</h2>
+  <h2 id="nav-heading">Fragranzia</h2> */}
 
-        <div className="home-fullnav1">
+  {/* Hamburger button - mobile only */}
+  {/* <button
+    className="mobile-menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  >
+    {menuOpen ? <FiX /> : <FiMenu />}
+  </button>
 
-          <div className="home-nav">
+  <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
 
-            <nav>
-              <ul>
-
-                <li>
-                                                  <Link to="/Home">Home</Link>
-
-                </li>
-
-                <li>
-                  <Link to="/products">Products</Link>
-                </li>
-
-                <li>
-                  <Link to="/gifting">Gifting</Link>
-                </li>
-
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-
-              </ul>
-            </nav>
-
-          </div>
-
-
-          {/* SEARCH */}
-
-          <div className="home-navsearch">
-
-            <FiSearch />
-
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
-
-          </div>
-
-
-          {/* ICONS */}
-
-          <div className="home-navicons">
-
-            <Link to="/cart">
-              <FiShoppingCart />
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
+          </li>
 
-            <Link to="/notifications">
-              <FiBell />
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
-           <div className="profileiconcolor">
-            <Link to="/profilesave">
-              <FiUser />
+          </li>
+
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
             </Link>
-            </div>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div>
 
-        </div>
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+      <FiSearch />
+      <input type="text" placeholder="Search products..." />
+    </div> */} 
 
-      </div>
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link>
+
+      <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link>
+
+      <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
 
 
 
@@ -561,11 +618,22 @@ const cancelproduct = async (productId, reason) => {
     <br/>
       
     <br/>
-    
-  <button onClick={() => setPrfedit(true)}>
-  Edit
-</button>
+   <div className="log">
+  <div className="log1">
+    <button className="logout-btn" onClick={handlelogout}><FiLogOut/>
+      Logout
+    </button>
+  </div>
 
+  <div className="log2">
+    <button
+      className="edit-btn"
+      onClick={() => setPrfedit(true)}
+    >
+      Edit
+    </button>
+  </div>
+</div>
   </div>
 
      </div>
@@ -1575,7 +1643,7 @@ const cancelproduct = async (productId, reason) => {
 
       await cancelproduct(productId, returnReason);
 
-      alert("Return request submitted successfully");
+          toast.success("Return request submitted successfully!");
 
       setIsreturn(false);
       setItemreturn(null);
@@ -1584,11 +1652,10 @@ const cancelproduct = async (productId, reason) => {
   console.error("Return request failed:", error);
   console.error("Backend response:", error.response?.data);
 
-  alert(
-    error.response?.data?.message ||
-    error.message ||
-    "Failed to submit return request"
-  );
+    toast.error(
+      error.response?.data?.message ||
+      "Failed to submit return request!"
+    );
 }
   }}
 >

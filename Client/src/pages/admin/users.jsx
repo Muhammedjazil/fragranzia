@@ -7,20 +7,26 @@ import {
   FiEdit,
   FiHome,
   FiEye,
-  FiLogOut 
+  FiLogOut,
+  FiX,
+   FiMenu
 } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import "./users.css"
 import { useEffect, useState } from "react";
-import UserService from "../../service/user-api-services/UserService";
+import AdminService from "../../service/admin-api-services/AdminService";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 //=======registred customers=======
 
 export const Users=()=>{
+const navigate=useNavigate()
+// const [menuOpen, setMenuOpen] = useState(false);
 const[show,setshow]=useState({})
 const[user,setUser]=useState([])
 const[showdisplay,setshowdisplay]=useState(false)
 
-const {fetchcustomer,changeisactive}=UserService()
+const {fetchcustomer,changeisactive}=AdminService()
   const handleshow=(user)=>{
     setshow({
       name:user.name,
@@ -52,32 +58,61 @@ const handleactive = async (id) => {
     );
   }
 };
+const handlelogout=async()=>{
+  localStorage.removeItem("token");
+  toast.success("Logout successfully!");
+  navigate("/signin")
+}
 
     return(
         <div className="category">
        
       
             {/* Sidebar Navigation */}
-            <div className="category-nav">
-               <h2>Dashtar</h2>
-               <Link to="Dashboard"><FiGrid/>   Dashboard</Link>
-               
-               <Link to="/Product"><FiPackage/>   Product</Link>
-               
-               <Link to="/Categories"><FiHome/>   Categories</Link>
-             
-               <Link to="Offer"><FiTag/>   Offer</Link>
-              
-               <Link to="/Customer"><FiUsers/>   Customer</Link>
-               
-               <Link to="/order"><FiShoppingCart/>   order</Link>
-             
-           
-               <div className="category-logout">
-                  <br/>
-                  <button> <FiLogOut /> Log Out</button>
-               </div>
-            </div>
+                        {/* <div className="category-nav">
+  <div className="nav-header">
+    <h2>Dashtar</h2>
+
+    <button
+      type="button"
+      className="hamburger"
+      onClick={() => setMenuOpen(!menuOpen)}
+      aria-label="Toggle navigation"
+    > */}
+      {/* {menuOpen ? <FiX /> : <FiMenu />}
+    </button>
+  </div>
+
+  <div className={`category-nav-links ${menuOpen ? "active" : ""}`}>
+    <Link to="/Dashboard" onClick={() => setMenuOpen(false)}>
+      <FiGrid /> Dashboard
+    </Link>
+
+    <Link to="/Product" onClick={() => setMenuOpen(false)}>
+      <FiPackage /> Product
+    </Link>
+
+    <Link to="/Categories" onClick={() => setMenuOpen(false)}>
+      <FiHome /> Categories
+    </Link> */}
+
+    {/* <Link to="Offer" onClick={() => setMenuOpen(false)}>
+      <FiTag /> Offer
+    </Link> */}
+{/* 
+    <Link to="/Customer" onClick={() => setMenuOpen(false)}>
+      <FiUsers /> Customer
+    </Link>
+
+    <Link to="/order" onClick={() => setMenuOpen(false)}>
+      <FiShoppingCart /> Order
+    </Link> */}
+
+    {/* <div className="category-logout">
+      <button onClick={handlelogout}><FiLogOut /> Log Out</button>
+    </div>
+  </div>
+</div> */}
 
 
      <div className="category-content">
@@ -117,14 +152,14 @@ const handleactive = async (id) => {
             </td>
 
             <td>
-              <td>
+             
   <button
     className={user.isActive ? "active-status" : "blocked-status"}
     onClick={() => handleactive(user._id)}
   >
     {user.isActive ? "Active" : "Blocked"}
   </button>
-</td>
+
             </td>
           </tr>
         ))}

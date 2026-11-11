@@ -1,11 +1,11 @@
-.Paymentsucess-blur {
+/* .Paymentsucess-blur {
     filter: blur(5px);
-}
+} */
 /* =====================================================
    RESET
 ===================================================== */
 
-* {
+/* * {
     box-sizing: border-box;
 }
 
@@ -16,25 +16,25 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 
     background: #fff;
-}
+} */
 
 
 /* =====================================================
    MAIN PAYMENT CONTAINER
 ===================================================== */
-
+/* 
 .payment {
     width: 100%;
     min-height: 100vh;
     background: white;
-}
+} */
 
 
 /* =====================================================
    NAVBAR
 ===================================================== */
 
-.payment-nav {
+/* .payment-nav {
     width: 100%;
     height: 98px;
 
@@ -48,12 +48,12 @@ body {
     box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
 
     background: white;
-}
+} */
 
 
 /* LOGO */
 
-.payment-head {
+/* .payment-head {
     flex-shrink: 0;
 }
 
@@ -65,12 +65,12 @@ body {
     font-size: 23px;
     font-weight: 700;
 }
-
+ */
 
 /* =====================================================
    NAV LINKS
 ===================================================== */
-
+/* 
 .payment-sections {
     margin-left: auto;
 }
@@ -106,13 +106,13 @@ body {
 .payment-sections a:hover {
     color: rgb(4, 56, 56);
 }
-
+ */
 
 /* =====================================================
    SEARCH
 ===================================================== */
 
-.payment-search {
+/* .payment-search {
     position: relative;
 
     width: 200px;
@@ -232,13 +232,13 @@ body {
     align-items: start;
 
     margin-top: 0;
-}
+} */
 
 
 /* =====================================================
    PRODUCT CARD
 ===================================================== */
-
+/* 
 .payment-section-2-1-img {
     min-height: 220px;
 
@@ -305,13 +305,13 @@ body {
 
     width: 13px;
 }
-
+ */
 
 /* =====================================================
    QUANTITY BUTTON
 ===================================================== */
 
-.count-button {
+/* .count-button {
     width: 84px;
     height: 36px;
 
@@ -342,14 +342,14 @@ body {
     font-size: 16px;
 
     cursor: pointer;
-}
+} */
 
 
 /* =====================================================
    PRODUCT PRICE
 ===================================================== */
 
-.payment-imgdatails h2:nth-of-type(2) {
+/* .payment-imgdatails h2:nth-of-type(2) {
     margin-top: 12px;
 
     font-size: 20px;
@@ -401,13 +401,13 @@ body {
 
     font-weight: 400;
 }
-
+ */
 
 /* =====================================================
    PRICE DETAILS CARD
 ===================================================== */
 
-.priceDeatails {
+/* .priceDeatails {
     width: 100%;
     height: 300px;
 
@@ -444,11 +444,11 @@ body {
     font-size: 13px;
 
     font-weight: 400;
-}
+} */
 
 
 /* PRICE */
-
+/* 
 .priceDeatails span {
     margin-left: auto;
 
@@ -495,7 +495,7 @@ body {
     font-size: 18px;
 
     font-weight: 700;
-}
+} */
 
 
 /* =====================================================
@@ -505,7 +505,7 @@ body {
 /*
    This is the first .personal-details in your JSX
 */
-
+/* 
 .payment > .personal-details {
     width: auto;
 
@@ -519,12 +519,12 @@ body {
 
     font-weight: 700;
 }
-
+ */
 
 /* =====================================================
    ADDRESS BUTTONS
 ===================================================== */
-
+/* 
 .details-pay {
     display: inline-flex;
 
@@ -568,13 +568,13 @@ body {
 .details-pay svg {
     width: 14px;
     height: 14px;
-}
+} */
 
 
 /* =====================================================
    ADDRESS + PAYMENT METHODS
 ===================================================== */
-
+/* 
 .payment-address {
     position: relative;
     width: 100%;
@@ -588,13 +588,13 @@ body {
     padding: 12px 48px 40px;
 
     align-items: start;
-}
+} */
 
 
 /* =====================================================
    ADDRESS
 ===================================================== */
-
+/* 
 .payment-address .personal-details {
     width: 100%;
 
@@ -643,13 +643,13 @@ body {
 
     font-weight: 400;
 }
-
+ */
 
 /* =====================================================
    PAYMENT METHODS
 ===================================================== */
 
-.payment-methods {
+/* .payment-methods {
     width: 100%;
     position: absolute;
     top: -49%;
@@ -717,13 +717,13 @@ body {
     font-weight: 500;
 
     white-space: nowrap;
-}
+} */
 
 
 /* =====================================================
    RADIO BUTTON
 ===================================================== */
-
+/* 
 .payment-option input[type="radio"] {
     appearance: none;
 
@@ -817,9 +817,9 @@ body {
     .payment-icons svg {
         width: 35px;
         height: 35px;
-    }
+    } */
 
-    .payment-section-2,
+    /* .payment-section-2,
     .payment-address {
         padding-left: 25px;
         padding-right: 25px;
@@ -900,8 +900,8 @@ body {
     width: 150px;
     height: 30px;
     font-weight: bold;
-}
-.sucess-data button:hover{
+} */
+/* .sucess-data button:hover{
     background-color: #002f3d;
     color: white;
 }
@@ -916,4 +916,4 @@ body {
 }
 .sucess-data p{
     margin-left: 1cm;
-}
+} */

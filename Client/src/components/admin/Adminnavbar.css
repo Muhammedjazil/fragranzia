@@ -1,0 +1,100 @@
+
+.category-nav {
+    width: 250px;
+    min-width: 250px;
+    height: 100vh;
+    padding: 25px 18px 15px;
+    background: #ffffff;
+    border-right: 1px solid #e8e8e8;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.nav-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.category-nav h2 {
+    color: green;
+    font-size: 25px;
+    font-weight: 800;
+    margin: 0 0 25px 12px;
+}
+
+.category-nav-links {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+}
+
+.category-nav-links > a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 13px 15px;
+    margin-bottom: 12px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.category-nav-links > a:hover {
+    background: #eaf3f6;
+    color: #087c9c;
+    transform: translateX(5px);
+}
+
+.category-nav-links > a svg {
+    font-size: 18px;
+    transition: transform 0.3s ease;
+}
+
+.category-nav-links > a:hover svg {
+    transform: scale(1.15);
+}
+
+/* Logout */
+
+.category-logout {
+    width: 100%;
+    margin-top: auto;
+    padding: 10px 0 0;
+    box-sizing: border-box;
+    flex-shrink: 0;
+}
+
+.category-logout button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 15px;
+    margin: 0;
+    background: #198754;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.category-logout button:hover {
+    background: #146c43;
+}
+
+/* Hamburger hidden on desktop */
+
+.hamburger {
+    display: none;
+}

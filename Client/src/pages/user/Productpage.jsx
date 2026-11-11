@@ -9,15 +9,16 @@ import Image9 from "../../assets/sub12.png"
 import Image10 from "../../assets/sub17.jpg"
 import Image11 from "../../assets/sub10.jpg"
 import Image12 from "../../assets/sub15.jpg"
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+import { toast } from "react-toastify";
 import {
-  FiShoppingCart,
-  FiBell,
-  FiUser,
-  FiSearch,
-  FiTruck,
-  FiShield,
-  FiHeadphones,
+  // FiShoppingCart,
+  // FiBell,
+  // FiUser,
+  // FiSearch,
+  // FiTruck,
+  // FiShield,
+  // FiHeadphones,
   FiMail,
   FiPhone,
   FiInstagram,
@@ -31,7 +32,8 @@ import {
   FiDollarSign,
    FiArrowUp,
    FiArrowDown, 
-   FiRotateCcw
+   FiRotateCcw,
+    // FiMenu
 } from "react-icons/fi";
 
 import axios from "axios"
@@ -42,7 +44,8 @@ import { useEffect, useState } from "react"
 import UserService from "../../service/user-api-services/UserService"
 
 export const Products=()=>{
-
+const [search, setSearch] = useState("");
+const [menuOpen, setMenuOpen] = useState(false);
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(5000);
 const [sortBy, setSortBy] = useState("Relevance");
@@ -63,6 +66,10 @@ useEffect(()=>{
   fechproduct();
    fetchWishlist();
 },[])
+// for serach
+ const filteredProducts =allData.filter((product)=>
+  product.name.toLowerCase().includes(search.toLowerCase())
+ )
 
 
 
@@ -72,13 +79,13 @@ const handleAddToCart = async (product) => {   //addtocard button click then sen
     const response = await addToCart(product._id);   //to avoid multiple API calss we use UserServive.jsx, so do this
 
     console.log("Cart response:", response);
-    alert(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`);
   } catch (error) {
     console.error("Status:", error.response?.status);
     console.error("Backend error:", error.response?.data);
     console.error("Error message:", error.message);
 
-    alert(
+       toast.error(
       error.response?.data?.message ||
       "Unable to add product to cart"
     );
@@ -112,13 +119,19 @@ const handleLike = async (productId) => {
     );
 
     setLikedProducts(wishlistIds);
+    if (wishlistIds.includes(id)) {
+      toast.success("Added to wishlist!");
+    } else {
+      toast.info("Removed from wishlist!");
+    }
+
   } catch (error) {
     console.error(
       "Wishlist error:",
       error.response?.data || error.message
     );
 
-    alert(
+       toast.error(
       error.response?.data?.message ||
       "Unable to update wishlist"
     );
@@ -177,75 +190,75 @@ return(
     <div>
              {/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+{/*       
+<div className="home-fullnav">
 
-        <h2 id="nav-heading">Fragranzia</h2>
+  <h2 id="nav-heading">Fragranzia</h2>
 
-        <div className="home-fullnav1">
+  {/* Hamburger button - mobile only */}
+  {/* <button
+    className="mobile-menu-btn"
+    onClick={() => setMenuOpen(!menuOpen)}
+    aria-label="Toggle navigation menu"
+  >
+    {menuOpen ? <FiX /> : <FiMenu />}
+  </button> */}
 
-          <div className="home-nav">
+  {/* <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
 
-            <nav>
-              <ul>
-
-                <li>
-                                  <Link to="/Home">Home</Link>
-
-                </li>
-
-                <li>
-                  <Link to="/products">Products</Link>
-                </li>
-
-                <li>
-                  <Link to="/gifting">Gifting</Link>
-                </li>
-
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-
-              </ul>
-            </nav>
-
-          </div>
-
-
-          {/* SEARCH */}
-
-          <div className="home-navsearch">
-
-            <FiSearch />
-
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
-
-          </div>
-
-
-          {/* ICONS */}
-
-          <div className="home-navicons">
-
-            <Link to="/cart">
-              <FiShoppingCart />
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
+          </li>
 
-            <Link to="/notifications">
-              <FiBell />
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
+          </li>
 
-            <Link to="/profilesave">
-              <FiUser />
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
             </Link>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul> */}
+      {/* </nav> */}
+    {/* </div> */} 
 
-        </div>
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+      <FiSearch />
+      <input type="text" value={search} onChange={(e)=>{setSearch(e.target.value)}} placeholder="Search products..." />
+    </div> */}
 
-      </div>
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link>
+
+      <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link>
+
+      <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
 
 
 
@@ -444,7 +457,7 @@ return(
    
    <div className="product-container">
      
-      {allData.map((product)=>(
+      {filteredProducts.map((product)=>(
        
      
 
@@ -566,7 +579,7 @@ return(
             </li>
 
             <li>
-              <Link to="/gifting">Gifting</Link>
+              <Link to="/gifting">Wishlist</Link>
             </li>
 
             <li>

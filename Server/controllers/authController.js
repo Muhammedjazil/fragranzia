@@ -31,19 +31,73 @@ try {
 }
 }
 
-let login = async (req, res) => {
-  const { email, password } = req.body;
+// let login = async (req, res) => {
+//   const { email, password } = req.body;
 
-  const user = await User.findOne({ email });             //Database-ൽ ആ email ഉള്ള user ഉണ്ടോ എന്ന് പരിശോധിക്കുന്നു. indenkil user==true
-  if (!user) return res.status(400).json({ message: "Invalid Email" });
+//   const user = await User.findOne({ email });             //Database-ൽ ആ email ഉള്ള user ഉണ്ടോ എന്ന് പരിശോധിക്കുന്നു. indenkil user==true
+//   if (!user) return res.status(400).json({ message: "Invalid Email" });
 
-  const isMatch = await bcrypt.compare(password, user.password);            //user.password → database-ൽ save ചെയ്ത hashed password.bcrypt.compare() → നൽകിയ password database-ലെ hash-ുമായി match ചെയ്യുന്നുണ്ടോ, ismatch==true
-  if (!isMatch) return res.status(400).json({ message: "Invalid Password" });
+//   const isMatch = await bcrypt.compare(password, user.password);            //user.password → database-ൽ save ചെയ്ത hashed password.bcrypt.compare() → നൽകിയ password database-ലെ hash-ുമായി match ചെയ്യുന്നുണ്ടോ, ismatch==true
+//   if (!isMatch) return res.status(400).json({ message: "Invalid Password" });
  
-  const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1y" });   //{ _id: user._id }-->Token-ൽ user-ന്റെ ID ഉൾപ്പെടുത്തുന്നു
+//   const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, { expiresIn: "1y" });   //{ _id: user._id }-->Token-ൽ user-ന്റെ ID ഉൾപ്പെടുത്തുന്നു
 
-  res.json({ token,role:user.role });//  res.json({ token:token,role:user.role }); aa specific userintre role frontendileek ayakkum
-}
+//   res.json({ token,role:user.role });//  res.json({ token:token,role:user.role }); aa specific userintre role frontendileek ayakkum
+// }
+
+//========weadd=============when admin block then user can't login============//
+
+let login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user by email
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(400).json({
+        message: "Invalid Email"
+      });
+    }
+
+    // Check whether admin has blocked this account
+    if (user.isActive === false) {
+      return res.status(403).json({
+        message: "Your account has been blocked. Please contact the administrator."
+      });
+    }
+
+    // Check password
+    const isMatch = await bcrypt.compare(password, user.password);
+
+    if (!isMatch) {
+      return res.status(400).json({
+        message: "Invalid Password"
+      });
+    }
+
+    // Generate JWT only for active users
+    const token = jwt.sign(
+      { _id: user._id },
+      process.env.JWT_SECRET,
+      { expiresIn: "1y" }
+    );
+
+    res.status(200).json({
+      token,
+      role: user.role
+    });
+
+  } catch (error) {
+    console.log("Login error:", error);
+
+    res.status(500).json({
+      message: "Login failed. Please try again."
+    });
+  }
+};
+
+//==============================================================================//
 
 let home = (req, res) => {
   

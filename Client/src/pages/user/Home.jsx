@@ -20,15 +20,15 @@ import cat2 from "../../assets/cat2.jfif";
 import cat3 from "../../assets/cat3.avif";
 import cat4 from "../../assets/cat4.webp";
 import cat5 from "../../assets/cat5.webp";
-
+import home1 from "../../assets/home1.png"
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import UserService from "../../service/user-api-services/UserService"
 import {
-  FiShoppingCart,
-  FiBell,
-  FiUser,
-  FiSearch,
+  // FiShoppingCart,
+  // FiBell,
+  // FiUser,
+  // FiSearch,
   FiTruck,
   FiShield,
   FiHeadphones,
@@ -38,7 +38,9 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
-  FiHeart
+  FiHeart,
+  //  FiMenu, 
+  //  FiX 
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
 
@@ -66,8 +68,10 @@ import { useEffect, useState } from "react";
     ];
 
 
-export const Home = () => {
+export const Home = ({ search }) => {
 
+  const [menuOpen, setMenuOpen] = useState(false);
+//  const [search, setSearch] = useState("");
    const [likedProducts, setLikedProducts] = useState([]);
 
    const { getHome, addToCart,handlewishlist,getWishlist} = UserService();
@@ -97,6 +101,14 @@ useEffect(()=>{
 fechData();
 fetchWishlist();
 },[])
+
+//=========for search=================//
+const filteredProducts = allData.filter((product) =>
+  product.name?.toLowerCase().includes(
+    (search || "").toLowerCase()
+  )
+);
+
 //===============================//
 
 const handleAddToCart = async (product) => {
@@ -105,13 +117,13 @@ const handleAddToCart = async (product) => {
     const response = await addToCart(product._id);   //to avoid multiple API calss we use UserServive.jsx, so do this
 
     console.log("Cart response:", response);
-    alert(`${product.name} added to cart!`);
+      toast.success(`${product.name} added to cart!`);
   } catch (error) {
     console.error("Status:", error.response?.status);
     console.error("Backend error:", error.response?.data);
     console.error("Error message:", error.message);
 
-    alert(
+      toast.error(
       error.response?.data?.message ||
       "Unable to add product to cart"
     );
@@ -119,17 +131,36 @@ const handleAddToCart = async (product) => {
 };
 //================heart=================
 
-const handleLike = async(productId) => {
-// const response=await axios.post(`http://localhost:7000/wishlist/${id}`)
-  const response=await handlewishlist(productId)
+const handleLike = async (productId) => {
+  try {
+    // Check whether product is already in wishlist
+    const isLiked = likedProducts.includes(productId);
 
-  setLikedProducts((prev) =>
-    prev.includes(productId)
-      ? prev.filter((id) => id !== productId)  //again click to remove
-      : [...prev, productId]
-  );
-  
+    // Call backend API
+    await handlewishlist(productId);
 
+    // Update wishlist state
+    setLikedProducts((prev) =>
+      isLiked
+        ? prev.filter((id) => id !== productId)
+        : [...prev, productId]
+    );
+
+    // Show toast message
+    if (isLiked) {
+      toast.info("Removed from wishlist!");
+    } else {
+      toast.success("Added to wishlist!");
+    }
+
+  } catch (error) {
+    console.error("Wishlist error:", error);
+
+    toast.error(
+      error.response?.data?.message ||
+      "Unable to update wishlist!"
+    );
+  }
 };
 
 //====we add====
@@ -161,93 +192,101 @@ const fetchWishlist = async () => {
     <div className="home">
 
       {/* ================= NAVBAR ================= */}
+{/* ================= NAVBAR ================= */}
 
-      <div className="home-fullnav">
+{/* <div className="home-fullnav"> */}
 
-        <h2 id="nav-heading">Fragranzia</h2>
+  {/* <h2 id="nav-heading">Fragranzia</h2> */}
 
-        <div className="home-fullnav1">
+  {/* Hamburger button - mobile only */}
+  {/* <button */}
+  {/* //   className="mobile-menu-btn" */}
+  {/* //   onClick={() => setMenuOpen(!menuOpen)} */}
+  {/* //   aria-label="Toggle navigation menu" */}
+  {/* // > */}
+  {/* //   {menuOpen ? <FiX /> : <FiMenu />} */}
+  {/* // </button> */}
 
-          <div className="home-nav">
+  {/* <div className={`home-fullnav1 ${menuOpen ? "menu-open" : ""}`}>
 
-            <nav>
-              <ul>
-
-                <li>
-               <Link to="/Home">Home</Link>
-
-                </li>
-
-                <li>
-                  <Link to="/products">Products</Link>
-                </li>
-
-                <li>
-                  <Link to="/gifting">Gifting</Link>
-                </li>
-
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-
-              </ul>
-            </nav>
-
-          </div>
-
-
-          {/* SEARCH */}
-
-          <div className="home-navsearch">
-
-            <FiSearch />
-
-            <input
-              type="text"
-              placeholder="Search products..."
-            />
-
-          </div>
-
-
-          {/* ICONS */}
-
-          <div className="home-navicons">
-
-            <Link to="/cart">
-              <FiShoppingCart />
+    <div className="home-nav">
+      <nav>
+        <ul>
+          <li>
+            <Link to="/" onClick={() => setMenuOpen(false)}>
+              Home
             </Link>
+          </li>
 
-            <Link to="/notifications">
-              <FiBell />
+          <li>
+            <Link to="/products" onClick={() => setMenuOpen(false)}>
+              Products
             </Link>
+          </li>
 
-            <Link to="/profilesave">
-              <FiUser />
+          <li>
+            <Link to="/gifting" onClick={() => setMenuOpen(false)}>
+              Wishlist
             </Link>
+          </li>
 
-          </div>
+          <li>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+          </li>
+        </ul>
+      </nav>
+    </div> */}
 
-        </div>
+    {/* SEARCH */}
+    {/* <div className="home-navsearch">
+  <FiSearch />
+  <input
+    type="text"
+    placeholder="Search products..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+</div> */}
 
-      </div>
+    {/* ICONS */}
+    {/* <div className="home-navicons">
+      <Link to="/cart" onClick={() => setMenuOpen(false)}>
+        <FiShoppingCart />
+      </Link>
+
+      <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+        <FiBell />
+      </Link>
+
+      <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+        <FiUser />
+      </Link>
+    </div>
+
+  </div>
+</div> */}
 
 
       {/* ================= OFFER BAR ================= */}
 
-      <div className="home-belownav">
-
-        <p>
-          ENJOY FESTIVE DISCOUNTS! FREE SHIPPING ABOVE 999 !
-        </p>
-
-      </div>
+        {/* DISCOUNT BAR */}
+            <div className="product-1">
+                <h2>
+                    ENJOY FESTIVE DISCOUNT! FREE SHIPPING ABOVE 999!
+                </h2>
+            </div>
 
 
       {/* ================= HERO ================= */}
 
-      <div className="home-hero">
-
+     <div
+  className="home-hero"
+  style={{
+    backgroundImage: `url(${home1})`,
+  }}
+>
         <div className="home-hero1">
 
           <h1>
@@ -260,9 +299,10 @@ const fetchWishlist = async () => {
             Every moment with an unforgettable essence.
           </p>
 
-          <button>
+      <Link to="/products">   <button>
             Shop Now
           </button>
+          </Link> 
 
         </div>
 
@@ -459,7 +499,9 @@ const fetchWishlist = async () => {
 
         <div className="products-container">
 
-          {allData.map((product) => (
+          {/* {allData.map((product) => ( */}
+           {/* to display search */}
+          {filteredProducts.map((product) => (
            
             <div
               className="product-card"
@@ -470,7 +512,10 @@ const fetchWishlist = async () => {
 <div className="likeicon">
   <span
     className="like"
-    onClick={() => handleLike(String(product._id))}
+    onClick={() => handleLike(String(product._id))
+
+      
+    }
     style={{
       color: likedProducts.includes(String(product._id))
         ? "red"
@@ -642,12 +687,13 @@ const fetchWishlist = async () => {
  {/* PRODUCTS */}
    <br/>
      
-   <h1>offer zone</h1>
+   <h1 className="offerzone">offer zone</h1>
    <br/>
         <div className="products-container">
    
-          {allData.map((product) => (
-          
+          {/* {allData.map((product) => ( */}
+           {/* to dispaly serach */}
+           {filteredProducts.map((product) => (
             <div
               className="product-card"
               key={product._id}
@@ -805,7 +851,7 @@ const fetchWishlist = async () => {
             </li>
 
             <li>
-              <Link to="/gifting">Gifting</Link>
+              <Link to="/gifting">Wishlist</Link>
             </li>
 
             <li>

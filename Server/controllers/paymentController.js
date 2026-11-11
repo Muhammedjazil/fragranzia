@@ -5,13 +5,14 @@ const { Address } = require("../models/Address");//userinte order address
 const { User } = require("../models/User");//to identify the specific user
 const { Order } = require("../models/Order");  //to move that collection
 const { Product } = require("../models/Product");
+const razorpay = require("../utils/razorpay.js");
 
 const placeOrder=async(req,res)=>{
     try{
-        const {shippingAddress,paymentMethod}=req.body
-        if(paymentMethod!="cod"){
-           return res.json("pleae select cash on delivary")
-        }
+        const {shippingAddress,paymentMethod,currency="INR"}=req.body  //Frontend currency അയച്ചിട്ടില്ലെങ്കിൽ JavaScript സ്വയം "INR" നൽകും.
+        // if(paymentMethod!="COD"){
+        //    return res.json("pleae select cash on delivary")
+        // }
             // Find the logged-in user and their cart products
        const user=await User.findById(req.userId).populate("cart.product")         //user cartilee product aanu direct payment pagil vannath so cartile productilil userinte venda (select chytha)productid und so atee id aanu evade vendath
               
@@ -28,8 +29,8 @@ const placeOrder=async(req,res)=>{
       });
     }
       const address = await Address.findOne({
-      _id: shippingAddress,
-      user: req.userId,
+      _id: shippingAddress,           //ee address id valid aano
+      user: req.userId,               //loginchytha userinte addressId aano ennu orappikummu
     });
 
     if (!address) {
@@ -75,18 +76,18 @@ for (const item of user.cart) {
     });
   }
 
-  const updatedProduct = await Product.findOneAndUpdate(
-    {
-      _id: productId,
-      stock: { $gte: quantity },
-    },
-    {
-      $inc: { stock: -quantity },
-    },
-    {
-      new: true,
-    }
-  );
+const updatedProduct = await Product.findOneAndUpdate(
+  {
+    _id: productId,
+    stock: { $gte: quantity },
+  },
+  {
+    $inc: { stock: -quantity },
+  },
+  {
+    returnDocument: "after",
+  }
+);
 
   if (!updatedProduct) {
     // Restore stock already deducted during this order attempt
@@ -123,10 +124,47 @@ for (const item of user.cart) {
     user.cart_total = 0;
     await user.save();
 
+    
+    //===============payment=======================//
+    let razorpayOrder = null;
+
+    // Create one Razorpay order if payment is not COD
+    if (paymentMethod !== "COD") {
+      console.log(5555555555555555555);
+      
+      const options = {
+        amount: totalPrice * 100, // Rupees-നെ Paise ആക്കി മാറ്റുന്നു.
+        currency,           //INR
+        receipt: `receipt_${order._id}`,   //ഓരോ order-നും ഒരു unique receipt reference നൽകുന്നു.
+      };
+
+
+      razorpayOrder = await razorpay.orders.create(options);  // Save Razorpay Order ID
+
+
+      if (!razorpayOrder) {
+        return res
+          .status(500)
+          .json({ message: "Razorpay order creation failed" });
+      }
+
+      // Save razorpay ID to all orders
+
+    }
+
+    // console.log(razorpayOrder,'razorpayOrder');
+    
+
     return res.status(201).json({
       message: "Order placed successfully with Cash on Delivery",
+      success:true,
       order,
+      razorpayOrder:razorpayOrder ||null,
+      paymentMethod
+
     });
+
+    //======================//========================//
   } catch (error) {
     console.error("Place order error:", error);
 
@@ -144,7 +182,14 @@ const fetchorderdata = async (req, res) => {
     const data = await Order.find({
       user: req.userId,
     })
-      .populate("orderItems.product")
+     // .populate("orderItems.product") for dashbord we use below code populate category
+    .populate({
+    path: "orderItems.product",
+    populate: {
+      path: "category",
+      select: "name",
+    },
+  })
       .populate("shippingAddress")
       .sort({ createdAt: -1 });
 
@@ -165,7 +210,14 @@ const takecustomerdetails = async (req, res) => {
     // Fetch all orders with customer, product, and address details
     const data = await Order.find()
       .populate("user", "name email phone")
-      .populate("orderItems.product")
+      .populate({
+        // .populate("orderItems.product") for dashbord we use below code populate category
+              path: "orderItems.product",
+              populate: {
+              path: "category",
+              select: "name",
+  },
+})
       .populate("shippingAddress")
       .sort({ createdAt: -1 });
 
@@ -202,7 +254,14 @@ const takeshowdetails = async (req, res) => {
 
     const order = await Order.findById(id)
       .populate("user", "name email phone")
-      .populate("orderItems.product")
+      //.populate("orderItems.product") we populate category for dashbord
+      .populate({
+          path: "orderItems.product",
+          populate: {
+          path: "category",
+          select: "name",
+  },
+})
       .populate("shippingAddress")
       .lean();
 

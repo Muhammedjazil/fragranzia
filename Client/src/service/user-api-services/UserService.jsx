@@ -153,13 +153,13 @@ const takeorder=async()=>{
 
 }
 
-//take registerd user==pending===chyyanam
+// //take registerd user==pending===chyyanam
 
-const fetchcustomer=async()=>{
-  const response=await axiosPrivate.get("/api/auth/users")
-  return response.data;
+// const fetchcustomer=async()=>{
+//   const response=await axiosPrivate.get("/api/auth/users")
+//   return response.data;
 
-}
+// }
 
 
 const adminorder=async(req,res)=>{
@@ -168,11 +168,11 @@ const adminorder=async(req,res)=>{
 
 }
 
-const changeisactive=async(id)=>{
-  const response=await axiosPrivate.put(`/api/auth/isactive/${id}`)
-  return response.data;
+// const changeisactive=async(id)=>{
+//   const response=await axiosPrivate.put(`/api/auth/isactive/${id}`)
+//   return response.data;
 
-}
+// }
 
 const fetchshowdetails=async(id)=>{
   let response=await axiosPrivate.get(`/api/orders/show/${id}`)
@@ -262,9 +262,9 @@ const getFilteredProducts = async (minPrice, maxPrice, sortBy) => {
     fetchaddress,
     placeOrder,
     takeorder,
-    fetchcustomer,
+    // fetchcustomer,
     adminorder,
-    changeisactive,
+    // changeisactive,
     fetchshowdetails,
     changeOrderStatus,
     handlecancel,

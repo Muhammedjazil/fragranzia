@@ -19,21 +19,20 @@ import {
   FiMapPin,
   FiCreditCard,
   FiX,
-  FiLogOut 
+  FiLogOut,
+  FiMenu
 } from "react-icons/fi";
+import { toast } from "react-toastify";
 import { RiMoneyRupeeCircleLine } from "react-icons/ri";
-import Image1 from "../../assets/sub1.jpg"
-import axios from "axios";
 import { useEffect, useState } from "react";
 import UserService from "../../service/user-api-services/UserService";
+import { useNavigate } from "react-router-dom";
 
-let data=[
-    {id:"3udsdsd", name:"user1",phone:"1234567890", date:"july 1,2026",image:Image1,details:"steel", qty:"1",price:"60",total:"60" },
-    {id:"3udsdsd", name:"user1",phone:"1234567890", date:"july 1,2026",image:Image1,details:"steel", qty:"1",price:"60",total:"60" } 
-]
 
 
 export const Order=()=>{
+const navigate=useNavigate()
+const [menuOpen, setMenuOpen] = useState(false);
   const[details,setDetails]=useState(null)
   const {adminorder,fetchshowdetails,changeOrderStatus}=UserService()
 const [showdeatils,setshowdetails]=useState(false)
@@ -85,7 +84,7 @@ const handleStatusChange = async (id, newStatus) => {
         : prevDetails
     );
 
-    alert("Delivery status updated successfully!");
+    toast.success("Status updated successfully")
   } catch (error) {
     console.error("Status update failed:", error);
     alert(
@@ -95,36 +94,58 @@ const handleStatusChange = async (id, newStatus) => {
   }
 };
 
+const handlelogout=()=>{
+  localStorage.removeItem("token");
+  toast.success("Logout successfully!");
+  navigate("/signin")
+}
 
     return(
         <div className="orderdetails">
+    {/* <div className="category-nav">
+  <div className="nav-header">
+    <h2>Dashtar</h2>
 
-          <div className="category-nav">
-        <h2>Dashtar</h2>
+    <button
+      type="button"
+      className="hamburger"
+      onClick={() => setMenuOpen(!menuOpen)}
+      aria-label="Toggle navigation"
+    >
+      {menuOpen ? <FiX /> : <FiMenu />}
+    </button>
+  </div> */}
 
-        <Link to="/Dashboard"><FiGrid /> Dashboard</Link>
-      
-        
-        <Link to="/Product"><FiPackage /> Product</Link>
-       
+  {/* <div className={`category-nav-links ${menuOpen ? "active" : ""}`}>
+    <Link to="/Dashboard" onClick={() => setMenuOpen(false)}>
+      <FiGrid /> Dashboard
+    </Link>
 
-        <Link to="/Categories"><FiHome /> Categories</Link>
-       
+    <Link to="/Product" onClick={() => setMenuOpen(false)}>
+      <FiPackage /> Product
+    </Link>
 
-        <Link to="/Offer"><FiTag /> Offer</Link>
-      
+    <Link to="/Categories" onClick={() => setMenuOpen(false)}>
+      <FiHome /> Categories
+    </Link> */}
 
-        <Link to="/Customer"><FiUsers /> Customer</Link>
-        
+    {/* <Link to="Offer" onClick={() => setMenuOpen(false)}>
+      <FiTag /> Offer
+    </Link> */}
 
-        <Link to="/order"><FiShoppingCart /> order</Link>
-       
+    {/* <Link to="/Customer" onClick={() => setMenuOpen(false)}>
+      <FiUsers /> Customer
+    </Link> */}
 
-        <div className="category-logout">
-          <br />
-          <button type="button"><FiLogOut /> Log Out</button>
-        </div>
-      </div>
+    {/* <Link to="/order" onClick={() => setMenuOpen(false)}>
+      <FiShoppingCart /> Order
+    </Link>
+
+    <div className="category-logout">
+      <button onClick={handlelogout}><FiLogOut /> Log Out</button>
+    </div>
+  </div>
+</div> */}
 
       <div className="ordertable">
   <h1><FiBox/>Order Management</h1>
@@ -220,8 +241,8 @@ const handleStatusChange = async (id, newStatus) => {
           <td>
             <button
               onClick={() => {
-                setshowdetails(true);
-                handleshow(value._id)
+               
+              handleshow(value._id)
               }
                  
               }

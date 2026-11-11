@@ -43,7 +43,7 @@ export const Address=()=>{
     </li>
     <li>
 
-    <Link to='/Gifting'>Gifting</Link>
+    <Link to='/Gifting'>Wishlist</Link>
     </li>
 <li>
     <Link to='/About'>About</Link>

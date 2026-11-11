@@ -1,258 +1,166 @@
 
-/* ==========================================
-   MAIN ORDER PAGE LAYOUT
-========================================== */
+/* =========================================
+   GLOBAL
+========================================= */
 
 * {
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
+
+html,
+body,
+#root {
+    width: 100%;
+    min-height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+/* =========================================
+   MAIN ORDER LAYOUT
+========================================= */
 
 .orderdetails {
-    display: flex;
-    align-items: stretch;
-    gap: 0;
     width: 100%;
-    min-height: 100vh;
-    padding: 0;
-    margin: 0;
-    background: #f6f7fb;
-    font-family: "Inter", "Segoe UI", sans-serif;
-    color: #202238;
-}
-
-/* ==========================================
-   SIDEBAR
-========================================== */
-
-.orderdetails > .category-nav {
-    width: 250px;
-    min-width: 250px;
-    max-width: 250px;
-    flex: 0 0 250px;
-
     height: 100vh;
-    padding: 25px 18px 15px;
-    margin: 0;
-
-    background: #ffffff;
-    border-right: 1px solid #e8e8e8;
-
     display: flex;
-    flex-direction: column;
-    align-items: stretch;
-
-    box-sizing: border-box;
+    background: #f5f6fa;
+    overflow: hidden;
 }
 
-/* Dashboard title */
+/* =========================================
+   SIDEBAR
+========================================= */
 
-.orderdetails > .category-nav h2 {
-    font-size: 25px;
-    font-weight: 800;
-    margin: 0 0 25px 12px;
-}
-
-/* Dashboard links */
-
-.orderdetails > .category-nav > a {
-    display: flex;
-    align-items: center;
-    gap: 13px;
-    padding: 13px 15px;
-    margin-bottom: 12px;
-
-    font-size: 15px;
-    font-weight: 700;
-    color: #333;
-    text-decoration: none;
-    border-radius: 8px;
-
-    transition: all 0.3s ease;
-}
-
-.orderdetails > .category-nav > a:hover {
-    background: #eaf3f6;
-    color: #087c9c;
-    transform: translateX(5px);
-}
-
-.orderdetails > .category-nav > a svg {
-    font-size: 18px;
-    transition: transform 0.3s ease;
-}
-
-.orderdetails > .category-nav > a:hover svg {
-    transform: scale(1.15);
-}
-
-/* Logout button */
-
-.orderdetails .category-logout {
-    width: 100%;
-    margin-top: auto;
-    padding: 10px 0 0;
-    box-sizing: border-box;
-    flex-shrink: 0;
-}
-
-.orderdetails .category-logout button {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-
-    width: 100%;
-    padding: 12px 15px;
-    margin: 0;
-
-    background: #198754;
-    color: white;
-    border: none;
-    border-radius: 8px;
-
-    font-size: 15px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.orderdetails .category-logout button:hover {
-    background: #146c43;
-}
-
-/* ==========================================
-   MAIN CONTENT
-========================================== */
+/* =========================================
+   ORDER TABLE MAIN CONTENT
+========================================= */
 
 .ordertable {
     flex: 1;
     min-width: 0;
-    width: auto;
-    padding: 25px;
+    height: 100vh;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .ordertable > h1 {
     display: flex;
     align-items: center;
     gap: 12px;
-    margin: 0 0 10px;
-    color: #202238;
-    font-size: 29px;
-    font-weight: 800;
-    letter-spacing: -0.8px;
+    font-size: 27px;
+    color: #222;
+    margin-bottom: 10px;
 }
 
 .ordertable > h1 svg {
-    width: 30px;
-    height: 30px;
-    color: #754be8;
+    color: #7454d6;
 }
 
 .ordertable > p {
-    margin: 0 0 28px;
-    color: #888ba0;
+    color: #777;
     font-size: 14px;
-    line-height: 1.6;
+    margin-bottom: 25px;
 }
 
-/* ==========================================
-   ORDER TABLE CARD
-========================================== */
-
+/* =========================================
+   TABLE CONTAINER
+========================================= */
 .ordertablecontent {
     width: 100%;
-    overflow-x: auto;
-    background: #fff;
-    border: 1px solid #e9eaf2;
-    border-radius: 16px;
-    box-shadow: 0 8px 30px rgba(36, 32, 75, 0.05);
+    flex: 1;
+    min-height: 0;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    background: white;
+    border-radius: 10px;
 }
 
 .ordertablecontent table {
     width: 100%;
-    min-width: 1050px;
-    border-collapse: separate;
-    border-spacing: 0;
-    text-align: left;
+    min-width: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+/* =========================================
+   TABLE CONTAINER - FIXED HEADING
+========================================= */
+
+.ordertablecontent {
+    width: 100%;
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
+    background: white;
+    border-radius: 10px;
 }
 
+.ordertablecontent table {
+    width: 100%;
+    min-width: 1000px;
+    table-layout: fixed;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* STATIC TABLE HEADING */
+
 .ordertablecontent thead {
-    background: #faf9fe;
+    position: sticky;
+    top: 0;
+    z-index: 10;
 }
 
 .ordertablecontent th {
-    height: auto;
-    padding: 21px 20px;
-    color: #85869a;
-    border-bottom: 1px solid #ededf4;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 0.9px;
-    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    background: #f5f3fc;
+    color: #7454d6;
+    padding: 14px 8px;
+    font-size: 12px;
+    text-align: left;
+    border-bottom: 1px solid #e8e2f5;
 }
+
+/* TABLE BODY */
 
 .ordertablecontent td {
-    padding: 22px 20px;
-    color: #41445a;
-    border-bottom: 1px solid #f0f0f6;
-    font-size: 13px;
-    vertical-align: middle;
-}
-
-.ordertablecontent tbody tr {
-    transition: background 0.2s ease;
-}
-
-.ordertablecontent tbody tr:hover {
-    background: #faf9ff;
-}
-
-.ordertablecontent tbody tr:last-child td {
-    border-bottom: none;
-}
-
-.ordertablecontent td:first-child {
-    max-width: 150px;
+    padding: 12px 8px;
     font-size: 12px;
-    font-weight: 700;
+    background: white;
     overflow-wrap: anywhere;
+    border-bottom: 1px solid #eeeeee;
 }
-
-.ordertablecontent td:first-child svg {
-    margin-left: 8px;
-    cursor: pointer;
-    color: #9690ad;
-    vertical-align: middle;
-}
-
-.ordertablecontent svg {
-    font-size: 15px;
-    flex-shrink: 0;
-}
-
-/* ==========================================
+/* =========================================
    CUSTOMER DETAILS
-========================================== */
+========================================= */
 
 .customer-avatar {
+    width: 35px;
+    height: 35px;
     display: inline-flex;
-    align-items: center;
     justify-content: center;
-    width: 37px;
-    height: 37px;
-    margin-right: 9px;
-    background: linear-gradient(135deg, #ede5ff, #dcd0ff);
-    border: 1px solid #e1d5ff;
+    align-items: center;
     border-radius: 50%;
-    color: #7045d7;
-    font-size: 14px;
-    font-weight: 800;
+    background: #eee9ff;
+    color: #7454d6;
+    font-weight: 700;
+    margin-right: 9px;
     vertical-align: middle;
 }
 
 .customer-name {
-    color: #292b40;
-    font-size: 13px;
-    font-weight: 700;
+    font-weight: 600;
+    color: #333;
     white-space: nowrap;
 }
 
@@ -260,449 +168,400 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    margin: 10px 0 0;
-    color: #9395a7;
+    margin-top: 9px;
+    color: #888;
     font-size: 11px;
-    font-weight: 500;
-    white-space: nowrap;
+    font-weight: 400;
 }
 
-/* ==========================================
+/* =========================================
    DATE
-========================================== */
+========================================= */
 
 .order-date {
-    display: inline-flex;
+    display: flex;
     align-items: center;
-    gap: 8px;
-    color: #696c81;
-    font-size: 12px;
+    gap: 7px;
     white-space: nowrap;
+    color: #555;
 }
 
-.order-date svg {
-    color: #8b6ae5;
-}
-
-/* ==========================================
-   PRODUCT INFORMATION
-========================================== */
+/* =========================================
+   PRODUCT DETAILS
+========================================= */
 
 .imageorder {
     display: flex;
     align-items: center;
     gap: 12px;
-    min-width: 195px;
+    min-width: 200px;
 }
 
 .imageorder > div:first-child {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 58px;
-    height: 62px;
-    flex-shrink: 0;
-    background: #f6f5fa;
-    border: 1px solid #ededf3;
-    border-radius: 10px;
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border-radius: 7px;
     overflow: hidden;
+    background: #f5f5f5;
 }
 
-.ordertablecontent .imageorder img {
+.imageorder img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 4px;
+    object-fit: cover;
 }
 
-.imageorder .product-name {
-    color: #303248;
-    font-size: 12px;
-    font-weight: 750;
+.product-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
 }
 
-.imageorder .product-info {
+.product-info {
     display: inline-block;
     margin-top: 5px;
-    color: #888ba0;
+    color: #888;
     font-size: 11px;
 }
 
 .imageorder h6 {
-    margin: 6px 0 0;
-    color: #5d3ac2;
+    margin-top: 5px;
+    color: #7454d6;
     font-size: 12px;
-    font-weight: 800;
 }
 
-/* ==========================================
+/* =========================================
    SHOW DETAILS BUTTON
-========================================== */
+========================================= */
 
 .orderbutton1 {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: 7px;
-    padding: 11px 13px;
-    color: #7149d9;
-    background: #f2edff;
-    border: 1px solid #e5dcff;
-    border-radius: 9px;
+    padding: 9px 13px;
+    border: 1px solid #7454d6;
+    border-radius: 6px;
+    background: white;
+    color: #7454d6;
     font-size: 12px;
-    font-weight: 700;
+    font-weight: 600;
     white-space: nowrap;
     cursor: pointer;
-    transition: 0.25s ease;
+    transition: 0.3s;
 }
 
 .orderbutton1:hover {
-    color: #fff;
-    background: #7048df;
-    border-color: #7048df;
-    box-shadow: 0 5px 14px rgba(112, 72, 223, 0.2);
+    background: #7454d6;
+    color: white;
 }
 
-.orderbutton1 svg {
-    color: inherit;
-}
+/* =========================================
+   DELIVERY STATUS
+========================================= */
 
-/* ==========================================
-   DELIVERY STATUS SELECT
-========================================== */
-
-.ordertablecontent td > select {
-    width: 145px;
-    max-width: 100%;
-    padding: 10px 28px 10px 11px;
-    color: #6c45d9;
-    background: #f5f1ff;
-    border: 1px solid #e5dcff;
-    border-radius: 9px;
+.ordertablecontent select {
+    min-width: 135px;
+    padding: 9px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
     outline: none;
+    background: white;
+    color: #555;
     font-size: 12px;
-    font-weight: 700;
     cursor: pointer;
 }
 
-.ordertablecontent td > select:focus {
-    border-color: #9979f1;
-    box-shadow: 0 0 0 3px rgba(112, 72, 223, 0.1);
+.ordertablecontent select:focus {
+    border-color: #7454d6;
 }
 
-/* ==========================================
+/* =========================================
+   NO ORDERS
+========================================= */
+
+.ordertablecontent tbody tr td[colspan="6"] {
+    text-align: center;
+    padding: 40px;
+    color: #888;
+}
+
+/* =========================================
    ORDER DETAILS MODAL
-========================================== */
+========================================= */
 
 .showdetails {
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1000;
-
-    width: min(1120px, calc(100vw - 48px));
-    max-height: 88vh;
+    width: 90%;
+    max-width: 1100px;
+    max-height: 90vh;
     overflow-y: auto;
-    overflow-x: hidden;
-
-    padding: 34px;
-    background: #fff;
-    border: 1px solid #ebe8f4;
-    border-radius: 20px;
-    box-shadow: 0 25px 90px rgba(27, 23, 55, 0.22);
+    padding: 30px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 5px 35px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
 }
 
+/* Modal close icon */
+
 .showdetails > span7 {
+    position: absolute;
+    top: 18px;
+    right: 20px;
     display: flex;
-    justify-content: flex-end;
-    margin-bottom: 12px;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #f5f5f5;
+    color: #555;
+    font-size: 20px;
     cursor: pointer;
 }
 
-.showdetails > span7 svg {
-    width: 21px;
-    height: 21px;
-    padding: 7px;
-    color: #77758a;
-    background: #f5f4f9;
-    border-radius: 9px;
-    transition: 0.2s ease;
+.showdetails > span7:hover {
+    background: #ffecec;
+    color: #e04444;
 }
 
-.showdetails > span7 svg:hover {
-    color: #d6455d;
-    background: #fff0f2;
-}
+/* Modal heading */
 
 .showdetails > h2 {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin: 0 0 13px;
-    color: #25263b;
-    font-size: 24px;
-    font-weight: 800;
+    gap: 10px;
+    font-size: 23px;
+    color: #222;
+    margin-bottom: 12px;
 }
 
 .showdetails > h2 span6 {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    background: #f0eaff;
-    border-radius: 11px;
-}
-
-.showdetails > h2 span6 svg {
-    width: 21px;
-    height: 21px;
-    color: #7048df;
+    color: #7454d6;
 }
 
 .showdetails > h5 {
-    margin: 0 0 26px;
-    color: #85869a;
-    font-size: 13px;
-    font-weight: 600;
+    color: #7454d6;
+    font-size: 12px;
+    margin-bottom: 25px;
+    word-break: break-all;
 }
 
-.showdetails > h5 svg {
-    margin-left: 6px;
-    color: #8b6ae5;
-    cursor: pointer;
-}
-
-/* ==========================================
-   CUSTOMER / ADDRESS / PAYMENT CARDS
-========================================== */
+/* =========================================
+   CUSTOMER / ADDRESS / PAYMENT GRID
+========================================= */
 
 .insideorderdetails {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 18px;
-    margin: 0;
+    margin-bottom: 30px;
 }
 
 .firstorder,
 .addressdetailss,
 .orderpayment {
     min-width: 0;
-    margin: 0;
-    padding: 24px;
-    background: #fbfaff;
-    border: 1px solid #ece8f7;
-    border-radius: 15px;
-    box-shadow: 0 3px 12px rgba(36, 32, 75, 0.025);
+    padding: 20px;
+    border: 1px solid #eeeeee;
+    border-radius: 9px;
+    background: #fff;
 }
 
-.firstorder h3,
-.addressdetailss h3,
-.orderpayment h3 {
+.insideorderdetails h3 {
     display: flex;
     align-items: center;
     gap: 8px;
-    margin: 0 0 23px;
-    color: #77758d;
-    font-size: 12px;
-    font-weight: 800;
-    letter-spacing: 0.6px;
+    font-size: 13px;
+    color: #7454d6;
+    margin-bottom: 20px;
 }
 
-.firstorder h3 svg,
-.addressdetailss h3 svg,
-.orderpayment h3 svg {
-    color: #7954df;
+.insideorderdetails h3 svg {
     font-size: 17px;
 }
+
+/* =========================================
+   CUSTOMER MODAL
+========================================= */
 
 .user {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 12px;
+    margin-bottom: 18px;
 }
 
-.U1 span3 {
-    display: inline-flex;
-    align-items: center;
+.U1 {
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    display: flex;
     justify-content: center;
-    width: 42px;
-    height: 42px;
-    padding: 0;
-    color: #7048df;
-    background: #ece5ff;
+    align-items: center;
+    background: #eee9ff;
+    color: #7454d6;
     border-radius: 50%;
-    font-size: 14px;
-    font-weight: 800;
+    font-size: 18px;
+    font-weight: 700;
 }
 
-.U1deatils p {
-    margin: 0 0 6px;
+.U1deatils {
+    min-width: 0;
     overflow-wrap: anywhere;
 }
 
 .U1deatils p:first-child {
-    color: #303147;
-    font-size: 14px;
-    font-weight: 750;
+    font-weight: 600;
+    color: #333;
 }
 
 .U1deatils p:last-child {
-    color: #9292a5;
+    margin-top: 5px;
     font-size: 11px;
+    color: #999;
 }
 
-.firstorder > p,
-.addressdetailss > p {
+.firstorder > p {
     display: flex;
-    align-items: flex-start;
-    gap: 9px;
-    margin: 13px 0 0;
-    color: #666a80;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    color: #666;
     font-size: 12px;
-    line-height: 1.7;
     overflow-wrap: anywhere;
 }
 
-.firstorder > p svg,
-.addressdetailss > p svg {
-    color: #8b6ae5;
+/* =========================================
+   ADDRESS MODAL
+========================================= */
+
+.addressdetailss > p {
+    margin-bottom: 12px;
+    color: #666;
+    font-size: 12px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
 }
+
+.addressdetailss > p:first-of-type {
+    font-weight: 600;
+    color: #333;
+}
+
+/* =========================================
+   PAYMENT MODAL
+========================================= */
 
 .orderpayment h6 {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     gap: 8px;
-    margin: 0;
-    color: #77798f;
+    margin-bottom: 15px;
+    color: #777;
     font-size: 12px;
-    font-weight: 500;
 }
 
 .orderpayment h6 span {
-    color: #34354b;
-    font-weight: 700;
+    color: #333;
+    font-weight: 600;
+    text-align: right;
 }
 
-.orderpayment h6 button {
-    padding: 6px 10px;
-    color: #b7791f;
-    background: #fff3d8;
-    border: none;
-    border-radius: 20px;
-    font-size: 11px;
-    font-weight: 700;
-}
-
-/* ==========================================
+/* =========================================
    ITEMS ORDERED
-========================================== */
+========================================= */
 
 .showdetails > h3 {
-    margin: 30px 0 17px;
-    color: #34354a;
-    font-size: 14px;
-    font-weight: 800;
-    letter-spacing: 0.5px;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 15px;
 }
 
 .itemordered {
+    width: 100%;
     display: flex;
     align-items: center;
-    gap: 22px;
-    padding: 22px;
+    gap: 20px;
+    padding: 15px;
+    margin-bottom: 12px;
+    border: 1px solid #eeeeee;
+    border-radius: 8px;
     background: #fff;
-    border: 1px solid #ececf3;
-    border-radius: 14px;
-    box-shadow: 0 3px 12px rgba(36, 32, 75, 0.035);
 }
 
 .itemimage {
+    width: 75px;
+    height: 75px;
+    min-width: 75px;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 76px;
-    height: 76px;
-    flex-shrink: 0;
-    background: #f7f6fb;
-    border-radius: 12px;
     overflow: hidden;
+    border-radius: 7px;
+    background: #f5f5f5;
+    color: #7454d6;
+    font-size: 25px;
 }
 
-.itemordered .itemimage img {
+.itemimage img {
     width: 100%;
     height: 100%;
-    object-fit: contain;
-    padding: 6px;
+    object-fit: cover;
 }
 
 .itemdetals {
     flex: 1;
     min-width: 0;
-    margin: 0;
 }
 
 .itemdetals h5 {
-    margin: 0 0 11px;
-    color: #303147;
+    margin-bottom: 10px;
+    color: #333;
     font-size: 14px;
-    font-weight: 800;
+    overflow-wrap: anywhere;
 }
 
 .itemdetals h6 {
-    margin: 0;
-    color: #85869a;
-    font-size: 11px;
-    font-weight: 500;
+    margin-bottom: 8px;
+    color: #888;
+    font-size: 12px;
 }
 
 .itemdetals h6 span {
-    color: #33344a;
-}
-
-.itemdetals span2 {
-    margin-left: 12px;
+    color: #444;
 }
 
 .itemprice {
-    min-width: 180px;
-    margin: 0;
+    min-width: 140px;
+    text-align: right;
 }
 
 .itemprice h6 {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    margin: 0 0 12px;
-    color: #85869a;
+    margin-bottom: 9px;
+    color: #777;
     font-size: 12px;
-    font-weight: 600;
 }
 
-.itemprice h6:first-child {
-    justify-content: space-between;
+.itemprice h6:nth-child(2) {
+    color: #7454d6;
+    font-weight: 700;
 }
 
 .itemprice h6 span {
-    display: inline-flex;
-    align-items: center;
-    margin-left: 15px;
+    color: #333;
+    font-weight: 700;
 }
 
-.itemprice h6 span svg {
-    color: #33344a;
-}
-
-.itemprice h6 span3 {
-    color: #303147;
-    font-size: 17px;
-    font-weight: 800;
-}
-
-/* ==========================================
+/* =========================================
    ORDER FOOTER
-========================================== */
+========================================= */
 
 .orderfooter {
     display: flex;
@@ -710,113 +569,62 @@
     justify-content: space-between;
     flex-wrap: wrap;
     gap: 20px;
-    min-height: 105px;
-    height: auto;
-    margin-top: 22px;
-    padding: 23px 26px;
-    background: linear-gradient(120deg, #faf8ff, #fff);
-    border: 1px solid #e9e1ff;
-    border-radius: 15px;
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 9px;
+    background: #f8f7fc;
 }
 
 .paid h1 {
-    margin: 0 0 9px;
-    color: #85839b;
-    font-size: 11px;
-    font-weight: 800;
-    letter-spacing: 1px;
+    margin-bottom: 8px;
+    color: #777;
+    font-size: 13px;
 }
 
 .paid h2 {
-    margin: 0;
-    color: #28243c;
-    font-size: 27px;
-    font-weight: 850;
-}
-
-.paid h2 span2 {
-    color: #7048df;
-}
-
-.paid h2 svg {
-    color: #7048df;
-    font-size: 22px;
-}
-
-.staus {
-    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #7454d6;
+    font-size: 23px;
 }
 
 .staus h5 {
-    margin: 0;
-    color: #696a80;
+    color: #777;
     font-size: 12px;
 }
 
-.staus button {
-    padding: 0;
-    background: transparent;
-    border: none;
-}
-
-.staus select {
-    width: 155px;
-    margin-left: 8px;
-    padding: 10px;
-    color: #7048df;
-    background: #f1ecff;
-    border: 1px solid #e3d9ff;
-    border-radius: 9px;
-    outline: none;
-    font-size: 12px;
-    font-weight: 700;
-    cursor: pointer;
-}
-
-.closedetails {
-    margin: 0;
+.staus strong {
+    color: #7454d6;
 }
 
 .closedetails button {
-    width: auto;
-    min-width: 145px;
-    height: 42px;
-    margin: 0;
-    padding: 0 18px;
-    color: #fff;
-    background: #7048df;
-    border: 1px solid #7048df;
-    border-radius: 10px;
-    font-size: 12px;
-    font-weight: 750;
+    padding: 11px 22px;
+    border: none;
+    border-radius: 6px;
+    background: #7454d6;
+    color: white;
+    font-size: 13px;
     cursor: pointer;
-    transition: 0.25s ease;
 }
 
 .closedetails button:hover {
-    background: #5833c3;
-    box-shadow: 0 6px 15px rgba(112, 72, 223, 0.2);
+    background: #6040c2;
 }
 
-/* ==========================================
-   RESPONSIVE - TABLET
-========================================== */
+/* =========================================
+   TABLET RESPONSIVE
+========================================= */
 
-@media (max-width: 1200px) {
-    .orderdetails {
-        gap: 0;
-        padding: 0;
-    }
+@media screen and (max-width: 1100px) {
 
-    .orderdetails > .category-nav {
-        width: 250px;
-        min-width: 250px;
-        max-width: 250px;
-        flex: 0 0 250px;
+    .orderdetails .category-nav {
+        width: 220px;
+        min-width: 220px;
     }
 
     .ordertable {
-        padding: 20px;
+        padding: 22px;
     }
 
     .insideorderdetails {
@@ -824,63 +632,164 @@
     }
 
     .orderpayment {
-        grid-column: 1 / -1;
+        grid-column: span 2;
     }
 
-    .showdetails {
-        padding: 24px;
-    }
 }
 
-/* ==========================================
-   RESPONSIVE - MOBILE
-========================================== */
+/* =========================================
+   MOBILE RESPONSIVE
+========================================= */
 
-@media (max-width: 760px) {
+@media screen and (max-width: 768px) {
+
     .orderdetails {
-        display: block;
-        padding: 0;
+        min-height: 100vh;
+        flex-direction: column;
+        overflow: visible;
     }
 
-    .orderdetails > .category-nav {
+    /* Mobile sidebar */
+
+    .orderdetails .category-nav {
         width: 100%;
-        min-width: 0;
-        max-width: none;
-        flex: none;
-
-        height: auto;
+        min-width: 100%;
         min-height: auto;
-        padding: 15px;
-        margin: 0;
-
-        position: relative;
+        height: auto;
+        padding: 15px 20px;
+        border-right: none;
+        border-bottom: 1px solid #eeeeee;
     }
 
-    .orderdetails > .category-nav h2 {
-        margin-bottom: 15px;
+    .nav-header {
+        margin-bottom: 0;
+        padding: 5px 0;
     }
 
-    .orderdetails > .category-nav > a {
-        margin-bottom: 8px;
-    }
-
-    .orderdetails .category-logout {
-        margin-top: 15px;
-    }
-
-    .ordertable {
-        padding: 15px;
-    }
-
-    .ordertable > h1 {
+    .nav-header h2 {
         font-size: 23px;
     }
 
+    .hamburger {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+    }
+
+    /* Hide links initially */
+
+    .category-nav-links {
+        display: none;
+        width: 100%;
+        padding-top: 15px;
+        gap: 7px;
+    }
+
+    /* Show links when hamburger clicked */
+
+    .category-nav-links.active {
+        display: flex;
+    }
+
+    .category-nav-links > a {
+        padding: 12px 15px;
+    }
+
+    .category-logout {
+        margin-top: 10px;
+    }
+
+    /* Main content */
+
+    .ordertable {
+        width: 100%;
+        min-height: calc(100vh - 70px);
+        padding: 20px 15px;
+        overflow: visible;
+    }
+
+    .ordertable > h1 {
+        font-size: 22px;
+    }
+
+    .ordertable > p {
+        font-size: 12px;
+        margin-bottom: 18px;
+    }
+
+    .ordertablecontent {
+        width: 100%;
+        min-height: 300px;
+        overflow-x: auto;
+        overflow-y: auto;
+    }
+
+    .ordertablecontent table {
+        min-width: 1000px;
+    }
+
+    /* Modal */
+
     .showdetails {
-        width: calc(100vw - 20px);
+        width: 94%;
+        max-height: 90vh;
+        padding: 22px 16px;
+    }
+
+    .insideorderdetails {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .orderpayment {
+        grid-column: span 2;
+    }
+
+    .firstorder,
+    .addressdetailss,
+    .orderpayment {
+        padding: 15px;
+    }
+
+    .itemordered {
+        gap: 12px;
+    }
+
+}
+
+/* =========================================
+   SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 550px) {
+
+    .ordertable {
+        padding: 18px 12px;
+    }
+
+    .ordertable > h1 {
+        font-size: 19px;
+    }
+
+    .ordertable > p {
+        font-size: 11px;
+    }
+
+    .showdetails {
+        width: 96%;
         max-height: 92vh;
-        padding: 18px;
-        border-radius: 15px;
+        padding: 20px 13px;
+    }
+
+    .showdetails > h2 {
+        font-size: 19px;
+    }
+
+    .showdetails > h5 {
+        font-size: 10px;
+        padding-right: 20px;
     }
 
     .insideorderdetails {
@@ -892,28 +801,299 @@
     }
 
     .itemordered {
-        align-items: flex-start;
         flex-wrap: wrap;
-        gap: 14px;
+        align-items: flex-start;
+        padding: 12px;
+    }
+
+    .itemimage {
+        width: 60px;
+        height: 60px;
+        min-width: 60px;
     }
 
     .itemdetals {
-        flex-basis: calc(100% - 100px);
+        width: calc(100% - 75px);
+        flex: 1;
     }
 
     .itemprice {
-        flex-basis: 100%;
-        min-width: 0;
+        width: 100%;
+        min-width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        text-align: left;
+        gap: 8px;
+        border-top: 1px solid #eeeeee;
+        padding-top: 12px;
+    }
+
+    .itemprice h6 {
+        margin-bottom: 0;
     }
 
     .orderfooter {
-        align-items: flex-start;
         flex-direction: column;
+        align-items: flex-start;
+        padding: 15px;
     }
 
-    .closedetails,
+    .closedetails {
+        width: 100%;
+    }
+
     .closedetails button {
         width: 100%;
     }
+
 }
+
+/* =========================================
+   EXTRA SMALL MOBILE
+========================================= */
+
+@media screen and (max-width: 360px) {
+
+    .nav-header h2 {
+        font-size: 20px;
+    }
+
+    .ordertable > h1 {
+        font-size: 17px;
+    }
+
+    .showdetails {
+        padding: 18px 10px;
+    }
+
+    .insideorderdetails h3 {
+        font-size: 11px;
+    }
+
+    .paid h2 {
+        font-size: 20px;
+    }
+
+}
+@media screen and (max-width: 768px) {
+
+    .orderdetails {
+        flex-direction: column;
+        overflow: visible;
+    }
+
+    .ordertable {
+        width: 100%;
+        padding: 15px 10px;
+        overflow: visible;
+    }
+
+    .ordertable > h1 {
+        font-size: 20px;
+    }
+
+    .ordertable > p {
+        font-size: 11px;
+    }
+
+    .ordertablecontent {
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .ordertablecontent table {
+        width: 100%;
+        min-width: 0;
+        table-layout: fixed;
+    }
+
+    .ordertablecontent th {
+        font-size: 9px;
+        padding: 10px 3px;
+    }
+
+    .ordertablecontent td {
+        font-size: 9px;
+        padding: 10px 3px;
+    }
+
+    .customer-avatar {
+        width: 23px;
+        height: 23px;
+        margin-right: 2px;
+        font-size: 10px;
+    }
+
+    .customer-name {
+        font-size: 9px;
+        white-space: normal;
+    }
+
+    .ordertablecontent td h5 {
+        font-size: 8px;
+        gap: 2px;
+        overflow-wrap: anywhere;
+    }
+
+    .imageorder {
+        min-width: 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .imageorder > div:first-child {
+        width: 35px;
+        height: 35px;
+        min-width: 35px;
+    }
+
+    .product-name,
+    .product-info {
+        font-size: 9px;
+    }
+
+    .imageorder h6 {
+        font-size: 9px;
+    }
+
+    .orderbutton1 {
+        padding: 6px 3px;
+        font-size: 8px;
+        gap: 2px;
+        white-space: normal;
+    }
+
+    .ordertablecontent select {
+        width: 100%;
+        min-width: 0;
+        padding: 5px 2px;
+        font-size: 8px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .ordertablecontent th {
+        font-size: 7px;
+        padding: 8px 2px;
+    }
+
+    .ordertablecontent td {
+        font-size: 8px;
+        padding: 8px 2px;
+    }
+
+    .orderbutton1 {
+        font-size: 7px;
+    }
+
+    .ordertablecontent select {
+        font-size: 7px;
+    }
+}
+
+/* FIXED TABLE HEADER + MOBILE SCROLL */
+
+@media screen and (max-width: 768px) {
+    .ordertablecontent {
+        width: 100%;
+        overflow: auto;
+    }
+
+    .ordertablecontent table {
+        min-width: 1000px;
+        table-layout: fixed;
+    }
+
+    .ordertablecontent thead th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        background: #f5f3fc;
+    }
+}
+/* =========================================
+   DELIVERY STATUS SELECT BOX
+========================================= */
+
+.ordertablecontent select {
+    width: 145px;
+    min-width: 145px;
+    padding: 9px 28px 9px 12px;
+
+    border: 1px solid #e2dcf5;
+    border-radius: 7px;
+
+    background-color: #f8f6ff;
+    color: #7454d6;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    outline: none;
+    cursor: pointer;
+
+    transition: all 0.3s ease;
+}
+
+.ordertablecontent select:hover {
+    border-color: #7454d6;
+    background-color: #f0ebff;
+}
+
+.ordertablecontent select:focus {
+    border-color: #7454d6;
+    box-shadow: 0 0 0 3px rgba(116, 84, 214, 0.12);
+}
+
+/* Dropdown options */
+
+.ordertablecontent select option {
+    background: #ffffff;
+    color: #444;
+    padding: 10px;
+    font-size: 12px;
+}
+
+/* Mobile */
+/* =========================================
+   MOBILE DELIVERY STATUS
+========================================= */
+
+@media screen and (max-width: 768px) {
+
+    .ordertablecontent td:last-child {
+        padding: 5px 2px;
+        text-align: center;
+    }
+
+    .ordertablecontent td:last-child select {
+        display: block;
+        width: 65px !important;
+        min-width: 65px !important;
+        max-width: 65px !important;
+        height: 30px;
+
+        padding: 3px 1px;
+        font-size: 8px;
+        border-radius: 5px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+
+    .ordertablecontent td:last-child select {
+        width: 58px !important;
+        min-width: 58px !important;
+        max-width: 58px !important;
+        height: 27px;
+        font-size: 7px;
+    }
+}
+
+
+
 

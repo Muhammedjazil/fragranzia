@@ -15,6 +15,7 @@ import {
   FiFacebook,
   FiYoutube,
   FiLinkedin,
+  
 } from "react-icons/fi";
 
 import UserService from "../../service/user-api-services/UserService";
@@ -45,7 +46,7 @@ console.log(user)
 
     return(
         <div className="profile">
-         <div className="home-fullnav">
+         {/* <div className="home-fullnav">
 
         <h2 id="nav-heading">Fragranzia</h2>
 
@@ -75,12 +76,12 @@ console.log(user)
               </ul>
             </nav>
 
-          </div>
+          </div> */}
 
 
           {/* SEARCH */}
 
-          <div className="home-navsearch">
+          {/* <div className="home-navsearch">
 
             <FiSearch />
 
@@ -89,12 +90,12 @@ console.log(user)
               placeholder="Search products..."
             />
 
-          </div>
+          </div> */}
 
 
           {/* ICONS */}
 
-          <div className="home-navicons">
+          {/* <div className="home-navicons">
 
             <Link to="/cart">
               <FiShoppingCart />
@@ -112,7 +113,7 @@ console.log(user)
           </div>
 
         </div> 
-        </div>      
+        </div>       */}
           
           <div className="data-full">
  <div className="profile-data">

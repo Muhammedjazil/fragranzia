@@ -72,7 +72,7 @@
 /* Export button */
 
 .category-13-1 button {
-    background-color: #e8f3f8;
+      background-color: #f5f5f5;
     
     border: 1px solid #035f08;
 }
@@ -283,25 +283,59 @@
    BLOCK / UNBLOCK BUTTON
 ========================= */
 
+/* =========================
+   BLOCK BUTTON - RED
+========================= */
+
 .block-category-btn {
     display: inline-flex;
     align-items: center;
     justify-content: center;
 
-    padding: 7px 15px;
+    width: 110px;
+    padding: 8px 15px;
 
     border: none;
     border-radius: 5px;
 
-    background-color: #e8f7ed;
-    color: green;
+    background-color: #dc3545;
+    color: white;
 
     cursor: pointer;
     white-space: nowrap;
+    font-weight: 600;
 }
 
 .block-category-btn:hover {
-    background-color: #d2f0dc;
+    background-color: #b02a37;
+}
+
+
+/* =========================
+   UNBLOCK BUTTON - GREEN
+========================= */
+
+.unblock-category-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 110px;
+    padding: 8px 15px;
+
+    border: none;
+    border-radius: 5px;
+
+    background-color: #198754;
+    color: white;
+
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+.unblock-category-btn:hover {
+    background-color: #146c43;
 }
 
 .category-table svg {
@@ -506,5 +540,63 @@
     .all-add-category {
         width: 95%;
         padding: 20px;
+    }
+}
+/* ===========for pagilation========================= */
+/* =================================
+   CATEGORY PAGINATION
+================================= */
+
+.category-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+    margin-top: 15px;
+}
+
+.category-pagination button {
+    padding: 10px 22px;
+    border: none;
+    border-radius: 5px;
+    background: #333;
+    color: white;
+    font-size: 14px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.category-pagination button:hover:not(:disabled) {
+    background: #555;
+}
+
+.category-pagination button:disabled {
+    background: #ccc;
+    color: #777;
+    cursor: not-allowed;
+}
+
+.category-pagination span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* MOBILE VIEW */
+
+@media (max-width: 480px) {
+    .category-pagination {
+        gap: 10px;
+        padding: 15px 5px;
+    }
+
+    .category-pagination button {
+        padding: 8px 14px;
+        font-size: 12px;
+    }
+
+    .category-pagination span {
+        font-size: 12px;
     }
 }

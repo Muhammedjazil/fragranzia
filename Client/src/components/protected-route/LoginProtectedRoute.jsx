@@ -1,5 +1,5 @@
 import { Navigate,Outlet } from "react-router-dom";
-
+import UserLayout from "../Layout/Userlayout";
 const LoginProtectedRoute=()=>{
     let token=localStorage.getItem("token")
     let role=localStorage.getItem("role")
@@ -7,6 +7,10 @@ const LoginProtectedRoute=()=>{
        return <Navigate to="/Signin" replace/>;
 
     }
-    return <Outlet/>;
+    return(
+    <UserLayout>
+     <Outlet/>
+     </UserLayout>
+)
 }
 export default LoginProtectedRoute;
