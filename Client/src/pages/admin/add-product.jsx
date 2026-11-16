@@ -17,7 +17,7 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import  AdminService from"../../service/admin-api-services/AdminService"  //after front end and backend,db use use this
 
-const APIURL='http://localhost:7000/product'
+const APIURL = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000'}/product`;
 export const Addproduct = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);

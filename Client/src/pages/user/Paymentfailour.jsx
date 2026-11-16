@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import "./paymentfailour.css"
+import "./Paymentfailour.css"
 import {
   FiShoppingCart,
   FiBell,
@@ -38,7 +38,7 @@ import {
 } from "react-icons/si";
 
 
-import Image1 from "./assets/sub4.png"
+import Image1 from "../../assets/sub4.png"
 
 export const Paymentfailour=()=>{
 
