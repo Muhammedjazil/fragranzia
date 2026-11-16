@@ -21,7 +21,7 @@ import UserService from "../../service/user-api-services/UserService";
 import { toast } from "react-toastify";
 
 export const Wishlist=()=>{
-const[search,setSearch]=useState("")
+// const[search,setSearch]=useState("")
 const [menuOpen, setMenuOpen] = useState(false);
 const [wishlist, setWishlist] = useState([]);
 const [loading, setLoading] = useState(true);
@@ -46,9 +46,9 @@ useEffect(() => {
   fetchWishlist();
 }, []);
 
-const filteredWishlist=wishlist.filter((product)=>
-  product.name.toLowerCase().includes(search.toLowerCase())
-)
+// const filteredWishlist=wishlist.filter((product)=>
+//   product.name.toLowerCase().includes(search.toLowerCase())
+// )
 
 
 
@@ -140,7 +140,7 @@ const filteredWishlist=wishlist.filter((product)=>
   ) : wishlist.length === 0 ? (
     <p>Your wishlist is empty.</p>
   ) : (
-    filteredWishlist.map((product) => (
+    wishlist.map((product) => (
       <div className="cart-item3" key={product._id}>
         <div className="cart-images">
           <Link to={`/productpage2/${product._id}`}>

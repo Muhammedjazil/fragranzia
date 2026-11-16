@@ -1,7 +1,7 @@
 import "./UserNavbar.css";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import {
   FiShoppingCart,
   FiBell,
@@ -12,9 +12,17 @@ import {
 } from "react-icons/fi";
 
 export const UserNavbar = ({ search, setSearch }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
-  // const [search, setSearch] = useState("");
 
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    if (e.key === "Enter" && search.trim() !== "") {
+      navigate("/products");
+      setMenuOpen(false);
+    }
+  };
   return (
     <div className="home-fullnav">
 
@@ -69,12 +77,13 @@ export const UserNavbar = ({ search, setSearch }) => {
         <div className="home-navsearch">
           <FiSearch />
 
-          <input
-            type="text"
-            placeholder="Search products..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
+        <input
+  type="text"
+  placeholder="Search products..."
+  value={search}
+  onChange={(e) => setSearch(e.target.value)}
+  onKeyDown={handleSearch}
+/>
         </div>
 
         {/* ICONS */}

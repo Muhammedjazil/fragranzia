@@ -463,3 +463,41 @@
         font-size: 11px;
     }
 }
+/* SOCIAL BUTTONS */
+
+.up-button1 button,
+.up-button2 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    width: 170px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* MULTICOLOUR GOOGLE ICON */
+
+.up-google-icon {
+    font-size: 23px;
+}
+
+/* FACEBOOK ICON */
+
+.up-facebook-icon {
+    font-size: 20px;
+    color: #1877F2;
+}
+
+/* HOVER EFFECT */
+
+.up-button1 button:hover,
+.up-button2 button:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+}

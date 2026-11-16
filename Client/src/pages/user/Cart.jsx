@@ -4,7 +4,7 @@ import "./Cart.css";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import UserService from "../../service/user-api-services/UserService";
-
+import UserFooter from "../../components/user/Userfooter";
 import {
   FiShoppingCart,
   FiBell,
@@ -50,9 +50,9 @@ import axios from "axios";
 //   },
 // ];
 
-export const Cart = () => {
+export const Cart = ({ search }) => {
 
-  const [search,setSearch]=useState("")
+  // const [search,setSearch]=useState("")
 
    const [menuOpen, setMenuOpen] = useState(false);
 
@@ -87,9 +87,9 @@ export const Cart = () => {
 
 //=====for serach=======//
 
-const filteredCart = Product.filter((item) =>
-  item.product?.name?.toLowerCase().includes(search.toLowerCase())
-);
+// const filteredCart = Product.filter((item) =>
+//   item.product?.name?.toLowerCase().includes(search.toLowerCase())
+// );
 
 const itemdelete = async (id, productName) => {
   try {
@@ -249,7 +249,7 @@ const itemdelete = async (id, productName) => {
 
        {/* {Product.map((item) => {                           //many cart item ind(cart lee kore product indukum user add chyunna) */}
      {/*======== for serach ===========*/}
-          {filteredCart.map((item) => {  
+          {Product.map((item) => {  
   const user = item.product;                         //item → ഒരു cart item.  item.product->ആ cart item-ൽ ഉള്ള product field. product store id of products in the product collection
   
   if (!user) return null;
@@ -333,7 +333,9 @@ const itemdelete = async (id, productName) => {
       </div>
 
       {/* FOOTER */}
-      <div className="home-footer">
+      <UserFooter/>
+
+      {/* <div className="home-footer">
         <div className="home-footerlogo">
           <h1>Fragranzia</h1>
         </div>
@@ -384,7 +386,7 @@ const itemdelete = async (id, productName) => {
       <div className="home-footerbelow">
         <p>Web Accessibility | Terms of Use | Privacy Statement | Contact Us</p>
         <p>© 2024 Fragranzia Company. All rights reserved.</p>
-      </div>
+      </div> */}
     </div>
   );
 };

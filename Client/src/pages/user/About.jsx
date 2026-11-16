@@ -3,6 +3,7 @@ import "./about.css"
 import { Link } from "react-router-dom"
 import image1 from "../../assets/perfume3.png"
 import image2 from "../../assets/perfumee.png"
+import UserFooter from "../../components/user/Userfooter"
 import {
   FiShoppingCart,
   FiBell,
@@ -151,22 +152,22 @@ export const About=()=>{
 
       {/* ================= FOOTER ================= */}
 
-      <div className="home-footer">
-
+      {/* <div className="home-footer"> */}
+         <UserFooter/>        {/*============= we use components here========= */}
         {/* LOGO */}
 
-        <div className="home-footerlogo">
+        {/* <div className="home-footerlogo">
 
           <h1>
             Fragranzia
           </h1>
 
-        </div>
+        </div> */}
 
 
         {/* PAGES */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Pages
@@ -196,12 +197,12 @@ export const About=()=>{
 
           </ul>
 
-        </div>
+        </div> */}
 
 
         {/* QUICK LINKS */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Quick Links
@@ -239,12 +240,12 @@ export const About=()=>{
 
           </ul>
 
-        </div>
+        </div> */}
 
 
         {/* CONTACT */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <ul>
 
@@ -298,12 +299,12 @@ export const About=()=>{
 
         </div>
 
-      </div>
+      </div> */}
 
 
       {/* ================= FOOTER BOTTOM ================= */}
 
-      <div className="home-footerbelow">
+      {/* <div className="home-footerbelow">
 
         <p>
           Web Accessibility | Terms of Use |
@@ -314,7 +315,7 @@ export const About=()=>{
           © 2024 Fragranzia Company. All rights reserved.
         </p>
 
-      </div>
+      </div> */}
         </div>
     )
 }

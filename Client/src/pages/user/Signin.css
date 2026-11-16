@@ -119,38 +119,117 @@
 
 
 /* GOOGLE ICON */
-
-.button1 .bi-google {
-    margin-right: 10px;
-
-    font-size: 18px;
+/* GOOGLE ICON */
+/* .form .button1 .bi-google::before {
+    display: inline-block;
+    font-size: 20px;
 
     background: conic-gradient(
-        #4285f4 0deg 90deg,
-        #34a853 90deg 180deg,
-        #fbbc05 180deg 270deg,
-        #ea4335 270deg 360deg
+        #4285F4 0deg 90deg,
+        #34A853 90deg 180deg,
+        #FBBC05 180deg 270deg,
+        #EA4335 270deg 360deg
     );
 
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
-}
+
+    transition: transform 0.3s ease;
+} */
 
 
 /* FACEBOOK ICON */
-
-.button2 .bi-facebook {
+/* GOOGLE MULTICOLOR ICON */
+/* .google-icon {
+    font-size: 23px;
     margin-right: 10px;
-
-    font-size: 18px;
-
-    color: #1877f2;
+    background: conic-gradient(
+        #4285F4 0deg 90deg,
+        #34A853 90deg 180deg,
+        #FBBC05 180deg 270deg,
+        #EA4335 270deg 360deg
+    );
+    transition: transform 0.3s ease;
 }
 
+.button1:hover .google-icon {
+    transform: scale(1.2);
+} */
+ 
+/* SOCIAL BUTTONS CONTAINER */
+.buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    width: 100%;
+}
 
+/* GOOGLE AND FACEBOOK BUTTONS */
+.button1 button,
+.button2 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 12px;
+    width: 170px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* MULTICOLOUR GOOGLE ICON */
+.google-icon {
+    font-size: 23px;
+}
+
+/* BLUE FACEBOOK ICON */
+.facebook-icon {
+    font-size: 20px;
+    color: #1877F2;
+}
+
+/* HOVER EFFECT */
+.button1 button:hover,
+.button2 button:hover {
+    transform: translateY(-2px);
+    opacity: 0.8;
+}
+/* FACEBOOK ICON */
+/* .facebook-icon {
+    font-size: 20px;
+    color: #1877F2;
+    margin-right: 10px;
+    transition: 0.3s ease;
+} */
+
+/* GOOGLE HOVER */
+/* .button1:hover .google-icon {
+    transform: scale(1.2);
+    color: #4285F4;
+} */
+
+/* FACEBOOK HOVER */
+/* .button2:hover .facebook-icon {
+    transform: scale(1.2);
+    color: #0866FF;
+} */
+
+/* BUTTON ALIGNMENT */
+.form .buttons button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
 /* =========================
    DIVIDER
-========================= */
+========================= */ 
 
 .divider {
     width: 365px;
@@ -554,4 +633,17 @@
     .divider span {
         font-size: 12px;
     }
+}
+/* Google multicolour icon */
+.form .buttons .google-icon {
+    font-size: 26px;
+    flex-shrink: 0;
+    filter: none !important;
+}
+
+/* Facebook blue icon */
+.form .buttons .facebook-icon {
+    font-size: 23px;
+    color: #1877F2;
+    flex-shrink: 0;
 }

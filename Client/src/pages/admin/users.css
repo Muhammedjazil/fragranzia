@@ -25,12 +25,13 @@
 
 .category-content {
     flex: 1;
+    width: 100%;
     min-width: 0;
     min-height: 100vh;
 
     margin-top: 1cm;
     margin-left: 0.4cm;
-    margin-right: 15px;
+    margin-right: 10px;
 
     padding: 35px;
 
@@ -39,7 +40,6 @@
     border-radius: 12px;
 
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-
     overflow-x: hidden;
 }
 
@@ -61,12 +61,14 @@
 /* =========================================
    CUSTOMER TABLE CONTAINER
 ========================================= */
+/* TABLE CONTAINER */
 
 .cetegory-customers {
     width: 100%;
-    margin-top: 20px;
+    max-width: 100%;
+    margin-top: 25px;
 
-    background-color: #ffffff;
+    background: #ffffff;
     border: 1px solid #e8ebf1;
     border-radius: 12px;
 
@@ -76,36 +78,63 @@
     overflow-y: hidden;
 }
 
-/* =========================================
-   CUSTOMER TABLE
-========================================= */
+/* TABLE */
 
 .customer-table {
     width: 100%;
-    min-width: 750px;
+    min-width: 100%;
+    table-layout: fixed;
 
     border-collapse: separate;
     border-spacing: 0;
 
     text-align: left;
-    background-color: #ffffff;
+    background: #ffffff;
 }
 
 /* TABLE HEADER */
 
 .customer-table thead th {
-    padding: 18px 22px;
+    padding: 20px 28px;
 
-    background-color: #f4f6fa;
+    background: #f4f6fa;
     color: #5b6575;
 
-    font-size: 12px;
+    font-size: 13px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.6px;
 
     white-space: nowrap;
     border-bottom: 1px solid #e6eaf0;
+}
+
+.customer-table thead th:first-child {
+    border-top-left-radius: 12px;
+}
+
+.customer-table thead th:last-child {
+    border-top-right-radius: 12px;
+}
+
+/* TABLE BODY */
+
+.customer-table tbody td {
+    padding: 24px 28px;
+
+    color: #3f4857;
+    font-size: 14px;
+
+    border-bottom: 1px solid #edf0f5;
+    vertical-align: middle;
+}
+
+.customer-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.customer-table tbody tr:hover {
+    background: #f8faff;
 }
 
 .customer-table thead th:first-child {

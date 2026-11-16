@@ -6,6 +6,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import UserService from "../../service/user-api-services/UserService";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
 export const Signin = () => {
  const {logindata}=UserService()
 
@@ -138,19 +140,21 @@ const onhandlesubmit = async (e) => {
                 </p>
             </div>
             <div className="inputs">
-                <div className="buttons">
-                    <div className="button1">
+              <div className="buttons">
+  <div className="button1">
+    <button type="button">
+        <FcGoogle className="google-icon" />
+        Google
+    </button>
+</div>
 
-                        <button type="button">
-                            <i className="bi bi-google"></i>
-                            Google</button>
-                    </div>
-                    <div className="button2">
-                        <button type="button">
-                            <i className="bi bi-facebook"></i>
-                            Facebook</button>
-                    </div>
-                </div>
+    <div className="button2">
+        <button type="button">
+            <FaFacebookF className="facebook-icon" />
+            Facebook
+        </button>
+    </div>
+</div>
                 <br />
                 <div className="divider">
                     <span>Or sign up with email</span>

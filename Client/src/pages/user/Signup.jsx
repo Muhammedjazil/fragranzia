@@ -7,6 +7,8 @@ import axios from "axios";
 import UserService from "../../service/user-api-services/UserService";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { FcGoogle } from "react-icons/fc";
+import { FaFacebookF } from "react-icons/fa";
 export const Signup=()=>{
     const navigate=useNavigate()
  const {signupedata}=UserService()
@@ -118,20 +120,23 @@ export const Signup=()=>{
          
             <form action="" onSubmit={onhandlesubmit}>
                <div className="up-form">
-                <div className="up-buttonmain">
-                <div className="up-button1">
-            <button type="button">   
-                {/* <button> engane koduthal button click chythal form submit aakum so ith satha button anu ennu parayanam */}
-             <i className="bi bi-google"></i>
-             GOOGLE
-             </button>
-             </div>
-             <div className="up-button2">
-            <button type="button">
-                <i className="bi bi-facebook"></i>
-                FACEBOOK</button>  
-                </div>
-                </div>
+              <div className="up-buttonmain">
+
+  <div className="up-button1">
+    <button type="button">
+      <FcGoogle className="up-google-icon" />
+      GOOGLE
+    </button>
+  </div>
+
+  <div className="up-button2">
+    <button type="button">
+      <FaFacebookF className="up-facebook-icon" />
+      FACEBOOK
+    </button>
+  </div>
+
+</div>
             <div className="up-divider">
                 <span>Or sign up with email</span>
             </div>

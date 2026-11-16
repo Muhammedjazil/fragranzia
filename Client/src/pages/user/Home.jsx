@@ -43,7 +43,7 @@ import {
   //  FiX 
 } from "react-icons/fi";
 import { useEffect, useState } from "react";
-
+import Userfooter from "../../components/user/Userfooter"
    const categories = [
         {
             name: "For women",
@@ -818,23 +818,23 @@ const fetchWishlist = async () => {
 
 
       {/* ================= FOOTER ================= */}
-
-      <div className="home-footer">
+       <Userfooter/>
+      {/* <div className="home-footer">
 
         {/* LOGO */}
 
-        <div className="home-footerlogo">
+        {/* <div className="home-footerlogo">
 
           <h1>
             Fragranzia
           </h1>
 
-        </div>
+        </div> */}
 
 
         {/* PAGES */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Pages
@@ -864,12 +864,12 @@ const fetchWishlist = async () => {
 
           </ul>
 
-        </div>
+        </div> */} 
 
 
         {/* QUICK LINKS */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Quick Links
@@ -907,12 +907,12 @@ const fetchWishlist = async () => {
 
           </ul>
 
-        </div>
+        </div> */}
 
 
         {/* CONTACT */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <ul>
 
@@ -966,12 +966,12 @@ const fetchWishlist = async () => {
 
         </div>
 
-      </div>
+      </div> */}
 
 
       {/* ================= FOOTER BOTTOM ================= */}
 
-      <div className="home-footerbelow">
+      {/* <div className="home-footerbelow">
 
         <p>
           Web Accessibility | Terms of Use |
@@ -982,7 +982,7 @@ const fetchWishlist = async () => {
           © 2024 Fragranzia Company. All rights reserved.
         </p>
 
-      </div>
+      </div> */}
 
     </div>
   );

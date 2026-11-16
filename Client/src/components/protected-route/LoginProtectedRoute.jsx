@@ -1,6 +1,6 @@
 import { Navigate,Outlet } from "react-router-dom";
 import UserLayout from "../Layout/Userlayout";
-const LoginProtectedRoute=()=>{
+const LoginProtectedRoute=(props)=>{
     let token=localStorage.getItem("token")
     let role=localStorage.getItem("role")
     if(!token || !role || role.toLowerCase()!=="user"){
@@ -8,7 +8,8 @@ const LoginProtectedRoute=()=>{
 
     }
     return(
-    <UserLayout>
+    <UserLayout search={props.search}
+      setSearch={props.setSearch}>
      <Outlet/>
      </UserLayout>
 )

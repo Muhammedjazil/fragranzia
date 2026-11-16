@@ -94,22 +94,15 @@ function App() {
 
         {/* Login protected user routes */}
         {/* User routes */}
-<Route element={<LoginProtectedRoute />}>
+<Route element={<LoginProtectedRoute search={search}  setSearch={setSearch} />}>
  
 <Route
   path="/"
-  element={
-    <UserLayout
-      search={search}
-      setSearch={setSearch}
-    >
-      <Home search={search} />
-    </UserLayout>
-  }
+  element={<Home search={search}/>}
 />
-    <Route path="/products" element={<Products />} />
+    <Route path="/products" element={<Products search={search}/>} />
     <Route path="/productpage2/:id" element={<Productpage2 />} />
-    <Route path="/cart" element={<Cart />} />
+    <Route path="/cart" element={<Cart  search={search}/>} />
     <Route path="/about" element={<About />} />
     <Route path="/profilesave" element={<Profilesave />} />
     <Route path="/last" element={<Lastaddress />} />

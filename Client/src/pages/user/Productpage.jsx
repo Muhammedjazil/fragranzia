@@ -11,6 +11,7 @@ import Image11 from "../../assets/sub10.jpg"
 import Image12 from "../../assets/sub15.jpg"
 import {Link} from "react-router-dom";
 import { toast } from "react-toastify";
+import UserFooter from "../../components/user/Userfooter"
 import {
   // FiShoppingCart,
   // FiBell,
@@ -43,8 +44,8 @@ import { useEffect, useState } from "react"
 
 import UserService from "../../service/user-api-services/UserService"
 
-export const Products=()=>{
-const [search, setSearch] = useState("");
+export const Products=({ search })=>{
+// const [search, setSearch] = useState("");
 const [menuOpen, setMenuOpen] = useState(false);
 const [minPrice, setMinPrice] = useState(0);
 const [maxPrice, setMaxPrice] = useState(5000);
@@ -547,22 +548,22 @@ return(
 <br/>
 
 
-  <div className="home-footer">
-
+  {/* <div className="home-footer"> */}
+ <UserFooter/>
         {/* LOGO */}
 
-        <div className="home-footerlogo">
+        {/* <div className="home-footerlogo">
 
           <h1>
             Fragranzia
           </h1>
 
-        </div>
+        </div> */}
 
 
         {/* PAGES */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Pages
@@ -592,12 +593,12 @@ return(
 
           </ul>
 
-        </div>
+        </div> */}
 
 
         {/* QUICK LINKS */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <h3>
             Quick Links
@@ -635,12 +636,12 @@ return(
 
           </ul>
 
-        </div>
+        </div> */}
 
 
         {/* CONTACT */}
 
-        <div className="home-footercolumn">
+        {/* <div className="home-footercolumn">
 
           <ul>
 
@@ -694,12 +695,12 @@ return(
 
         </div>
 
-      </div>
+      </div> */}
 
 
       {/* ================= FOOTER BOTTOM ================= */}
 
-      <div className="home-footerbelow">
+      {/* <div className="home-footerbelow">
 
         <p>
           Web Accessibility | Terms of Use |
@@ -710,7 +711,7 @@ return(
           © 2024 Fragranzia Company. All rights reserved.
         </p>
 
-      </div>
+      </div> */}
 
     </div>
 )
