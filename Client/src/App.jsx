@@ -87,7 +87,11 @@ function App() {
 
 
 
-      
+      <Route
+  path="/"
+  element={<Home />}
+/>
+    <Route path="/products" element={<Products/>} />
        
         <Route path='/signup' element={<Signup />} />
         <Route path='/Signin' element={<Signin />} />
@@ -96,11 +100,7 @@ function App() {
         {/* User routes */}
 <Route element={<LoginProtectedRoute search={search}  setSearch={setSearch} />}>
  
-<Route
-  path="/"
-  element={<Home search={search}/>}
-/>
-    <Route path="/products" element={<Products search={search}/>} />
+
     <Route path="/productpage2/:id" element={<Productpage2 />} />
     <Route path="/cart" element={<Cart  search={search}/>} />
     <Route path="/about" element={<About />} />
