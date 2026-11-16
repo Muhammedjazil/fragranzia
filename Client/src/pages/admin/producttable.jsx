@@ -21,7 +21,9 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 // import AdminNavbar from "../../components/admin/Adminnavbar";
 
-const APIURL = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000'}/product`;
+import { BASE_URL } from "../../axios";
+
+const APIURL = `${BASE_URL}/product`;
 
 import AdminService from "../../service/admin-api-services/AdminService";
 export const Producttable = () => {
@@ -212,7 +214,7 @@ export const Producttable = () => {
 
 
   const fetchcategory = async () => {
-    let res = await axios.get(`${import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000'}/category`)
+    let res = await axios.get(`${BASE_URL}/category`)
     setcategory(res.data)
   }
   useEffect(() => {

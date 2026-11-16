@@ -18,8 +18,9 @@ import {
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";                                                                         // //after front end and backend,db use use this
 import AdminService from "../../service/admin-api-services/AdminService";  //we import AdminService
-                                                         //AdminService use chythu namukk orro fn num individual API call kodukkunath prevent aaka(http://localhost...) 
-const APIURL = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000'}/category`;
+import { BASE_URL } from "../../axios";
+
+const APIURL = `${BASE_URL}/category`;
 
 export const Category = () => {
     // State to control whether the Add Category drawer/modal is open or closed

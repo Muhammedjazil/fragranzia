@@ -16,8 +16,9 @@ import axios from "axios";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 import  AdminService from"../../service/admin-api-services/AdminService"  //after front end and backend,db use use this
+import { BASE_URL } from "../../axios";
 
-const APIURL = `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:7000'}/product`;
+const APIURL = `${BASE_URL}/product`;
 export const Addproduct = () => {
 
     const [menuOpen, setMenuOpen] = useState(false);
