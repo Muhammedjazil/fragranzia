@@ -1,11 +1,18 @@
 const mongoose = require("mongoose");
 
 const connectDb = async () => {
+  if (mongoose.connection.readyState >= 1) {
+    return;
+  }
+  if (!process.env.MONGO_URI) {
+    console.error("MONGO_URI is missing in environment variables!");
+    return;
+  }
   try {
-    const  connection  = await mongoose.connect(process.env.MONGO_URI);  //crud_db-->dbname
-    console.log("Database Connected: ");
+    await mongoose.connect(process.env.MONGO_URI);
+    console.log("Database Connected");
   } catch (error) {
-    console.log(error);
+    console.error("Database connection error:", error);
   }
 };
 
