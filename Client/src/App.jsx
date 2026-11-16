@@ -24,10 +24,10 @@ import { Producttable } from './pages/admin/producttable'
 // import { Paymentfailour } from './paymentfailour'
 import { Cart } from './pages/user/Cart'
 import { About } from './pages/user/About'
-import { Profile } from './pages/user/Profile'
+// import { Profile } from './pages/user/Profile'
 import { Profilesave } from './pages/user/Profilesave'
 import { Lastaddress } from './pages/user/Lastaddress'
-import { Address } from './pages/user/Address'
+// import { Address } from './pages/user/Address'
 import './App.css'
 import { Signup } from './pages/user/Signup'
 import { Signin } from './pages/user/Signin'
@@ -43,8 +43,8 @@ import LoginProtectedRoute from './components/protected-route/LoginProtectedRout
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dashboard } from './pages/admin/Dashboard'
-import AdminLayout from "./components/Layout/Adminlayout";
-import UserLayout from "./components/Layout/Userlayout"
+// import AdminLayout from "./components/Layout/Adminlayout";
+// import UserLayout from "./components/Layout/Userlayout"
 function App() {
  const [search, setSearch] = useState("");
 
