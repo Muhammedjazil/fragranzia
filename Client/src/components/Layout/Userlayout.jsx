@@ -1,3 +1,4 @@
+import { Outlet } from "react-router-dom";
 import { UserNavbar } from "../user/Usernavbar";
 
 const UserLayout = ({ children, search, setSearch }) => {
@@ -12,7 +13,7 @@ const UserLayout = ({ children, search, setSearch }) => {
 
       {/* User page content */}
       <main className="user-content">
-        {children}
+        {children || <Outlet />}
       </main>
 
     </div>

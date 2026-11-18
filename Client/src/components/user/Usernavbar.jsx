@@ -16,9 +16,10 @@ export const UserNavbar = ({ search, setSearch }) => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const navigate = useNavigate();
+  const token = localStorage.getItem("token");
 
   const handleSearch = (e) => {
-    if (e.key === "Enter" && search.trim() !== "") {
+    if (e.key === "Enter" && search && search.trim() !== "") {
       navigate("/products");
       setMenuOpen(false);
     }
@@ -69,6 +70,13 @@ export const UserNavbar = ({ search, setSearch }) => {
                 </Link>
               </li>
 
+              {!token && (
+                <li>
+                  <Link to="/Signin" onClick={() => setMenuOpen(false)}>
+                    Sign In
+                  </Link>
+                </li>
+              )}
             </ul>
           </nav>
         </div>
@@ -80,8 +88,8 @@ export const UserNavbar = ({ search, setSearch }) => {
         <input
   type="text"
   placeholder="Search products..."
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
+  value={search || ""}
+  onChange={(e) => setSearch && setSearch(e.target.value)}
   onKeyDown={handleSearch}
 />
         </div>
@@ -89,15 +97,15 @@ export const UserNavbar = ({ search, setSearch }) => {
         {/* ICONS */}
         <div className="home-navicons">
 
-          <Link to="/cart" onClick={() => setMenuOpen(false)}>
+          <Link to="/cart" onClick={() => setMenuOpen(false)} title="Cart">
             <FiShoppingCart />
           </Link>
 
-          <Link to="/notifications" onClick={() => setMenuOpen(false)}>
+          <Link to="/notifications" onClick={() => setMenuOpen(false)} title="Notifications">
             <FiBell />
           </Link>
 
-          <Link to="/profilesave" onClick={() => setMenuOpen(false)}>
+          <Link to={token ? "/profilesave" : "/Signin"} onClick={() => setMenuOpen(false)} title={token ? "Profile" : "Sign In"}>
             <FiUser />
           </Link>
 

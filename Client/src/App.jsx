@@ -44,7 +44,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Dashboard } from './pages/admin/Dashboard'
 // import AdminLayout from "./components/Layout/Adminlayout";
-// import UserLayout from "./components/Layout/Userlayout"
+import UserLayout from "./components/Layout/Userlayout"
 function App() {
  const [search, setSearch] = useState("");
 
@@ -83,32 +83,28 @@ function App() {
         {/* <Home/> */}
         {/* <Products/> */}
 
-        {/* Public routes */}
-
-
-
-      
-       
+        {/* Public auth routes */}
         <Route path='/signup' element={<Signup />} />
         <Route path='/Signin' element={<Signin />} />
+        <Route path='/signin' element={<Signin />} />
 
-        {/* Login protected user routes */}
-        {/* User routes */}
-<Route element={<LoginProtectedRoute search={search}  setSearch={setSearch} />}>
- 
-<Route
-  path="/"
-  element={<Home search={search}/>}
-/>
-    <Route path="/products" element={<Products search={search}/>} />
-    <Route path="/productpage2/:id" element={<Productpage2 />} />
-    <Route path="/cart" element={<Cart  search={search}/>} />
-    <Route path="/about" element={<About />} />
-    <Route path="/profilesave" element={<Profilesave />} />
-    <Route path="/last" element={<Lastaddress />} />
-    <Route path="/gifting" element={<Wishlist />} />
-    <Route path="/payment" element={<Payment />} />
-  </Route>
+        {/* User layout: Navbar is always visible */}
+        <Route element={<UserLayout search={search} setSearch={setSearch} />}>
+          {/* Publicly accessible pages without login */}
+          <Route path="/" element={<Home search={search} />} />
+          <Route path="/products" element={<Products search={search} />} />
+          <Route path="/productpage2/:id" element={<Productpage2 />} />
+
+          {/* Login protected routes: only logged-in users can access; redirects to /Signin if logged out */}
+          <Route element={<LoginProtectedRoute />}>
+            <Route path="/cart" element={<Cart search={search} />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/profilesave" element={<Profilesave />} />
+            <Route path="/last" element={<Lastaddress />} />
+            <Route path="/gifting" element={<Wishlist />} />
+            <Route path="/payment" element={<Payment />} />
+          </Route>
+        </Route>
       </Routes>
 
       {/* Toast notifications */}
