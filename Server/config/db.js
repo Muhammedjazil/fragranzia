@@ -6,13 +6,14 @@ const connectDb = async () => {
   }
   if (!process.env.MONGO_URI) {
     console.error("MONGO_URI is missing in environment variables!");
-    return;
+    throw new Error("MONGO_URI is missing in environment variables!");
   }
   try {
     await mongoose.connect(process.env.MONGO_URI);
     console.log("Database Connected");
   } catch (error) {
     console.error("Database connection error:", error);
+    throw error;
   }
 };
 

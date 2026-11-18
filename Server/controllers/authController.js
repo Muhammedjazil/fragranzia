@@ -77,9 +77,10 @@ let login = async (req, res) => {
     }
 
     // Generate JWT only for active users
+    const secret = process.env.JWT_SECRET || "mysecretkey";
     const token = jwt.sign(
       { _id: user._id },
-      process.env.JWT_SECRET,
+      secret,
       { expiresIn: "1y" }
     );
 
@@ -92,7 +93,7 @@ let login = async (req, res) => {
     console.log("Login error:", error);
 
     res.status(500).json({
-      message: "Login failed. Please try again."
+      message: error.message || "Login failed. Please try again."
     });
   }
 };

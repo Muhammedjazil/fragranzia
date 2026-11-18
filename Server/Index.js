@@ -18,6 +18,20 @@ connectDb();
 app.use(cors());
 app.use(express.json());
 
+// Ensure DB is connected before handling any route (essential for Vercel serverless)
+app.use(async (req, res, next) => {
+  try {
+    await connectDb();
+    next();
+  } catch (error) {
+    console.error("Database connection error in middleware:", error);
+    return res.status(500).json({
+      message: "Database connection failed: " + (error.message || "Unknown error"),
+      hint: "Add MONGO_URI in Vercel Backend Environment Variables and ensure MongoDB Atlas allows 0.0.0.0/0 in Network Access"
+    });
+  }
+});
+
 // Root test route so visiting https://...vercel.app returns a confirmation
 app.get("/", (req, res) => {
   res.send("Fragrance Backend API is running successfully!");
